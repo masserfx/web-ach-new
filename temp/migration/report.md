@@ -2,9 +2,9 @@
 # Migration Report
 
 ## Summary
-- Blog posts migrated: null
-- Products migrated: null
-- Total: 0
+- Blog posts migrated: 358
+- Products migrated: 19
+- Total: 377
 
 ## Next Steps
 1. Review migrated content in Supabase Studio
