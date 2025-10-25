@@ -257,10 +257,10 @@ CREATE TABLE faqs (
 );
 
 -- ============================================
--- REFERENCES / CASE STUDIES
+-- CASE STUDIES (renamed from references to avoid SQL keyword conflict)
 -- ============================================
 
-CREATE TABLE references (
+CREATE TABLE case_studies (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   title TEXT NOT NULL,
   slug TEXT UNIQUE NOT NULL,
@@ -336,9 +336,9 @@ ALTER TABLE blog_posts ADD COLUMN search_text TEXT;
 ALTER TABLE products ADD COLUMN search_text TEXT;
 
 -- Create GIN indexes for full-text search
-CREATE INDEX idx_pages_search ON pages USING gin(to_tsvector('czech', coalesce(search_text, '')));
-CREATE INDEX idx_blog_posts_search ON blog_posts USING gin(to_tsvector('czech', coalesce(search_text, '')));
-CREATE INDEX idx_products_search ON products USING gin(to_tsvector('czech', coalesce(search_text, '')));
+CREATE INDEX idx_pages_search ON pages USING gin(to_tsvector('simple', coalesce(search_text, '')));
+CREATE INDEX idx_blog_posts_search ON blog_posts USING gin(to_tsvector('simple', coalesce(search_text, '')));
+CREATE INDEX idx_products_search ON products USING gin(to_tsvector('simple', coalesce(search_text, '')));
 
 -- ============================================
 -- FUNCTIONS & TRIGGERS
@@ -401,7 +401,7 @@ CREATE TRIGGER pages_updated_at BEFORE UPDATE ON pages FOR EACH ROW EXECUTE FUNC
 CREATE TRIGGER blog_posts_updated_at BEFORE UPDATE ON blog_posts FOR EACH ROW EXECUTE FUNCTION update_updated_at();
 CREATE TRIGGER products_updated_at BEFORE UPDATE ON products FOR EACH ROW EXECUTE FUNCTION update_updated_at();
 CREATE TRIGGER faqs_updated_at BEFORE UPDATE ON faqs FOR EACH ROW EXECUTE FUNCTION update_updated_at();
-CREATE TRIGGER references_updated_at BEFORE UPDATE ON references FOR EACH ROW EXECUTE FUNCTION update_updated_at();
+CREATE TRIGGER case_studies_updated_at BEFORE UPDATE ON case_studies FOR EACH ROW EXECUTE FUNCTION update_updated_at();
 
 -- ============================================
 -- ROW LEVEL SECURITY
@@ -411,7 +411,7 @@ ALTER TABLE blog_posts ENABLE ROW LEVEL SECURITY;
 ALTER TABLE products ENABLE ROW LEVEL SECURITY;
 ALTER TABLE media ENABLE ROW LEVEL SECURITY;
 ALTER TABLE faqs ENABLE ROW LEVEL SECURITY;
-ALTER TABLE references ENABLE ROW LEVEL SECURITY;
+ALTER TABLE case_studies ENABLE ROW LEVEL SECURITY;
 
 -- Public can read published content
 CREATE POLICY "Public can read published blog posts"
@@ -422,8 +422,8 @@ CREATE POLICY "Public can read published products"
   ON products FOR SELECT
   USING (published = true);
 
-CREATE POLICY "Public can read published references"
-  ON references FOR SELECT
+CREATE POLICY "Public can read published case studies"
+  ON case_studies FOR SELECT
   USING (published = true);
 
 CREATE POLICY "Public can read FAQs"

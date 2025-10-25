@@ -12,6 +12,7 @@
  * - Database import
  */
 
+import 'dotenv/config';
 import { createClient } from '@supabase/supabase-js';
 import * as cheerio from 'cheerio';
 import axios from 'axios';

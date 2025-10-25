@@ -1,0 +1,225 @@
+🚀 Starting AC Heating content migration...
+
+📥 Step 1: Fetching sitemap...
+✓ Found 649 URLs
+
+📋 Step 2: Categorizing content...
+  Blog posts: 358
+  Products: 28
+  Static pages: 7
+
+📝 Step 3: Migrating blog posts...
+
+[1/20] Processing: /-rozhodli-jsme-se-spravne-konstatuje-predseda-svj-ing-josef-vales-po-zkusenostech-s-tepelnym-cerpadlem-v-kombinaci-s-fotovoltaickou-elektrarnou/
+  Scraping: /-rozhodli-jsme-se-spravne-konstatuje-predseda-svj-ing-josef-vales-po-zkusenostech-s-tepelnym-cerpadlem-v-kombinaci-s-fotovoltaickou-elektrarnou/
+  ❌ Failed to insert: permission denied for table blog_posts
+
+[2/20] Processing: /5-kroku-k-vlastni-kotelne-s-tepelnymi-cerpadly/
+  Scraping: /5-kroku-k-vlastni-kotelne-s-tepelnymi-cerpadly/
+  ❌ Failed to insert: permission denied for table blog_posts
+
+[3/20] Processing: /5-nejcastejsich-mytu-o-tepelnych-cerpadlech/
+  Scraping: /5-nejcastejsich-mytu-o-tepelnych-cerpadlech/
+  ❌ Failed to insert: permission denied for table blog_posts
+
+[4/20] Processing: /ac-connectivity-kdyz-chcete-neco-vic/
+  Scraping: /ac-connectivity-kdyz-chcete-neco-vic/
+  ❌ Failed to insert: permission denied for table blog_posts
+
+[5/20] Processing: /ac-heating-a-doba-rouskova/
+  Scraping: /ac-heating-a-doba-rouskova/
+  ❌ Failed to insert: permission denied for table blog_posts
+
+[6/20] Processing: /ac-heating-a-rodinna-firma-roku-2020/
+  Scraping: /ac-heating-a-rodinna-firma-roku-2020/
+  ❌ Failed to insert: permission denied for table blog_posts
+
+[7/20] Processing: /ac-heating-na-for-arch-2025/
+  Scraping: /ac-heating-na-for-arch-2025/
+  ❌ Failed to insert: permission denied for table blog_posts
+
+[8/20] Processing: /ac-heating-tepelna-cerpadla-nabidka-pracovniho-mista/
+  Scraping: /ac-heating-tepelna-cerpadla-nabidka-pracovniho-mista/
+  ❌ Failed to insert: permission denied for table blog_posts
+
+[9/20] Processing: /ac-heating-v-bruselu/
+  Scraping: /ac-heating-v-bruselu/
+  ❌ Failed to insert: permission denied for table blog_posts
+
+[10/20] Processing: /ac-heating-vystavy-a-veletrhy-2019/
+  Scraping: /ac-heating-vystavy-a-veletrhy-2019/
+  ❌ Failed to insert: permission denied for table blog_posts
+
+[11/20] Processing: /ac-heating-ziskalo-dalsi-prestizni-oceneni-red-dot-award-2025-/
+  Scraping: /ac-heating-ziskalo-dalsi-prestizni-oceneni-red-dot-award-2025-/
+  ❌ Failed to insert: permission denied for table blog_posts
+
+[12/20] Processing: /ac-heating-ziskalo-prestizni-german-design-award-2025-/
+  Scraping: /ac-heating-ziskalo-prestizni-german-design-award-2025-/
+  ❌ Failed to insert: permission denied for table blog_posts
+
+[13/20] Processing: /aktuality-z-kotlikovych-dotaci/
+  Scraping: /aktuality-z-kotlikovych-dotaci/
+  ❌ Failed to insert: permission denied for table blog_posts
+
+[14/20] Processing: /aktualni-stav-dotaci-na-tepelne-cerpadlo/
+  Scraping: /aktualni-stav-dotaci-na-tepelne-cerpadlo/
+  ❌ Failed to insert: permission denied for table blog_posts
+
+[15/20] Processing: /aktualni-vyzvy-kotlikove-dotace-podzim-2018/
+  Scraping: /aktualni-vyzvy-kotlikove-dotace-podzim-2018/
+  ❌ Failed to insert: permission denied for table blog_posts
+
+[16/20] Processing: /brezen-v-plnem-proudu-na-jake-akce-se-muzete-tesit-/
+  Scraping: /brezen-v-plnem-proudu-na-jake-akce-se-muzete-tesit-/
+  ❌ Failed to insert: permission denied for table blog_posts
+
+[17/20] Processing: /bude-venku-klendra-nebo-parak-/
+  Scraping: /bude-venku-klendra-nebo-parak-/
+  ❌ Failed to insert: permission denied for table blog_posts
+
+[18/20] Processing: /budeme-soucasti-karierniho-jarmarku-v-plzni/
+  Scraping: /budeme-soucasti-karierniho-jarmarku-v-plzni/
+  ❌ Failed to insert: permission denied for table blog_posts
+
+[19/20] Processing: /budeme-tam-veletrh-for-pasiv-2023/
+  Scraping: /budeme-tam-veletrh-for-pasiv-2023/
+  ❌ Failed to insert: permission denied for table blog_posts
+
+[20/20] Processing: /bytove-domy-jak-se-branit-proti-rostouci-cene-tepla-/
+  Scraping: /bytove-domy-jak-se-branit-proti-rostouci-cene-tepla-/
+  ❌ Failed to insert: permission denied for table blog_posts
+✓ Blog posts migrated
+
+🏷️  Step 4: Migrating products...
+
+[1/28] Processing product: /produkty/
+  Scraping: /produkty/
+  ❌ Failed: permission denied for table products
+
+[2/28] Processing product: /produkty/tepelne-cerpadlo-convert-aw9/
+  Scraping: /produkty/tepelne-cerpadlo-convert-aw9/
+  ❌ Failed: permission denied for table products
+
+[3/28] Processing product: /produkty/tepelne-cerpadlo-convert-aw12/
+  Scraping: /produkty/tepelne-cerpadlo-convert-aw12/
+  ❌ Failed: permission denied for table products
+
+[4/28] Processing product: /produkty/tepelne-cerpadlo-convert-aw14/
+  Scraping: /produkty/tepelne-cerpadlo-convert-aw14/
+  ❌ Failed: permission denied for table products
+
+[5/28] Processing product: /produkty/tepelne-cerpadlo-convert-aw19-3p/
+  Scraping: /produkty/tepelne-cerpadlo-convert-aw19-3p/
+  ❌ Failed: permission denied for table products
+
+[6/28] Processing product: /produkty/tepelne-cerpadlo-convert-aw14-3p/
+  Scraping: /produkty/tepelne-cerpadlo-convert-aw14-3p/
+  ❌ Failed: permission denied for table products
+
+[7/28] Processing product: /produkty/tepelne-cerpadlo-convert-aw16/
+  Scraping: /produkty/tepelne-cerpadlo-convert-aw16/
+  ❌ Failed: permission denied for table products
+
+[8/28] Processing product: /produkty/tepelne-cerpadlo-convert-aw16-3p/
+  Scraping: /produkty/tepelne-cerpadlo-convert-aw16-3p/
+  ❌ Failed: permission denied for table products
+
+[9/28] Processing product: /produkty/tepelne-cerppadlo-convert-aw22-3p/
+  Scraping: /produkty/tepelne-cerppadlo-convert-aw22-3p/
+  ❌ Failed: permission denied for table products
+
+[10/28] Processing product: /produkty/tepelne-cerpadlo-convert-aw28-3p/
+  Scraping: /produkty/tepelne-cerpadlo-convert-aw28-3p/
+  ❌ Failed: permission denied for table products
+
+[11/28] Processing product: /produkty/tepelne-cerpadlo-convert-aw6/
+  Scraping: /produkty/tepelne-cerpadlo-convert-aw6/
+  ❌ Failed: permission denied for table products
+
+[12/28] Processing product: /produkty/tepelne-cerpadlo-convert-aw9/
+  Scraping: /produkty/tepelne-cerpadlo-convert-aw9/
+  ❌ Failed: permission denied for table products
+
+[13/28] Processing product: /produkty/tepelne-cerpadlo-convert-aw12/
+  Scraping: /produkty/tepelne-cerpadlo-convert-aw12/
+  ❌ Failed: permission denied for table products
+
+[14/28] Processing product: /produkty/tepelne-cerpadlo-convert-aw14/
+  Scraping: /produkty/tepelne-cerpadlo-convert-aw14/
+  ❌ Failed: permission denied for table products
+
+[15/28] Processing product: /produkty/tepelne-cerpadlo-convert-aw19-3p/
+  Scraping: /produkty/tepelne-cerpadlo-convert-aw19-3p/
+  ❌ Failed: permission denied for table products
+
+[16/28] Processing product: /produkty/tepelne-cerpadlo-convert-aw14-3p/
+  Scraping: /produkty/tepelne-cerpadlo-convert-aw14-3p/
+  ❌ Failed: permission denied for table products
+
+[17/28] Processing product: /produkty/tepelne-cerpadlo-convert-aw16/
+  Scraping: /produkty/tepelne-cerpadlo-convert-aw16/
+  ❌ Failed: permission denied for table products
+
+[18/28] Processing product: /produkty/tepelne-cerpadlo-convert-aw16-3p/
+  Scraping: /produkty/tepelne-cerpadlo-convert-aw16-3p/
+  ❌ Failed: permission denied for table products
+
+[19/28] Processing product: /produkty/tepelne-cerppadlo-convert-aw22-3p/
+  Scraping: /produkty/tepelne-cerppadlo-convert-aw22-3p/
+  ❌ Failed: permission denied for table products
+
+[20/28] Processing product: /produkty/tepelne-cerpadlo-convert-aw28-3p/
+  Scraping: /produkty/tepelne-cerpadlo-convert-aw28-3p/
+  ❌ Failed: permission denied for table products
+
+[21/28] Processing product: /produkty/tepelne-cerpadlo-convert-aw9-r32/
+  Scraping: /produkty/tepelne-cerpadlo-convert-aw9-r32/
+  ❌ Failed: permission denied for table products
+
+[22/28] Processing product: /produkty/tepelne-cerpadlo-convert-aw12-r32/
+  Scraping: /produkty/tepelne-cerpadlo-convert-aw12-r32/
+  ❌ Failed: permission denied for table products
+
+[23/28] Processing product: /produkty/tepelne-cerpadlo-convert-aw14-3p-v1/
+  Scraping: /produkty/tepelne-cerpadlo-convert-aw14-3p-v1/
+  ❌ Failed: permission denied for table products
+
+[24/28] Processing product: /produkty/tepelne-cerpadlo-convert-aw16-3p-v1/
+  Scraping: /produkty/tepelne-cerpadlo-convert-aw16-3p-v1/
+  ❌ Failed: permission denied for table products
+
+[25/28] Processing product: /produkty/tepelne-cerpadlo-convert-aw19-3p-v2/
+  Scraping: /produkty/tepelne-cerpadlo-convert-aw19-3p-v2/
+  ❌ Failed: permission denied for table products
+
+[26/28] Processing product: /produkty/convert-ng-one-s/
+  Scraping: /produkty/convert-ng-one-s/
+  ❌ Failed: permission denied for table products
+
+[27/28] Processing product: /produkty/convert-ng-one-m/
+  Scraping: /produkty/convert-ng-one-m/
+  ❌ Failed: permission denied for table products
+
+[28/28] Processing product: /produkty/convert-ng-one-l/
+  Scraping: /produkty/convert-ng-one-l/
+  ❌ Failed: permission denied for table products
+✓ Products migrated
+
+📊 Step 5: Generating migration report...
+
+# Migration Report
+
+## Summary
+- Blog posts migrated: null
+- Products migrated: null
+- Total: 0
+
+## Next Steps
+1. Review migrated content in Supabase Studio
+2. Upload images to Supabase Storage
+3. Run SEO optimization
+4. Test URLs for redirects
+
+
+✅ Migration completed successfully!
