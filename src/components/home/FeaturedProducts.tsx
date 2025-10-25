@@ -25,7 +25,7 @@ export function FeaturedProducts({ products }: FeaturedProductsProps) {
   if (products.length === 0) return null;
 
   return (
-    <section className="container mx-auto px-4 py-20 bg-gradient-to-b from-gray-50 to-white">
+    <section className="container mx-auto px-4 py-20 bg-gradient-to-br from-white via-gray-50 to-white">
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto mb-12">
         <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -33,7 +33,7 @@ export function FeaturedProducts({ products }: FeaturedProductsProps) {
             Naše produkty
           </span>
         </h2>
-        <p className="text-xl text-gray-600">
+        <p className="text-xl text-gray-600 font-medium">
           Tepelná čerpadla vyráběná v České republice
         </p>
       </div>
@@ -47,13 +47,18 @@ export function FeaturedProducts({ products }: FeaturedProductsProps) {
 
       {/* View All Link */}
       <div className="text-center">
-        <Link
-          href="/produkty"
-          className="inline-flex items-center gap-2 px-8 py-4 bg-brand-secondary text-white rounded-xl font-semibold hover:bg-brand-secondary/90 transition-colors"
+        <motion.div
+          whileHover={{ scale: 1.05, y: -2 }}
+          whileTap={{ scale: 0.95 }}
         >
-          Zobrazit všechny produkty
-          <ArrowRight className="w-5 h-5" />
-        </Link>
+          <Link
+            href="/produkty"
+            className="inline-flex items-center gap-2 px-10 py-5 bg-gradient-to-r from-brand-secondary to-green-600 text-white rounded-xl font-bold text-lg shadow-2xl hover:shadow-secondary/30 transition-all"
+          >
+            Zobrazit všechny produkty
+            <ArrowRight className="w-5 h-5" />
+          </Link>
+        </motion.div>
       </div>
     </section>
   );
@@ -62,15 +67,29 @@ export function FeaturedProducts({ products }: FeaturedProductsProps) {
 function ProductCard({ product, index }: { product: Product; index: number }) {
   const mainImage = product.images?.[0];
 
+  const categoryColors: Record<string, string> = {
+    'tepelna-cerpadla': 'from-brand-accent to-orange-600',
+    'fotovoltaika': 'from-yellow-500 to-amber-600',
+    'regulace': 'from-brand-secondary to-green-600',
+    'default': 'from-brand-primary to-amber-700'
+  };
+
+  const categoryGradient = categoryColors[product.category] || categoryColors['default'];
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
-      whileHover={{ y: -8 }}
-      className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all border border-gray-100"
+      whileHover={{ y: -10, scale: 1.02 }}
+      className="relative group bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all border-2 border-gray-100"
     >
+      {/* Category badge */}
+      <div className={`absolute top-4 right-4 z-10 px-4 py-2 bg-gradient-to-r ${categoryGradient} text-white rounded-full text-xs font-bold uppercase tracking-wide shadow-lg`}>
+        {product.category.replace('-', ' ')}
+      </div>
+
       {/* Image */}
       <Link href={`/produkty/${product.slug}`} className="block relative aspect-square bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
         {mainImage ? (
@@ -86,31 +105,28 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
             <span className="text-6xl">🏷️</span>
           </div>
         )}
+        {/* Gradient overlay */}
+        <div className={`absolute inset-0 bg-gradient-to-t ${categoryGradient} opacity-0 group-hover:opacity-5 transition-opacity`} />
       </Link>
 
       {/* Content */}
-      <div className="p-6">
-        {/* Category */}
-        <div className="text-sm text-brand-primary font-semibold mb-2 uppercase tracking-wide">
-          {product.category.replace('-', ' ')}
-        </div>
-
+      <div className="relative p-6">
         {/* Name */}
         <Link href={`/produkty/${product.slug}`}>
-          <h3 className="text-2xl font-bold mb-1 text-gray-900 group-hover:text-brand-primary transition-colors">
+          <h3 className="text-2xl font-bold mb-2 text-gray-900 group-hover:text-brand-primary transition-colors">
             {product.name}
           </h3>
         </Link>
 
         {/* Model */}
         {product.model && (
-          <p className="text-gray-600 text-sm mb-3">
+          <p className="text-gray-600 text-sm font-medium mb-3">
             Model: {product.model}
           </p>
         )}
 
         {/* Description */}
-        <p className="text-gray-600 mb-4 line-clamp-2">
+        <p className="text-gray-600 mb-4 line-clamp-2 leading-relaxed">
           {product.description}
         </p>
 
@@ -129,7 +145,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
         {/* Price */}
         {product.price_from && (
           <div className="mb-4">
-            <span className="text-2xl font-bold text-brand-primary">
+            <span className={`text-2xl font-black bg-gradient-to-r ${categoryGradient} bg-clip-text text-transparent`}>
               od {product.price_from.toLocaleString('cs-CZ')} Kč
             </span>
           </div>
@@ -138,10 +154,13 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
         {/* CTA */}
         <Link
           href={`/produkty/${product.slug}`}
-          className="block w-full px-4 py-3 bg-brand-primary text-white rounded-lg font-semibold text-center hover:bg-brand-primary/90 transition-colors"
+          className={`block w-full px-4 py-3 bg-gradient-to-r ${categoryGradient} text-white rounded-xl font-bold text-center shadow-lg hover:shadow-xl transition-all`}
         >
           Detail produktu
         </Link>
+
+        {/* Decorative element */}
+        <div className={`absolute -bottom-4 -right-4 w-32 h-32 bg-gradient-to-br ${categoryGradient} rounded-full opacity-5 blur-3xl group-hover:opacity-20 transition-opacity`} />
       </div>
     </motion.div>
   );

@@ -24,7 +24,7 @@ export function LatestBlogPosts({ posts }: LatestBlogPostsProps) {
   if (posts.length === 0) return null;
 
   return (
-    <section className="container mx-auto px-4 py-20">
+    <section className="container mx-auto px-4 py-20 bg-gradient-to-b from-gray-50 to-white">
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto mb-12">
         <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -46,13 +46,18 @@ export function LatestBlogPosts({ posts }: LatestBlogPostsProps) {
 
       {/* View All Link */}
       <div className="text-center">
-        <Link
-          href="/blog"
-          className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-white rounded-xl font-semibold hover:bg-brand-primary/90 transition-colors"
+        <motion.div
+          whileHover={{ scale: 1.05, y: -2 }}
+          whileTap={{ scale: 0.95 }}
         >
-          Zobrazit všechny články
-          <ArrowRight className="w-5 h-5" />
-        </Link>
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-2 px-10 py-5 bg-gradient-to-r from-brand-primary to-brand-primary/90 text-white rounded-xl font-bold text-lg shadow-2xl hover:shadow-primary/30 transition-all"
+          >
+            Zobrazit všechny články
+            <ArrowRight className="w-5 h-5" />
+          </Link>
+        </motion.div>
       </div>
     </section>
   );
@@ -65,18 +70,28 @@ function BlogPostCard({ post, index }: { post: BlogPost; index: number }) {
     day: 'numeric'
   });
 
+  const gradients = [
+    'from-brand-primary/10 to-amber-700/10',
+    'from-brand-secondary/10 to-green-600/10',
+    'from-brand-accent/10 to-orange-600/10'
+  ];
+  const gradient = gradients[index % gradients.length];
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
-      whileHover={{ y: -8 }}
-      className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all border border-gray-100"
+      whileHover={{ y: -8, scale: 1.02 }}
+      className="relative group bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all border-2 border-gray-100"
     >
+      {/* Gradient overlay */}
+      <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${gradient.replace('/10', '')}`} />
+
       {/* Image */}
       {post.featured_image && (
-        <Link href={`/blog/${post.slug}`} className="block relative aspect-video overflow-hidden bg-gray-100">
+        <Link href={`/blog/${post.slug}`} className="block relative aspect-video overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
           <Image
             src={post.featured_image}
             alt={post.title}
@@ -84,20 +99,22 @@ function BlogPostCard({ post, index }: { post: BlogPost; index: number }) {
             className="object-cover group-hover:scale-110 transition-transform duration-500"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
+          {/* Dark overlay on hover */}
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
         </Link>
       )}
 
       {/* Content */}
-      <div className="p-6">
+      <div className="relative p-6">
         {/* Meta */}
         <div className="flex items-center gap-4 text-sm text-gray-600 mb-3">
           <span className="flex items-center gap-1">
-            <Calendar className="w-4 h-4" />
+            <Calendar className="w-4 h-4 text-brand-accent" />
             {publishedDate}
           </span>
           {post.reading_time && (
             <span className="flex items-center gap-1">
-              <Clock className="w-4 h-4" />
+              <Clock className="w-4 h-4 text-brand-secondary" />
               {post.reading_time} min
             </span>
           )}
@@ -111,16 +128,19 @@ function BlogPostCard({ post, index }: { post: BlogPost; index: number }) {
         </Link>
 
         {/* Excerpt */}
-        <p className="text-gray-600 mb-4 line-clamp-3">{post.excerpt}</p>
+        <p className="text-gray-600 mb-4 line-clamp-3 leading-relaxed">{post.excerpt}</p>
 
         {/* Read More */}
         <Link
           href={`/blog/${post.slug}`}
-          className="inline-flex items-center gap-2 text-brand-primary font-semibold hover:gap-3 transition-all"
+          className="inline-flex items-center gap-2 text-brand-primary font-bold hover:gap-3 transition-all"
         >
           Číst více
           <ArrowRight className="w-4 h-4" />
         </Link>
+
+        {/* Decorative element */}
+        <div className={`absolute -bottom-4 -right-4 w-32 h-32 bg-gradient-to-br ${gradient} rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity`} />
       </div>
     </motion.article>
   );

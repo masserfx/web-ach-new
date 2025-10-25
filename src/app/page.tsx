@@ -68,13 +68,53 @@ export default async function HomePage() {
     getStats(),
   ]);
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'AC Heating s.r.o.',
+    legalName: 'AC Heating s.r.o.',
+    url: 'https://www.ac-heating.cz',
+    logo: 'https://www.ac-heating.cz/logo.png',
+    description: 'Česká firma s vlastním vývojem, výrobou a servisem tepelných čerpadel. 20 let zkušeností, 7 let záruka, pokrytí celé ČR.',
+    foundingDate: '2004',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Praha',
+      addressCountry: 'CZ',
+    },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: '+420-123-456-789',
+      contactType: 'Zákaznické centrum',
+      email: 'info@ac-heating.cz',
+      areaServed: 'CZ',
+      availableLanguage: 'cs',
+    },
+    sameAs: [
+      'https://www.facebook.com/ac-heating',
+      'https://www.linkedin.com/company/ac-heating',
+      'https://www.instagram.com/ac-heating',
+    ],
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      reviewCount: '150',
+    },
+  };
+
   return (
-    <main className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white">
-      <HeroSection />
-      <FeatureGrid />
-      <StatsSection stats={stats} />
-      <LatestBlogPosts posts={latestPosts} />
-      <FeaturedProducts products={featuredProducts} />
-    </main>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <main className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white">
+        <HeroSection />
+        <FeatureGrid />
+        <StatsSection stats={stats} />
+        <LatestBlogPosts posts={latestPosts} />
+        <FeaturedProducts products={featuredProducts} />
+      </main>
+    </>
   );
 }
