@@ -1,0 +1,70 @@
+🚀 Starting AC Heating content migration...
+
+📥 Step 1: Fetching sitemap...
+✓ Found 649 URLs
+
+📋 Step 2: Categorizing content...
+  Blog posts: 358
+  Products: 28
+  Static pages: 7
+
+📝 Step 3: Migrating blog posts...
+
+[1/358] Processing: /-rozhodli-jsme-se-spravne-konstatuje-predseda-svj-ing-josef-vales-po-zkusenostech-s-tepelnym-cerpadlem-v-kombinaci-s-fotovoltaickou-elektrarnou/
+  Scraping: /-rozhodli-jsme-se-spravne-konstatuje-predseda-svj-ing-josef-vales-po-zkusenostech-s-tepelnym-cerpadlem-v-kombinaci-s-fotovoltaickou-elektrarnou/
+  ⚠ Already exists, skipping
+
+[2/358] Processing: /5-kroku-k-vlastni-kotelne-s-tepelnymi-cerpadly/
+  Scraping: /5-kroku-k-vlastni-kotelne-s-tepelnymi-cerpadly/
+  ⚠ Already exists, skipping
+
+[3/358] Processing: /5-nejcastejsich-mytu-o-tepelnych-cerpadlech/
+  Scraping: /5-nejcastejsich-mytu-o-tepelnych-cerpadlech/
+  ⚠ Already exists, skipping
+
+[4/358] Processing: /ac-connectivity-kdyz-chcete-neco-vic/
+  Scraping: /ac-connectivity-kdyz-chcete-neco-vic/
+  ⚠ Already exists, skipping
+
+[5/358] Processing: /ac-heating-a-doba-rouskova/
+  Scraping: /ac-heating-a-doba-rouskova/
+  ⚠ Already exists, skipping
+
+[6/358] Processing: /ac-heating-a-rodinna-firma-roku-2020/
+  Scraping: /ac-heating-a-rodinna-firma-roku-2020/
+  ⚠ Already exists, skipping
+
+[7/358] Processing: /ac-heating-na-for-arch-2025/
+  Scraping: /ac-heating-na-for-arch-2025/
+  ⚠ Already exists, skipping
+
+[8/358] Processing: /ac-heating-tepelna-cerpadla-nabidka-pracovniho-mista/
+  Scraping: /ac-heating-tepelna-cerpadla-nabidka-pracovniho-mista/
+  ⚠ Already exists, skipping
+
+[9/358] Processing: /ac-heating-v-bruselu/
+  Scraping: /ac-heating-v-bruselu/
+  ⚠ Already exists, skipping
+
+[10/358] Processing: /ac-heating-vystavy-a-veletrhy-2019/
+  Scraping: /ac-heating-vystavy-a-veletrhy-2019/
+  ⚠ Already exists, skipping
+
+[11/358] Processing: /ac-heating-ziskalo-dalsi-prestizni-oceneni-red-dot-award-2025-/
+  Scraping: /ac-heating-ziskalo-dalsi-prestizni-oceneni-red-dot-award-2025-/
+  ⚠ Already exists, skipping
+
+[12/358] Processing: /ac-heating-ziskalo-prestizni-german-design-award-2025-/
+  Scraping: /ac-heating-ziskalo-prestizni-german-design-award-2025-/
+  ⚠ Already exists, skipping
+
+[13/358] Processing: /aktuality-z-kotlikovych-dotaci/
+  Scraping: /aktuality-z-kotlikovych-dotaci/
+  ⚠ Already exists, skipping
+
+[14/358] Processing: /aktualni-stav-dotaci-na-tepelne-cerpadlo/
+  Scraping: /aktualni-stav-dotaci-na-tepelne-cerpadlo/
+  ⚠ Already exists, skipping
+
+[15/358] Processing: /aktualni-vyzvy-kotlikove-dotace-podzim-2018/
+  Scraping: /aktualni-vyzvy-kotlikove-dotace-podzim-2018/

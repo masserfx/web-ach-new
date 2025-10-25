@@ -121,7 +121,7 @@ async function main() {
     // Step 3: Migrate blog posts
     if (categorized.blogPosts.length > 0) {
       console.log('📝 Step 3: Migrating blog posts...');
-      await migrateBlogPosts(categorized.blogPosts.slice(0, 20)); // Start with 20
+      await migrateBlogPosts(categorized.blogPosts); // Migrate all blog posts
       console.log('✓ Blog posts migrated\n');
     }
 
@@ -377,6 +377,18 @@ async function migrateBlogPosts(paths: string[]) {
         original_url: scraped.url
       };
 
+      // Check if article already exists
+      const { data: existing } = await supabase
+        .from('blog_posts')
+        .select('id')
+        .eq('slug', slug)
+        .single();
+
+      if (existing) {
+        console.log(`  ⚠ Already exists, skipping`);
+        continue;
+      }
+
       // Insert into Supabase
       const { data, error } = await supabase
         .from('blog_posts')
@@ -425,6 +437,18 @@ async function migrateProducts(paths: string[]) {
         published: true,
         original_url: scraped.url
       };
+
+      // Check if product already exists
+      const { data: existing } = await supabase
+        .from('products')
+        .select('id')
+        .eq('slug', slug)
+        .single();
+
+      if (existing) {
+        console.log(`  ⚠ Already exists, skipping`);
+        continue;
+      }
 
       // Insert
       const { data, error } = await supabase

@@ -1,0 +1,166 @@
+🚀 Starting AC Heating content migration...
+
+📥 Step 1: Fetching sitemap...
+✓ Found 649 URLs
+
+📋 Step 2: Categorizing content...
+  Blog posts: 358
+  Products: 28
+  Static pages: 7
+
+📝 Step 3: Migrating blog posts...
+
+[1/358] Processing: /-rozhodli-jsme-se-spravne-konstatuje-predseda-svj-ing-josef-vales-po-zkusenostech-s-tepelnym-cerpadlem-v-kombinaci-s-fotovoltaickou-elektrarnou/
+  Scraping: /-rozhodli-jsme-se-spravne-konstatuje-predseda-svj-ing-josef-vales-po-zkusenostech-s-tepelnym-cerpadlem-v-kombinaci-s-fotovoltaickou-elektrarnou/
+  ❌ Failed to insert: duplicate key value violates unique constraint "blog_posts_slug_key"
+
+[2/358] Processing: /5-kroku-k-vlastni-kotelne-s-tepelnymi-cerpadly/
+  Scraping: /5-kroku-k-vlastni-kotelne-s-tepelnymi-cerpadly/
+  ❌ Failed to insert: duplicate key value violates unique constraint "blog_posts_slug_key"
+
+[3/358] Processing: /5-nejcastejsich-mytu-o-tepelnych-cerpadlech/
+  Scraping: /5-nejcastejsich-mytu-o-tepelnych-cerpadlech/
+  ❌ Failed to insert: duplicate key value violates unique constraint "blog_posts_slug_key"
+
+[4/358] Processing: /ac-connectivity-kdyz-chcete-neco-vic/
+  Scraping: /ac-connectivity-kdyz-chcete-neco-vic/
+  ❌ Failed to insert: duplicate key value violates unique constraint "blog_posts_slug_key"
+
+[5/358] Processing: /ac-heating-a-doba-rouskova/
+  Scraping: /ac-heating-a-doba-rouskova/
+  ❌ Failed to insert: duplicate key value violates unique constraint "blog_posts_slug_key"
+
+[6/358] Processing: /ac-heating-a-rodinna-firma-roku-2020/
+  Scraping: /ac-heating-a-rodinna-firma-roku-2020/
+  ❌ Failed to insert: duplicate key value violates unique constraint "blog_posts_slug_key"
+
+[7/358] Processing: /ac-heating-na-for-arch-2025/
+  Scraping: /ac-heating-na-for-arch-2025/
+  ❌ Failed to insert: duplicate key value violates unique constraint "blog_posts_slug_key"
+
+[8/358] Processing: /ac-heating-tepelna-cerpadla-nabidka-pracovniho-mista/
+  Scraping: /ac-heating-tepelna-cerpadla-nabidka-pracovniho-mista/
+  ❌ Failed to insert: duplicate key value violates unique constraint "blog_posts_slug_key"
+
+[9/358] Processing: /ac-heating-v-bruselu/
+  Scraping: /ac-heating-v-bruselu/
+  ❌ Failed to insert: duplicate key value violates unique constraint "blog_posts_slug_key"
+
+[10/358] Processing: /ac-heating-vystavy-a-veletrhy-2019/
+  Scraping: /ac-heating-vystavy-a-veletrhy-2019/
+  ❌ Failed to insert: duplicate key value violates unique constraint "blog_posts_slug_key"
+
+[11/358] Processing: /ac-heating-ziskalo-dalsi-prestizni-oceneni-red-dot-award-2025-/
+  Scraping: /ac-heating-ziskalo-dalsi-prestizni-oceneni-red-dot-award-2025-/
+  ✓ Migrated successfully (ID: d3770b1f-a632-4a47-8fcf-9f0d01ba21ff)
+
+[12/358] Processing: /ac-heating-ziskalo-prestizni-german-design-award-2025-/
+  Scraping: /ac-heating-ziskalo-prestizni-german-design-award-2025-/
+  ✓ Migrated successfully (ID: 59c4472b-99df-40bc-b3fa-c2eafb14cff2)
+
+[13/358] Processing: /aktuality-z-kotlikovych-dotaci/
+  Scraping: /aktuality-z-kotlikovych-dotaci/
+  ✓ Migrated successfully (ID: 4f1b0e00-dfdc-408a-899d-f82d22d9cd99)
+
+[14/358] Processing: /aktualni-stav-dotaci-na-tepelne-cerpadlo/
+  Scraping: /aktualni-stav-dotaci-na-tepelne-cerpadlo/
+  ✓ Migrated successfully (ID: 39e4f10c-314f-46bf-91ee-55ab1015c658)
+
+[15/358] Processing: /aktualni-vyzvy-kotlikove-dotace-podzim-2018/
+  Scraping: /aktualni-vyzvy-kotlikove-dotace-podzim-2018/
+  ✓ Migrated successfully (ID: f3a5f8d5-bf4f-4870-9438-797062168365)
+
+[16/358] Processing: /brezen-v-plnem-proudu-na-jake-akce-se-muzete-tesit-/
+  Scraping: /brezen-v-plnem-proudu-na-jake-akce-se-muzete-tesit-/
+  ✓ Migrated successfully (ID: c838802e-b946-45b6-9308-0bc5bb8548c5)
+
+[17/358] Processing: /bude-venku-klendra-nebo-parak-/
+  Scraping: /bude-venku-klendra-nebo-parak-/
+  ✓ Migrated successfully (ID: 04555ae4-beea-4cfc-816d-b628e2abfaab)
+
+[18/358] Processing: /budeme-soucasti-karierniho-jarmarku-v-plzni/
+  Scraping: /budeme-soucasti-karierniho-jarmarku-v-plzni/
+  ✓ Migrated successfully (ID: 122f591e-d57d-4bab-948f-647fad942337)
+
+[19/358] Processing: /budeme-tam-veletrh-for-pasiv-2023/
+  Scraping: /budeme-tam-veletrh-for-pasiv-2023/
+  ✓ Migrated successfully (ID: 9d8e118a-f353-43f4-8778-7339bf03d23a)
+
+[20/358] Processing: /bytove-domy-jak-se-branit-proti-rostouci-cene-tepla-/
+  Scraping: /bytove-domy-jak-se-branit-proti-rostouci-cene-tepla-/
+  ✓ Migrated successfully (ID: 6b2fd99f-fdea-4cd4-854b-015b9005d46c)
+
+[21/358] Processing: /bytove-domy-vyber-vhodneho-tepelneho-cerpadla-a-dodavatele/
+  Scraping: /bytove-domy-vyber-vhodneho-tepelneho-cerpadla-a-dodavatele/
+  ✓ Migrated successfully (ID: b203813d-be79-45c7-b201-7df1888edb33)
+
+[22/358] Processing: /bytovy-dum-je-vytapen-tepelnymi-cerpadly/
+  Scraping: /bytovy-dum-je-vytapen-tepelnymi-cerpadly/
+  ✓ Migrated successfully (ID: 79fa6bce-e462-44cb-8bea-7a1379043ca3)
+
+[23/358] Processing: /cena-tepelneho-cerpadla/
+  Scraping: /cena-tepelneho-cerpadla/
+  ✓ Migrated successfully (ID: 3e0ab7ff-9e22-47cf-9c47-932050de3487)
+
+[24/358] Processing: /co-je-tepelne-cerpadlo-/
+  Scraping: /co-je-tepelne-cerpadlo-/
+  ✓ Migrated successfully (ID: 9a6678f0-cfd7-4a08-93b5-0e1ab0f6823f)
+
+[25/358] Processing: /co-potrebujete-vedet-o-hlucnosti-tepelnych-cerpadel/
+  Scraping: /co-potrebujete-vedet-o-hlucnosti-tepelnych-cerpadel/
+  ✓ Migrated successfully (ID: 851dca0d-d37b-44cf-95fb-d87524471e36)
+
+[26/358] Processing: /dalsi-dil-poradu-rady-ptaka-loskutaka/
+  Scraping: /dalsi-dil-poradu-rady-ptaka-loskutaka/
+  ✓ Migrated successfully (ID: ccd99569-cf1f-496f-b1c3-2a508b685b90)
+
+[27/358] Processing: /dalsi-prohlidkovy-den-na-panelovem-dome-s-tepelnymi-cerpadly/
+  Scraping: /dalsi-prohlidkovy-den-na-panelovem-dome-s-tepelnymi-cerpadly/
+  ✓ Migrated successfully (ID: fcc45455-1df5-42ac-887e-81784eac468d)
+
+[28/358] Processing: /dalsi-vlna-kotlikovych-dotaci-na-obzoru/
+  Scraping: /dalsi-vlna-kotlikovych-dotaci-na-obzoru/
+  ✓ Migrated successfully (ID: 1d22ae80-16d8-4289-b217-29ba23e54763)
+
+[29/358] Processing: /dekujeme-za-navstevu-naseho-stanku-na-veletrhu-forarch-2018/
+  Scraping: /dekujeme-za-navstevu-naseho-stanku-na-veletrhu-forarch-2018/
+  ✓ Migrated successfully (ID: 02289475-0c18-4b81-81b7-831bc61e31c0)
+
+[30/358] Processing: /dekujeme-za-vasi-navstevu-na-veletrhu-forarch/
+  Scraping: /dekujeme-za-vasi-navstevu-na-veletrhu-forarch/
+  ✓ Migrated successfully (ID: 66e17e40-47b2-4e33-ba47-f22069b96f3d)
+
+[31/358] Processing: /dekujeme-za-vasi-navstevu-na-veletrhu-moderni-vytapeni-2018/
+  Scraping: /dekujeme-za-vasi-navstevu-na-veletrhu-moderni-vytapeni-2018/
+  ✓ Migrated successfully (ID: 876ecd2e-df39-4a9a-814d-afbd5ad3f1a6)
+
+[32/358] Processing: /demo-ovladani/
+  Scraping: /demo-ovladani/
+  ✓ Migrated successfully (ID: 10784af0-85bf-4138-bd66-83d61e1fc09d)
+
+[33/358] Processing: /den-otevrenych-dveri-na-bytovem-dome-v-brne/
+  Scraping: /den-otevrenych-dveri-na-bytovem-dome-v-brne/
+  ✓ Migrated successfully (ID: 31c6909e-8b57-463a-8bfc-0ba62144f746)
+
+[34/358] Processing: /den-otevrenych-dveri-na-bytovem-dome-v-praze/
+  Scraping: /den-otevrenych-dveri-na-bytovem-dome-v-praze/
+  ✓ Migrated successfully (ID: 206bc5b0-62ac-48ee-a5a1-e2e9b8c47ab3)
+
+[35/358] Processing: /den-otevrenych-dveri-v-ac-heating/
+  Scraping: /den-otevrenych-dveri-v-ac-heating/
+  ✓ Migrated successfully (ID: 694f2a0a-0957-4141-87aa-03c38375def9)
+
+[36/358] Processing: /desatero-pro-tepelna-cerpadla/
+  Scraping: /desatero-pro-tepelna-cerpadla/
+  ✓ Migrated successfully (ID: b2e13cf4-ee13-4a81-80b5-b10fd37f8d6a)
+
+[37/358] Processing: /dodani-a-montaz-tepelneho-cerpadla/
+  Scraping: /dodani-a-montaz-tepelneho-cerpadla/
+  ✓ Migrated successfully (ID: 116c8ee6-7d96-48be-84ee-bc3927540bbc)
+
+[38/358] Processing: /doplnkova-vyzva-kotlikove-dotace-v-jihoceskem-kraji/
+  Scraping: /doplnkova-vyzva-kotlikove-dotace-v-jihoceskem-kraji/
+  ✓ Migrated successfully (ID: e4ba4811-40c6-48c3-a338-925cf62edee2)
+
+[39/358] Processing: /doporuceni-pro-vyber-tepelneho-cerpadla/
+  Scraping: /doporuceni-pro-vyber-tepelneho-cerpadla/

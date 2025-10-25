@@ -2,9 +2,10 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { ContentRenderer } from '@/components/content/ContentRenderer';
+import { ShareButton } from '@/components/ShareButton';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Calendar, Clock, Tag, ArrowLeft, Share2 } from 'lucide-react';
+import { Calendar, Clock, Tag, ArrowLeft } from 'lucide-react';
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -139,22 +140,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
           )}
 
-          <button
-            type="button"
-            className="flex items-center gap-2 hover:text-brand-primary transition-colors"
-            onClick={() => {
-              if (navigator.share) {
-                navigator.share({
-                  title: post.title,
-                  text: post.excerpt,
-                  url: window.location.href,
-                });
-              }
-            }}
-          >
-            <Share2 className="w-4 h-4" />
-            Sdílet
-          </button>
+          <ShareButton
+            title={post.title}
+            text={post.excerpt || ''}
+            url={`http://91.99.126.53:3100/blog/${post.slug}`}
+          />
         </div>
 
         {/* Featured Image */}
@@ -202,7 +192,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <h3 className="text-xl font-bold text-gray-900">Líbil se vám článek?</h3>
             <div className="flex gap-3">
               <a
-                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}`}
+                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`http://91.99.126.53:3100/blog/${post.slug}`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-2 bg-[#1877F2] text-white rounded-lg font-semibold hover:bg-[#166FE5] transition-colors"
@@ -210,7 +200,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 Facebook
               </a>
               <a
-                href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}&text=${encodeURIComponent(post.title)}`}
+                href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(`http://91.99.126.53:3100/blog/${post.slug}`)}&text=${encodeURIComponent(post.title)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-2 bg-[#1DA1F2] text-white rounded-lg font-semibold hover:bg-[#1A91DA] transition-colors"
@@ -218,7 +208,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 Twitter
               </a>
               <a
-                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}`}
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`http://91.99.126.53:3100/blog/${post.slug}`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-2 bg-[#0A66C2] text-white rounded-lg font-semibold hover:bg-[#095196] transition-colors"
