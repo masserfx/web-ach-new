@@ -26,6 +26,7 @@
 
   /* Focus visible for accessibility */
   *:focus-visible {
-    @apply outline-2 outline-offset-2 outline-brand-primary;
+    outline: 2px solid #7A4200;
+    outline-offset: 2px;
   }
 }
