@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="54.701" height="42.427" viewBox="0 0 54.701 42.427">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_178" data-name="Rectangle 178" width="54.701" height="42.426" fill="none" stroke="#707070" stroke-width="1.75"/>
+    </clipPath>
+  </defs>
+  <g id="Group_436" data-name="Group 436" transform="translate(0 0)">
+    <path id="Path_429" data-name="Path 429" d="M25.824,1.048,25.4,7.8,19.076,1.467Z" transform="translate(25.636 1.409)" fill="none" stroke="#ff8c00" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+    <g id="Group_437" data-name="Group 437" transform="translate(0 -0.001)">
+      <g id="Group_436-2" data-name="Group 436" clip-path="url(#clip-path)">
+        <line id="Line_269" data-name="Line 269" y2="40.551" transform="translate(0.938 0.939)" fill="none" stroke="#ff8c00" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+        <line id="Line_270" data-name="Line 270" x2="52.826" transform="translate(0.938 41.489)" fill="none" stroke="#ff8c00" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+      </g>
+    </g>
+    <path id="Path_430" data-name="Path 430" d="M2.529,23.015l4.833-4.343,9.277.464,9.148-7.587,9.012.619,9.5-9.68" transform="translate(3.399 3.343)" fill="none" stroke="#ff8c00" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+    <line id="Line_271" data-name="Line 271" y2="16.562" transform="translate(38.334 20.35)" fill="none" stroke="#ff8c00" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+    <line id="Line_272" data-name="Line 272" y2="21.25" transform="translate(47.7 15.663)" fill="none" stroke="#ff8c00" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+    <line id="Line_273" data-name="Line 273" y2="14.218" transform="translate(29.186 22.694)" fill="none" stroke="#ff8c00" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+    <line id="Line_274" data-name="Line 274" y2="8.679" transform="translate(20.039 28.234)" fill="none" stroke="#ff8c00" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+    <line id="Line_275" data-name="Line 275" y2="9.099" transform="translate(10.891 27.813)" fill="none" stroke="#ff8c00" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+  </g>
+</svg>

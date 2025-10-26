@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 76 76" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+    <g transform="matrix(2.37694,0,0,2.37694,-0.200793,-0.200793)">
+        <g id="Vrstva-1" serif:id="Vrstva 1">
+            <g transform="matrix(1,0,0,1,8.1976,15.4882)">
+                <path d="M15.824,-6.626C16.365,-6.566 16.399,-6.434 16.544,-6.274C16.896,-5.882 16.966,-5.356 16.55,-4.848L5.709,7.433C5.275,7.89 4.54,7.893 4.103,7.433L-0.803,1.876C-1.526,0.991 -0.267,-0.665 0.803,0.458L4.906,5.105L15,-6.326C15.211,-6.515 15.214,-6.646 15.824,-6.626Z" style="fill:rgb(255,140,0);fill-rule:nonzero;"/>
+            </g>
+            <path d="M16.071,0.084C24.895,0.084 32.058,7.248 32.058,16.071C32.058,24.895 24.895,32.058 16.071,32.058C7.248,32.058 0.084,24.895 0.084,16.071C0.084,7.248 7.248,0.084 16.071,0.084ZM16.071,2.217C23.718,2.217 29.925,8.425 29.925,16.071C29.925,23.718 23.718,29.925 16.071,29.925C8.425,29.925 2.217,23.718 2.217,16.071C2.217,8.425 8.425,2.217 16.071,2.217Z" style="fill:rgb(255,140,0);"/>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="160.396" height="63.305" viewBox="0 0 160.396 63.305">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_357" data-name="Rectangle 357" width="160.396" height="63.305" transform="translate(0 0)" fill="none" stroke="#ff8b00" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="Group_678" data-name="Group 678" transform="translate(0 0)">
+    <g id="Group_675" data-name="Group 675">
+      <g id="Group_674" data-name="Group 674" clip-path="url(#clip-path)">
+        <path id="Path_779" data-name="Path 779" d="M.875,49.616,39.57.875,78.728,50.082" fill="none" stroke="#ff8b00" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+        <path id="Path_780" data-name="Path 780" d="M39.569.875H120.36l39.161,49.208H78.729Z" fill="none" stroke="#ff8b00" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+      </g>
+    </g>
+    <path id="Path_781" data-name="Path 781" d="M84.221,38.691,63.193,12.267h51.673L135.894,38.69Z" fill="none" stroke="#ff8b00" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+    <line id="Line_601" data-name="Line 601" x1="21.028" y1="26.423" transform="translate(81.951 12.267)" fill="none" stroke="#ff8b00" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+    <line id="Line_602" data-name="Line 602" x1="21.028" y1="26.423" transform="translate(99.118 12.267)" fill="none" stroke="#ff8b00" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+    <line id="Line_603" data-name="Line 603" x2="43.636" transform="translate(77.672 20.361)" fill="none" stroke="#ff8b00" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+    <line id="Line_604" data-name="Line 604" x2="43.608" transform="translate(85.569 30.249)" fill="none" stroke="#ff8b00" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+    <g id="Group_677" data-name="Group 677">
+      <g id="Group_676" data-name="Group 676" clip-path="url(#clip-path)">
+        <line id="Line_605" data-name="Line 605" y2="11.544" transform="translate(151.419 50.886)" fill="none" stroke="#ff8b00" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+        <line id="Line_606" data-name="Line 606" y2="19.501" transform="translate(73.036 42.929)" fill="none" stroke="#ff8b00" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+        <line id="Line_607" data-name="Line 607" y2="22.343" transform="translate(8.44 40.087)" fill="none" stroke="#ff8b00" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+      </g>
+    </g>
+  </g>
+</svg>

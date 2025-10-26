@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="114" height="114"
+     viewBox="0 0 114 114">
+    <g transform="translate(-491 -3121)">
+        <g transform="matrix(1, 0, 0, 1, 491, 3121)" filter="url(#a)">
+            <circle cx="33" cy="33" r="33" transform="translate(24 19)" fill="#fff"/>
+        </g>
+        <g transform="translate(-0.5 -0.5)">
+            <path d="M0,23.5A1.5,1.5,0,0,1-1.5,22V0A1.5,1.5,0,0,1,0-1.5,1.5,1.5,0,0,1,1.5,0V22A1.5,1.5,0,0,1,0,23.5Z"
+                  transform="translate(548.5 3162.5)" fill="#ff8b00"/>
+            <path d="M22,1.5H0A1.5,1.5,0,0,1-1.5,0,1.5,1.5,0,0,1,0-1.5H22A1.5,1.5,0,0,1,23.5,0,1.5,1.5,0,0,1,22,1.5Z"
+                  transform="translate(537.5 3173.5)" fill="#ff8b00"/>
+        </g>
+    </g>
+</svg>

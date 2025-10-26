@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Vrstva_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="39.685px" height="39.685px" viewBox="0 0 39.685 39.685" style="enable-background:new 0 0 39.685 39.685;"
+	 xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#FF8C00;stroke-width:0.753;}
+	.st1{fill:none;stroke:#FF8C00;stroke-width:0.753;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+</style>
+<g>
+	<line class="st1" x1="15.7" y1="19.63" x2="19.257" y2="19.63"/>
+	<line class="st1" x1="15.7" y1="16.799" x2="24.264" y2="16.799"/>
+	<line class="st1" x1="15.7" y1="13.969" x2="24.264" y2="13.969"/>
+	<ellipse class="st1" cx="21.929" cy="22.596" rx="2.887" ry="2.822"/>
+	<path class="st1" d="M19.888,38.047c10.029,0,18.16-8.13,18.16-18.16c0-10.029-8.131-18.159-18.16-18.159
+		c-10.029,0-18.16,8.13-18.16,18.159C1.728,29.917,9.859,38.047,19.888,38.047z"/>
+	<polyline class="st1" points="24.387,24.075 24.387,30 21.929,27.972 19.472,30 19.472,24.062 	"/>
+	<path class="st1" d="M19.441,27.249h-4.98c-0.941,0-1.704-0.763-1.704-1.704V11.862c0-0.941,0.763-1.704,1.704-1.704h10.85
+		c0.941,0,1.704,0.763,1.704,1.704v13.694c0,0.941-0.763,1.704-1.704,1.704h-0.939"/>
+</g>
+</svg>

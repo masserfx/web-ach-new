@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Vrstva_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="15px" height="15px" viewBox="0 0 15 15" enable-background="new 0 0 15 15" xml:space="preserve">
+<g>
+	<defs>
+		<rect id="SVGID_1_" y="0" width="15" height="15"/>
+	</defs>
+	<clipPath id="SVGID_2_">
+		<use xlink:href="#SVGID_1_"  overflow="visible"/>
+	</clipPath>
+	
+		<ellipse clip-path="url(#SVGID_2_)" fill="none" stroke="#F29100" stroke-width="1.8428" stroke-miterlimit="10" cx="7.5" cy="3.841" rx="3.167" ry="2.952"/>
+	<path clip-path="url(#SVGID_2_)" fill="none" stroke="#F29100" stroke-width="1.8428" stroke-miterlimit="10" d="M10.727,8.767
+		C9.995,9.692,8.828,9.95,7.5,9.95c-1.327,0-2.496-0.258-3.228-1.183c-1.95,0.773-3.317,2.576-3.317,4.676v0.668h13.091v-0.668
+		C14.046,11.343,12.678,9.541,10.727,8.767z"/>
+</g>
+</svg>
