@@ -16,6 +16,7 @@ export function Navigation() {
     { href: '/novinky', label: 'Novinky' },
     { href: '/blog', label: 'Blog' },
     { href: '/o-nas', label: 'O nás' },
+    { href: '/o-spolecnosti', label: 'O společnosti' },
     { href: '/kontakt', label: 'Kontakt' },
   ];
 
