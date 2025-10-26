@@ -108,7 +108,7 @@ function BlockRenderer({ block, index }: { block: ContentBlock; index: number })
 // ============================================
 
 function HeadingBlock({ level, text, delay }: { level: number; text: string; delay: number }) {
-  const Tag = `h${level}` as keyof JSX.IntrinsicElements;
+  const Tag = `h${level}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
   return (
     <motion.div

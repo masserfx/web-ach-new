@@ -8,7 +8,9 @@
     "build": "next build",
     "start": "next start -p 3100",
     "lint": "next lint",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "db:cleanup": "tsx scripts/db-cleanup/fix-image-urls.ts",
+    "db:cleanup:preview": "tsx scripts/db-cleanup/fix-image-urls.ts --dry-run"
   },
   "keywords": [],
   "author": "",

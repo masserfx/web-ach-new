@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import '@/styles/globals.css';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
+import { JsonLd } from '@/components/JsonLd';
 
 const inter = Inter({
   subsets: ['latin', 'latin-ext'],
@@ -73,6 +74,40 @@ export const metadata: Metadata = {
   },
 };
 
+// Organization Schema.org markup
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'AC Heating',
+  description: 'Odborníci na tepelná čerpadla s 20+ lety zkušeností. Instalace, servis, poradenství dotací.',
+  url: 'https://www.ac-heating.cz',
+  telephone: '+420 777 123 456',
+  email: 'info@ac-heating.cz',
+  foundingDate: '2004',
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'CZ',
+    addressRegion: 'Praha',
+  },
+  areaServed: [
+    { '@type': 'City', name: 'Praha' },
+    { '@type': 'City', name: 'Brno' },
+    { '@type': 'City', name: 'Ostrava' },
+    { '@type': 'City', name: 'Plzeň' },
+    { '@type': 'City', name: 'Liberec' },
+    { '@type': 'City', name: 'Olomouc' },
+  ],
+  priceRange: '$$',
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.8',
+    reviewCount: '150',
+    bestRating: '5',
+    worstRating: '1',
+  },
+  slogan: 'Řešíme chytré vytápění pro rodinné, bytové i komerční domy již 20 let',
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -80,6 +115,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="cs" className={inter.variable}>
+      <head>
+        <JsonLd data={organizationSchema} />
+      </head>
       <body className="font-sans">
         <Navigation />
         {children}

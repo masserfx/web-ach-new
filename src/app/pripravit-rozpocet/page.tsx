@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'next';
+import { useState } from 'react';
 import { Metadata } from 'next';
 import { Home, Phone, Mail, MessageSquare, CheckCircle } from 'lucide-react';
 
@@ -16,11 +16,37 @@ export default function QuotePage() {
   });
   const [submitted, setSubmitted] = useState(false);
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement actual form submission
-    console.log('Form data:', formData);
-    setSubmitted(true);
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch('/api/quote', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Nepodařilo se odeslat poptávku');
+      }
+
+      console.log('Quote submitted successfully:', result);
+      setSubmitted(true);
+    } catch (err) {
+      console.error('Error submitting quote:', err);
+      setError(err instanceof Error ? err.message : 'Došlo k chybě při odesílání');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleChange = (
@@ -219,13 +245,21 @@ export default function QuotePage() {
                   </div>
                 </div>
 
+                {/* Error Message */}
+                {error && (
+                  <div className="p-4 bg-red-50 border-2 border-red-200 rounded-xl">
+                    <p className="text-red-700 font-medium">{error}</p>
+                  </div>
+                )}
+
                 {/* Submit Button */}
                 <div className="pt-6">
                   <button
                     type="submit"
-                    className="w-full px-8 py-4 bg-gradient-to-r from-brand-accent to-brand-accent/90 text-white rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all"
+                    disabled={isLoading}
+                    className="w-full px-8 py-4 bg-gradient-to-r from-brand-accent to-brand-accent/90 text-white rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Odeslat nezávaznou poptávku
+                    {isLoading ? 'Odesílání...' : 'Odeslat nezávaznou poptávku'}
                   </button>
                   <p className="text-sm text-gray-500 text-center mt-4">
                     * Povinné pole
