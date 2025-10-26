@@ -101,7 +101,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         ) : (
-          <div className="flex items-center justify-center h-full text-gray-400">
+          <div className="flex items-center justify-center h-full text-gray-500">
             <span className="text-6xl">🏷️</span>
           </div>
         )}

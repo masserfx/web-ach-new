@@ -36,7 +36,7 @@ export function SocialProofSection({ testimonials, className = '' }: SocialProof
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
-                    className={`w-8 h-8 ${i < Math.floor(avgRating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}`}
+                    className={`w-8 h-8 ${i < Math.floor(avgRating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-400'}`}
                   />
                 ))}
               </div>
@@ -73,7 +73,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
           <Star
             key={i}
             className={`w-5 h-5 ${
-              i < testimonial.rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'
+              i < testimonial.rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-400'
             }`}
           />
         ))}

@@ -112,7 +112,7 @@ export function InstallationProcess() {
                         </h3>
                       </div>
                       <div className="text-right">
-                        <span className="text-sm text-gray-500">Časová náročnost</span>
+                        <span className="text-sm text-gray-700">Časová náročnost</span>
                         <p className="font-bold text-brand-primary">{step.duration}</p>
                       </div>
                     </div>

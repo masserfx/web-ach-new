@@ -122,7 +122,7 @@ export function OptimizedQuoteForm({ compact = false }: { compact?: boolean }) {
           <span className="text-sm font-semibold text-gray-700">
             Krok {currentStep} z {formSteps.length}
           </span>
-          <span className="text-sm font-semibold text-gray-500">{currentFormStep?.title}</span>
+          <span className="text-sm font-semibold text-gray-700">{currentFormStep?.title}</span>
         </div>
         <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
           <div
