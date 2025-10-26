@@ -25,7 +25,7 @@ export function FeaturedProducts({ products }: FeaturedProductsProps) {
   if (products.length === 0) return null;
 
   return (
-    <section className="container mx-auto px-4 py-20 bg-gradient-to-br from-white via-gray-50 to-white">
+    <section className="container mx-auto px-4 py-16 bg-gradient-to-br from-white via-gray-50/30 to-white">
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto mb-12">
         <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -83,7 +83,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
       whileHover={{ y: -10, scale: 1.02 }}
-      className="relative group bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all border-2 border-gray-100"
+      className="relative group bg-white rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all border-2 border-brand-primary/10"
     >
       {/* Category badge */}
       <div className={`absolute top-4 right-4 z-10 px-4 py-2 bg-gradient-to-r ${categoryGradient} text-white rounded-full text-xs font-bold uppercase tracking-wide shadow-lg`}>

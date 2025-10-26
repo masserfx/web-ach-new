@@ -22,9 +22,9 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
     const baseStyles = 'bg-white rounded-2xl transition-all duration-300';
 
     const variants = {
-      default: 'shadow-lg',
-      bordered: 'border border-gray-100',
-      elevated: 'shadow-xl',
+      default: 'shadow-2xl',
+      bordered: 'border-2 border-brand-primary/12',
+      elevated: 'shadow-3xl',
     };
 
     const paddings = {

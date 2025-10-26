@@ -24,7 +24,7 @@ export function LatestBlogPosts({ posts }: LatestBlogPostsProps) {
   if (posts.length === 0) return null;
 
   return (
-    <section className="container mx-auto px-4 py-20 bg-gradient-to-b from-gray-50 to-white">
+    <section className="container mx-auto px-4 py-16 bg-gradient-to-b from-gray-50/40 to-white">
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto mb-12">
         <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -84,7 +84,7 @@ function BlogPostCard({ post, index }: { post: BlogPost; index: number }) {
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
       whileHover={{ y: -8, scale: 1.02 }}
-      className="relative group bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all border-2 border-gray-100"
+      className="relative group bg-white rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all border-2 border-brand-primary/10"
     >
       {/* Gradient overlay */}
       <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${gradient.replace('/10', '')}`} />

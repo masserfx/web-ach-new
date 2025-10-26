@@ -45,7 +45,7 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section className="py-24 bg-gradient-to-br from-gray-50 to-white">
+    <section className="py-20 bg-gradient-to-br from-gray-50/50 to-white">
       <div className="container mx-auto px-4">
         {/* Header */}
         <motion.div
@@ -76,7 +76,7 @@ export function Testimonials() {
                 <CardContent className="p-6">
                   {/* Quote Icon */}
                   <div className="mb-4">
-                    <Quote className="w-10 h-10 text-brand-primary/20" />
+                    <Quote className="w-10 h-10 text-brand-primary/40" />
                   </div>
 
                   {/* Rating */}
@@ -95,7 +95,7 @@ export function Testimonials() {
                   </p>
 
                   {/* Author */}
-                  <div className="pt-4 border-t border-gray-100">
+                  <div className="pt-4 border-t border-brand-primary/15">
                     <p className="font-bold text-gray-900">{testimonial.name}</p>
                     <p className="text-sm text-gray-500">{testimonial.location}</p>
                     <p className="text-sm text-brand-primary font-semibold mt-1">

@@ -11,11 +11,14 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          primary: '#7A4200',
+          primary: '#B8540F',
           secondary: '#4CAF50',
           accent: '#FF6B35',
           dark: '#1A1A1A',
           light: '#F5F5F5',
+          // Darker variants for better contrast
+          primaryDark: '#8B3F0A',
+          secondaryDark: '#3D8B3F',
         },
       },
       fontFamily: {

@@ -49,7 +49,7 @@ const partners = [
 
 export function Certifications() {
   return (
-    <section className="py-24 bg-gradient-to-br from-white to-gray-50">
+    <section className="py-20 bg-gradient-to-br from-white to-gray-50/40">
       <div className="container mx-auto px-4">
         {/* Header */}
         <motion.div
@@ -101,7 +101,7 @@ export function Certifications() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-white rounded-2xl shadow-xl p-12"
+          className="bg-white rounded-2xl shadow-2xl p-12 border-2 border-brand-primary/10"
         >
           <h3 className="text-3xl font-bold text-gray-900 mb-8 text-center">
             Autorizovaní partneři

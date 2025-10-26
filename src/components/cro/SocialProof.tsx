@@ -66,7 +66,7 @@ export function SocialProofSection({ testimonials, className = '' }: SocialProof
 
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
-    <div className="bg-white rounded-2xl shadow-lg border-2 border-gray-100 p-8 hover:shadow-xl transition-all">
+    <div className="bg-white rounded-2xl shadow-2xl border-2 border-brand-primary/10 p-8 hover:shadow-3xl transition-all">
       {/* Rating */}
       <div className="flex gap-1 mb-4">
         {[...Array(5)].map((_, i) => (
