@@ -29,8 +29,8 @@ const ctaVariants: Record<CTAVariant, {
   urgent: {
     label: 'Zavolej nám hned',
     icon: <Phone className="w-5 h-5" />,
-    bgColor: 'bg-brand-accent',
-    hoverColor: 'hover:bg-brand-accent/90',
+    bgColor: 'bg-brand-accentDark',
+    hoverColor: 'hover:bg-brand-accentDark/90',
   },
   calculation: {
     label: 'Spočítej úsporu',

@@ -31,7 +31,7 @@ export default function RegulatePage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/pripravit-rozpocet"
-                className="px-8 py-4 bg-gradient-to-r from-brand-accent to-brand-accent/90 text-white rounded-xl font-bold hover:shadow-lg transition-all"
+                className="px-8 py-4 bg-gradient-to-r from-brand-accentDark to-brand-accentDark/90 text-white rounded-xl font-bold hover:shadow-lg transition-all"
               >
                 Nezávazná poptávka
               </a>
@@ -240,7 +240,7 @@ export default function RegulatePage() {
             </a>
             <a
               href={`tel:${siteConfig.contact.phoneRaw}`}
-              className="px-10 py-5 bg-brand-primary/20 text-white rounded-xl font-bold text-lg border-2 border-white hover:bg-white/20 transition-all"
+              className="px-10 py-5 bg-white text-brand-primary rounded-xl font-bold text-lg shadow-2xl hover:shadow-white/30 transition-all border-2 border-brand-primary"
             >
               Zavolat: {siteConfig.contact.phone}
             </a>

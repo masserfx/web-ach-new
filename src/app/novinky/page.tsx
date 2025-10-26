@@ -119,7 +119,7 @@ export default async function NewsPage() {
             </Link>
             <Link
               href="/pripravit-rozpocet"
-              className="px-10 py-5 bg-brand-primary/20 text-white rounded-xl font-bold text-lg border-2 border-white hover:bg-white/20 transition-all"
+              className="px-10 py-5 bg-white text-brand-primary rounded-xl font-bold text-lg shadow-2xl hover:shadow-white/30 transition-all border-2 border-brand-primary"
             >
               Nezávazná poptávka
             </Link>

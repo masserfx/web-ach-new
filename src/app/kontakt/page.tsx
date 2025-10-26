@@ -73,7 +73,7 @@ export default function ContactPage() {
             </p>
             <a
               href="/pripravit-rozpocet"
-              className="block w-full px-6 py-4 bg-gradient-to-r from-brand-accent to-brand-accent/90 text-white rounded-xl font-bold text-center shadow-lg hover:shadow-xl transition-all"
+              className="block w-full px-6 py-4 bg-gradient-to-r from-brand-accentDark to-brand-accentDark/90 text-white rounded-xl font-bold text-center shadow-lg hover:shadow-xl transition-all"
             >
               Nezávazná poptávka
             </a>
