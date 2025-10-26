@@ -1,14 +1,10 @@
-import { Metadata } from 'next';
+'use client';
+
 import { Award, Users, Target, Heart, Bus, Lightbulb, Shield } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { getCompanyYears } from '@/lib/utils';
 import { BlackSteelPageLayout } from '@/components/layout/BlackSteelPageLayout';
 import { SymbolSection } from '@/components/about/SymbolSection';
-
-export const metadata: Metadata = {
-  title: 'O nás - AC Heating',
-  description: 'KUFI INT s.r.o. (AC Heating) – česká firma s více než 18letou tradicí v oblasti instalace tepelných čerpadel a fotovoltaiky. Více než 7500 domácností po celé Evropě.',
-};
 
 export default function AboutPage() {
   const yearsInBusiness = getCompanyYears();

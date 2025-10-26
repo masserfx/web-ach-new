@@ -1,19 +1,10 @@
-import { Metadata } from 'next';
+'use client';
+
 import { Award, Users, Target, Shield, Briefcase, Globe } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { getCompanyYears } from '@/lib/utils';
 import Link from 'next/link';
 import { BlackSteelPageLayout } from '@/components/layout/BlackSteelPageLayout';
-
-export const metadata: Metadata = {
-  title: 'O společnosti - AC Heating',
-  description: 'KUFI INT s.r.o. (AC Heating) – česká firma s více než 18letou tradicí. Instalace tepelných čerpadel, fotovoltaiky a energetických řešení.',
-  openGraph: {
-    title: 'O společnosti - AC Heating',
-    description: 'Poznáte si firmu stojící za moderními energetickými řešeními. Více než 18 let zkušeností, 7500+ domácností, 100+ zaměstnanců.',
-    type: 'website',
-  },
-};
 
 export default function AboutCompanyPage() {
   const yearsInBusiness = getCompanyYears();
