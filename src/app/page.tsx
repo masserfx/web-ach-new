@@ -4,6 +4,9 @@ import { FeatureGrid } from '@/components/home/FeatureGrid';
 import { LatestBlogPosts } from '@/components/home/LatestBlogPosts';
 import { FeaturedProducts } from '@/components/home/FeaturedProducts';
 import { StatsSection } from '@/components/home/StatsSection';
+import { Testimonials } from '@/components/home/Testimonials';
+import { InstallationProcess } from '@/components/home/InstallationProcess';
+import { Certifications } from '@/components/home/Certifications';
 
 async function getLatestBlogPosts() {
   const supabase = await createClient();
@@ -111,9 +114,12 @@ export default async function HomePage() {
       <main className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white">
         <HeroSection />
         <FeatureGrid />
+        <InstallationProcess />
+        <FeaturedProducts products={featuredProducts} />
+        <Testimonials />
+        <Certifications />
         <StatsSection stats={stats} />
         <LatestBlogPosts posts={latestPosts} />
-        <FeaturedProducts products={featuredProducts} />
       </main>
     </>
   );
