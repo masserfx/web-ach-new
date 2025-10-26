@@ -60,29 +60,29 @@ export default function QuotePage() {
 
   if (submitted) {
     return (
-      <main className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white flex items-center justify-center py-20">
+      <main className="min-h-screen bg-black flex items-center justify-center py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center">
-            <div className="inline-flex p-6 rounded-full bg-gradient-to-br from-brand-secondary to-green-600 text-white mb-6">
+            <div className="inline-flex p-6 rounded-full bg-gradient-to-br from-accent to-accent-dark text-white mb-6">
               <CheckCircle className="w-16 h-16" />
             </div>
-            <h1 className="text-4xl md:text-5xl font-black mb-6 text-gray-900">
+            <h1 className="text-4xl md:text-5xl font-black mb-6 text-steel">
               Děkujeme za vaši poptávku!
             </h1>
-            <p className="text-xl text-gray-700 mb-8">
+            <p className="text-xl text-steel-dim mb-8">
               Vaše nezávazná poptávka byla úspěšně odeslána. Náš tým vás bude
               kontaktovat do 24 hodin.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/"
-                className="px-8 py-4 bg-brand-primary text-white rounded-xl font-bold hover:bg-brand-primary/90 transition-all"
+                className="px-8 py-4 bg-accent text-white rounded-xl font-bold hover:bg-accent-dark transition-all"
               >
                 Zpět na homepage
               </a>
               <a
                 href="/blog"
-                className="px-8 py-4 bg-white text-brand-primary border-2 border-brand-primary rounded-xl font-bold hover:bg-brand-primary hover:text-white transition-all"
+                className="px-8 py-4 bg-graphite text-accent border-2 border-accent rounded-xl font-bold hover:bg-accent hover:text-white transition-all"
               >
                 Přečíst blog
               </a>
@@ -94,17 +94,21 @@ export default function QuotePage() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white">
+    <main className="min-h-screen bg-black">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-brand-primary/10 via-white to-brand-secondary/10 py-20">
-        <div className="container mx-auto px-4">
+      <section className="relative overflow-hidden bg-gradient-to-b from-carbon via-graphite to-carbon py-20">
+        {/* Background blobs */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-1/4 -left-20 w-96 h-96 bg-accent/30 rounded-full mix-blend-multiply filter blur-3xl" />
+          <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-accent/20 rounded-full mix-blend-multiply filter blur-3xl" />
+        </div>
+
+        <div className="relative z-10 container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl md:text-6xl font-black mb-6">
-              <span className="bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
-                Nezávazná poptávka
-              </span>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-steel mb-6 leading-tight">
+              Nezávazná poptávka
             </h1>
-            <p className="text-xl text-gray-700 leading-relaxed">
+            <p className="text-xl md:text-2xl text-steel-dim leading-relaxed">
               Vyplňte formulář a my vám připravíme cenovou nabídku na míru.
               Bez závazků, zcela zdarma.
             </p>
@@ -117,16 +121,16 @@ export default function QuotePage() {
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {/* Form */}
           <div className="md:col-span-2">
-            <div className="bg-white rounded-2xl shadow-xl p-8 border-2 border-gray-100">
+            <div className="bg-graphite rounded-2xl shadow-xl p-8 border border-graphite-light/50">
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Personal Info */}
                 <div>
-                  <h2 className="text-2xl font-bold mb-6 text-gray-900">
+                  <h2 className="text-2xl font-bold mb-6 text-steel">
                     Kontaktní údaje
                   </h2>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label className="block text-sm font-semibold text-steel mb-2">
                         Jméno a příjmení *
                       </label>
                       <input
@@ -135,12 +139,12 @@ export default function QuotePage() {
                         required
                         value={formData.name}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-brand-primary focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 bg-carbon border-2 border-graphite-light/50 text-steel rounded-xl focus:border-accent focus:outline-none transition-colors"
                         placeholder="Jan Novák"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label className="block text-sm font-semibold text-steel mb-2">
                         Email *
                       </label>
                       <input
@@ -149,13 +153,13 @@ export default function QuotePage() {
                         required
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-brand-primary focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 bg-carbon border-2 border-graphite-light/50 text-steel rounded-xl focus:border-accent focus:outline-none transition-colors"
                         placeholder="jan@example.com"
                       />
                     </div>
                   </div>
                   <div className="mt-4">
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label className="block text-sm font-semibold text-steel mb-2">
                       Telefon *
                     </label>
                     <input
@@ -164,20 +168,20 @@ export default function QuotePage() {
                       required
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-brand-primary focus:outline-none transition-colors"
+                      className="w-full px-4 py-3 bg-carbon border-2 border-graphite-light/50 text-steel rounded-xl focus:border-accent focus:outline-none transition-colors"
                       placeholder="+420 123 456 789"
                     />
                   </div>
                 </div>
 
                 {/* Project Details */}
-                <div className="pt-6 border-t border-gray-200">
-                  <h2 className="text-2xl font-bold mb-6 text-gray-900">
+                <div className="pt-6 border-t border-graphite-light/50">
+                  <h2 className="text-2xl font-bold mb-6 text-steel">
                     Informace o projektu
                   </h2>
                   <div className="space-y-4">
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label className="block text-sm font-semibold text-steel mb-2">
                         Typ nemovitosti *
                       </label>
                       <select
@@ -185,7 +189,7 @@ export default function QuotePage() {
                         required
                         value={formData.houseType}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-brand-primary focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 bg-carbon border-2 border-graphite-light/50 text-steel rounded-xl focus:border-accent focus:outline-none transition-colors"
                       >
                         <option value="">Vyberte typ</option>
                         <option value="rodinny-dum">Rodinný dům</option>
@@ -196,7 +200,7 @@ export default function QuotePage() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label className="block text-sm font-semibold text-steel mb-2">
                         Vytápěná plocha (m²) *
                       </label>
                       <input
@@ -205,20 +209,20 @@ export default function QuotePage() {
                         required
                         value={formData.area}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-brand-primary focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 bg-carbon border-2 border-graphite-light/50 text-steel rounded-xl focus:border-accent focus:outline-none transition-colors"
                         placeholder="150"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label className="block text-sm font-semibold text-steel mb-2">
                         Současné vytápění
                       </label>
                       <select
                         name="heating"
                         value={formData.heating}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-brand-primary focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 bg-carbon border-2 border-graphite-light/50 text-steel rounded-xl focus:border-accent focus:outline-none transition-colors"
                       >
                         <option value="">Vyberte typ</option>
                         <option value="elektrina">Elektřina</option>
@@ -230,7 +234,7 @@ export default function QuotePage() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label className="block text-sm font-semibold text-steel mb-2">
                         Poznámka
                       </label>
                       <textarea
@@ -238,7 +242,7 @@ export default function QuotePage() {
                         value={formData.message}
                         onChange={handleChange}
                         rows={4}
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-brand-primary focus:outline-none transition-colors resize-none"
+                        className="w-full px-4 py-3 bg-carbon border-2 border-graphite-light/50 text-steel rounded-xl focus:border-accent focus:outline-none transition-colors resize-none"
                         placeholder="Zde můžete uvést další informace..."
                       />
                     </div>
@@ -247,8 +251,8 @@ export default function QuotePage() {
 
                 {/* Error Message */}
                 {error && (
-                  <div className="p-4 bg-red-50 border-2 border-red-200 rounded-xl">
-                    <p className="text-red-700 font-medium">{error}</p>
+                  <div className="p-4 bg-red-900/30 border-2 border-red-500/50 rounded-xl">
+                    <p className="text-red-300 font-medium">{error}</p>
                   </div>
                 )}
 
@@ -257,11 +261,11 @@ export default function QuotePage() {
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full px-8 py-4 bg-gradient-to-r from-brand-primary to-brand-primary/90 text-white rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full px-8 py-4 bg-gradient-to-r from-accent to-accent-dark text-white rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isLoading ? 'Odesílání...' : 'Odeslat nezávaznou poptávku'}
                   </button>
-                  <p className="text-sm text-gray-500 text-center mt-4">
+                  <p className="text-sm text-steel-dim text-center mt-4">
                     * Povinné pole
                   </p>
                 </div>
@@ -272,7 +276,7 @@ export default function QuotePage() {
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Benefits */}
-            <div className="bg-gradient-to-br from-brand-primary to-brand-secondary rounded-2xl shadow-xl p-6 text-white">
+            <div className="bg-gradient-to-br from-accent to-accent-dark rounded-2xl shadow-xl p-6 text-white border border-accent/30">
               <h3 className="text-xl font-bold mb-4">Co získáte?</h3>
               <ul className="space-y-3">
                 <li className="flex items-start gap-2">
@@ -295,21 +299,21 @@ export default function QuotePage() {
             </div>
 
             {/* Contact Info */}
-            <div className="bg-white rounded-2xl shadow-xl p-6 border-2 border-gray-100">
-              <h3 className="text-xl font-bold mb-4 text-gray-900">
+            <div className="bg-graphite rounded-2xl shadow-xl p-6 border border-graphite-light/50">
+              <h3 className="text-xl font-bold mb-4 text-steel">
                 Nebo nás kontaktujte přímo
               </h3>
               <div className="space-y-3">
                 <a
                   href="tel:+420123456789"
-                  className="flex items-center gap-3 text-brand-primary hover:text-brand-primary/80 transition-colors"
+                  className="flex items-center gap-3 text-accent hover:text-accent/80 transition-colors"
                 >
                   <Phone className="w-5 h-5" />
                   <span className="font-medium">+420 123 456 789</span>
                 </a>
                 <a
                   href="mailto:info@ac-heating.cz"
-                  className="flex items-center gap-3 text-brand-primary hover:text-brand-primary/80 transition-colors"
+                  className="flex items-center gap-3 text-accent hover:text-accent/80 transition-colors"
                 >
                   <Mail className="w-5 h-5" />
                   <span className="font-medium">info@ac-heating.cz</span>
@@ -318,11 +322,11 @@ export default function QuotePage() {
             </div>
 
             {/* Trust Indicators */}
-            <div className="bg-gray-50 rounded-2xl p-6 border-2 border-gray-100">
-              <h3 className="text-lg font-bold mb-4 text-gray-900">
+            <div className="bg-graphite/50 rounded-2xl p-6 border border-graphite-light/50">
+              <h3 className="text-lg font-bold mb-4 text-steel">
                 Proč nám věřit?
               </h3>
-              <ul className="space-y-2 text-sm text-gray-700">
+              <ul className="space-y-2 text-sm text-steel-dim">
                 <li>✓ 18+ let zkušeností</li>
                 <li>✓ 7500+ domácností po Evropě</li>
                 <li>✓ 7 let záruka</li>

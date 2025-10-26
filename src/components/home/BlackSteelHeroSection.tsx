@@ -49,7 +49,7 @@ export function BlackSteelHeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="text-6xl md:text-7xl lg:text-8xl font-black text-white leading-tight"
+            className="text-6xl md:text-7xl lg:text-8xl font-black text-steel leading-tight"
           >
             Tepelné čerpadlo bez kompromisů.
           </motion.h1>
@@ -59,7 +59,7 @@ export function BlackSteelHeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="text-xl md:text-2xl text-white/80 font-medium leading-relaxed max-w-2xl"
+            className="text-xl md:text-2xl text-steel-dim font-medium leading-relaxed max-w-2xl"
           >
             Convert NG One – <span className="text-accent font-bold">výkon, design, ticho.</span>
           </motion.p>
@@ -69,7 +69,7 @@ export function BlackSteelHeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
-            className="text-sm text-steel space-y-1"
+            className="text-sm text-steel-dim space-y-1"
           >
             <div>✓ Vyrobeno v Česku</div>
             <div>✓ Záruka 7 let</div>

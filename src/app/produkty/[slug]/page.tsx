@@ -59,12 +59,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const mainImage = product.images?.[0];
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white">
+    <main className="min-h-screen bg-black">
       {/* Back Button */}
       <div className="container mx-auto px-4 py-6">
         <Link
           href="/produkty"
-          className="inline-flex items-center gap-2 text-brand-primary hover:text-brand-accent transition-colors"
+          className="inline-flex items-center gap-2 text-accent hover:text-accent/80 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           Zpět na produkty
@@ -76,7 +76,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         <div className="max-w-7xl mx-auto">
           {/* Category Badge */}
           <div className="mb-4">
-            <span className="inline-block px-4 py-1 bg-brand-primary text-white text-sm font-semibold rounded-full capitalize">
+            <span className="inline-block px-4 py-1 bg-accent text-white text-sm font-semibold rounded-full capitalize">
               {product.category.replace('-', ' ')}
             </span>
           </div>
@@ -87,7 +87,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <div>
               {/* Main Image */}
               {mainImage && (
-                <div className="relative aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 mb-6">
+                <div className="relative aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-graphite to-carbon mb-6 border border-graphite-light/50">
                   <Image
                     src={mainImage.url}
                     alt={mainImage.alt || product.name}
@@ -105,7 +105,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                   {product.images.slice(1, 5).map((image: any, index: number) => (
                     <div
                       key={index}
-                      className="relative aspect-square rounded-lg overflow-hidden bg-gray-100 cursor-pointer hover:ring-2 hover:ring-brand-primary transition-all"
+                      className="relative aspect-square rounded-lg overflow-hidden bg-graphite cursor-pointer hover:ring-2 hover:ring-accent transition-all border border-graphite-light/50"
                     >
                       <Image
                         src={image.url}
@@ -123,31 +123,31 @@ export default async function ProductPage({ params }: ProductPageProps) {
             {/* Right Column - Info */}
             <div>
               {/* Title */}
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              <h1 className="text-4xl md:text-5xl font-bold text-steel mb-4">
                 {product.name}
               </h1>
 
               {/* Model */}
               {product.model && (
-                <p className="text-xl text-gray-600 mb-6">
-                  Model: <span className="font-semibold">{product.model}</span>
+                <p className="text-xl text-steel-dim mb-6">
+                  Model: <span className="font-semibold text-steel">{product.model}</span>
                 </p>
               )}
 
               {/* Description */}
-              <p className="text-lg text-gray-700 mb-8 leading-relaxed">
+              <p className="text-lg text-steel-dim mb-8 leading-relaxed">
                 {product.description}
               </p>
 
               {/* Features */}
               {product.features && Array.isArray(product.features) && product.features.length > 0 && (
                 <div className="mb-8">
-                  <h2 className="text-2xl font-bold mb-4">Klíčové vlastnosti</h2>
+                  <h2 className="text-2xl font-bold mb-4 text-steel">Klíčové vlastnosti</h2>
                   <ul className="space-y-3">
                     {product.features.map((feature: string, index: number) => (
                       <li key={index} className="flex items-start gap-3">
-                        <Check className="w-5 h-5 text-brand-secondary mt-0.5 flex-shrink-0" />
-                        <span className="text-gray-700">{feature}</span>
+                        <Check className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span className="text-steel-dim">{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -156,13 +156,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
               {/* Specifications */}
               {product.specifications && (
-                <div className="mb-8 p-6 bg-white rounded-xl shadow-lg">
-                  <h2 className="text-2xl font-bold mb-4">Technické parametry</h2>
+                <div className="mb-8 p-6 bg-graphite rounded-xl shadow-lg border border-graphite-light/50">
+                  <h2 className="text-2xl font-bold mb-4 text-steel">Technické parametry</h2>
                   <div className="space-y-2">
                     {Object.entries(product.specifications).map(([key, value]) => (
-                      <div key={key} className="flex justify-between py-2 border-b border-gray-100 last:border-0">
-                        <span className="text-gray-600 capitalize">{key.replace(/_/g, ' ')}:</span>
-                        <span className="font-semibold text-gray-900">{String(value)}</span>
+                      <div key={key} className="flex justify-between py-2 border-b border-graphite-light/50 last:border-0">
+                        <span className="text-steel-dim capitalize">{key.replace(/_/g, ' ')}:</span>
+                        <span className="font-semibold text-steel">{String(value)}</span>
                       </div>
                     ))}
                   </div>
@@ -171,7 +171,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
               {/* Price */}
               {product.price_from && (
-                <div className="mb-8 p-6 bg-gradient-to-r from-brand-primary to-brand-accent rounded-xl text-white">
+                <div className="mb-8 p-6 bg-gradient-to-r from-accent to-accent-dark rounded-xl text-white shadow-lg border border-accent/30">
                   <div className="text-sm opacity-90 mb-1">Cena od</div>
                   <div className="text-4xl font-bold">
                     {product.price_from.toLocaleString('cs-CZ')} Kč
@@ -183,14 +183,14 @@ export default async function ProductPage({ params }: ProductPageProps) {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   href="/pripravit-rozpocet"
-                  className="flex-1 px-6 py-4 bg-brand-primary text-white rounded-xl font-semibold text-center hover:bg-brand-primary/90 transition-colors inline-flex items-center justify-center gap-2"
+                  className="flex-1 px-6 py-4 bg-accent text-white rounded-xl font-semibold text-center hover:bg-accent-dark transition-colors inline-flex items-center justify-center gap-2"
                 >
                   <Download className="w-5 h-5" />
                   Nezávazná poptávka
                 </Link>
                 <Link
                   href="/kontakt"
-                  className="flex-1 px-6 py-4 border-2 border-brand-primary text-brand-primary rounded-xl font-semibold text-center hover:bg-brand-primary/5 transition-colors inline-flex items-center justify-center gap-2"
+                  className="flex-1 px-6 py-4 border-2 border-accent text-accent rounded-xl font-semibold text-center hover:bg-accent hover:text-white transition-colors inline-flex items-center justify-center gap-2"
                 >
                   <Mail className="w-5 h-5" />
                   Kontaktovat
@@ -198,7 +198,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               </div>
 
               {/* Share */}
-              <div className="mt-6 pt-6 border-t border-gray-200">
+              <div className="mt-6 pt-6 border-t border-graphite-light/50">
                 <ShareButton
                   title={product.name}
                   text={product.description || ''}
@@ -210,7 +210,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
           {/* Additional Info */}
           {product.content && (
-            <div className="mt-16 max-w-4xl mx-auto prose prose-lg">
+            <div className="mt-16 max-w-4xl mx-auto prose prose-lg prose-invert">
               <div dangerouslySetInnerHTML={{ __html: product.content }} />
             </div>
           )}
@@ -219,7 +219,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <div className="mt-16 text-center">
             <Link
               href="/produkty"
-              className="inline-block px-8 py-4 bg-brand-primary text-white rounded-xl font-semibold hover:bg-brand-primary/90 transition-colors"
+              className="inline-block px-8 py-4 bg-accent text-white rounded-xl font-semibold hover:bg-accent-dark transition-colors"
             >
               Zobrazit další produkty
             </Link>

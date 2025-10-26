@@ -77,12 +77,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   });
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white">
+    <main className="min-h-screen bg-black">
       {/* Back Button */}
       <div className="container mx-auto px-4 py-6">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 text-brand-primary hover:text-brand-accent transition-colors"
+          className="inline-flex items-center gap-2 text-accent hover:text-accent/80 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           Zpět na blog
@@ -94,26 +94,26 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         {/* Category Badge */}
         {post.category && (
           <div className="mb-4">
-            <span className="inline-block px-4 py-1 bg-brand-primary text-white text-sm font-semibold rounded-full">
+            <span className="inline-block px-4 py-1 bg-accent text-white text-sm font-semibold rounded-full">
               {post.category.name}
             </span>
           </div>
         )}
 
         {/* Title */}
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-steel mb-6 leading-tight">
           {post.title}
         </h1>
 
         {/* Excerpt */}
         {post.excerpt && (
-          <p className="text-xl text-gray-600 mb-8 leading-relaxed max-w-3xl">
+          <p className="text-xl text-steel-dim mb-8 leading-relaxed max-w-3xl">
             {post.excerpt}
           </p>
         )}
 
         {/* Meta Info */}
-        <div className="flex flex-wrap items-center gap-6 text-gray-600 mb-8">
+        <div className="flex flex-wrap items-center gap-6 text-steel-dim mb-8">
           {post.author && (
             <div className="flex items-center gap-2">
               {post.author.avatar_url && (
@@ -169,15 +169,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
         {/* Tags */}
         {post.tags && post.tags.length > 0 && (
-          <div className="mt-12 pt-8 border-t border-gray-200">
-            <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">
+          <div className="mt-12 pt-8 border-t border-graphite-light/50">
+            <h3 className="text-sm font-semibold text-steel-dim uppercase tracking-wide mb-4">
               Štítky
             </h3>
             <div className="flex flex-wrap gap-2">
               {post.tags.map((tag: string) => (
                 <span
                   key={tag}
-                  className="inline-flex items-center gap-1 px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-brand-primary/10 hover:text-brand-primary transition-colors cursor-pointer"
+                  className="inline-flex items-center gap-1 px-3 py-1 bg-graphite text-steel rounded-full text-sm hover:bg-accent/10 hover:text-accent transition-colors cursor-pointer border border-graphite-light/50"
                 >
                   <Tag className="w-3 h-3" />
                   {tag}
@@ -188,9 +188,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         )}
 
         {/* Share Section */}
-        <div className="mt-12 pt-8 border-t border-gray-200">
+        <div className="mt-12 pt-8 border-t border-graphite-light/50">
           <div className="flex items-center justify-between">
-            <h3 className="text-xl font-bold text-gray-900">Líbil se vám článek?</h3>
+            <h3 className="text-xl font-bold text-steel">Líbil se vám článek?</h3>
             <div className="flex gap-3">
               <a
                 href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`${siteConfig.url}/blog/${post.slug}`)}`}
@@ -224,7 +224,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <div className="mt-12 text-center">
           <Link
             href="/blog"
-            className="inline-block px-8 py-4 bg-brand-primary text-white rounded-xl font-semibold hover:bg-brand-primary/90 transition-colors"
+            className="inline-block px-8 py-4 bg-accent text-white rounded-xl font-semibold hover:bg-accent-dark transition-colors"
           >
             Zobrazit další články
           </Link>

@@ -76,17 +76,21 @@ export default function CareerPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white">
+    <main className="min-h-screen bg-black">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-brand-primary/10 via-white to-brand-secondary/10 py-20">
-        <div className="container mx-auto px-4">
+      <section className="relative overflow-hidden bg-gradient-to-b from-carbon via-graphite to-carbon py-20">
+        {/* Background blobs */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-1/4 -left-20 w-96 h-96 bg-accent/30 rounded-full mix-blend-multiply filter blur-3xl" />
+          <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-accent/20 rounded-full mix-blend-multiply filter blur-3xl" />
+        </div>
+
+        <div className="relative z-10 container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl md:text-6xl font-black mb-6">
-              <span className="bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
-                Kariéra
-              </span>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-steel mb-6 leading-tight">
+              Kariéra
             </h1>
-            <p className="text-xl text-gray-700 leading-relaxed">
+            <p className="text-xl md:text-2xl text-steel-dim leading-relaxed">
               Hledáte práci v perspektivním oboru? AC Heating nabízí stabilní zaměstnání
               v dynamickém prostředí. Připojte se k našemu týmu a pomáhejte lidem šetřit energii.
             </p>
@@ -97,20 +101,20 @@ export default function CareerPage() {
       {/* Benefits Section */}
       <section className="container mx-auto px-4 py-20">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-steel">
             Proč pracovat pro AC Heating?
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             {benefits.map((benefit, idx) => (
               <div
                 key={idx}
-                className="p-8 bg-white rounded-2xl shadow-lg border-2 border-gray-100 hover:border-brand-primary/50 transition-all"
+                className="p-8 bg-graphite rounded-2xl shadow-lg border border-graphite-light/50 hover:border-accent/50 transition-all"
               >
-                <div className="inline-flex p-3 rounded-lg bg-brand-primary/10 text-brand-primary mb-4">
+                <div className="inline-flex p-3 rounded-lg bg-accent text-white mb-4">
                   {benefit.icon}
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-gray-900">{benefit.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{benefit.description}</p>
+                <h3 className="text-xl font-bold mb-3 text-steel">{benefit.title}</h3>
+                <p className="text-steel-dim leading-relaxed">{benefit.description}</p>
               </div>
             ))}
           </div>
@@ -118,10 +122,10 @@ export default function CareerPage() {
       </section>
 
       {/* Open Positions Section */}
-      <section className="bg-gray-50 py-20">
+      <section className="bg-graphite/30 py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-steel">
               Volná místa
             </h2>
 
@@ -130,28 +134,28 @@ export default function CareerPage() {
                 {positions.map((position, idx) => (
                   <div
                     key={idx}
-                    className="p-8 bg-white rounded-2xl shadow-lg border-2 border-gray-100 hover:border-brand-primary/50 transition-all hover:shadow-xl"
+                    className="p-8 bg-graphite rounded-2xl shadow-lg border border-graphite-light/50 hover:border-accent/50 transition-all hover:shadow-xl"
                   >
                     <div className="grid md:grid-cols-3 gap-4 items-start mb-4">
                       <div>
-                        <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                        <h3 className="text-2xl font-bold text-steel mb-2">
                           {position.title}
                         </h3>
-                        <p className="text-gray-600">{position.description}</p>
+                        <p className="text-steel-dim">{position.description}</p>
                       </div>
                       <div className="md:text-right space-y-2">
-                        <div className="flex items-center justify-start md:justify-end gap-2 text-gray-600">
+                        <div className="flex items-center justify-start md:justify-end gap-2 text-steel-dim">
                           <MapPin className="w-5 h-5 flex-shrink-0" />
                           <span>{position.location}</span>
                         </div>
-                        <div className="inline-block px-3 py-1 bg-brand-secondary/10 text-brand-secondary rounded-full text-sm font-semibold">
+                        <div className="inline-block px-3 py-1 bg-accent/10 text-accent rounded-full text-sm font-semibold border border-accent/30">
                           {position.type}
                         </div>
                       </div>
                       <div className="md:text-right">
                         <a
                           href="#contact"
-                          className="inline-block px-6 py-2 bg-brand-primary text-white rounded-lg font-semibold hover:bg-brand-primary/90 transition-colors"
+                          className="inline-block px-6 py-2 bg-accent text-white rounded-lg font-semibold hover:bg-accent-dark transition-colors"
                         >
                           Zaslat CV
                         </a>
@@ -161,12 +165,12 @@ export default function CareerPage() {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-12 bg-white rounded-2xl">
-                <p className="text-gray-600 text-lg mb-6">
+              <div className="text-center py-12 bg-graphite rounded-2xl border border-graphite-light/50">
+                <p className="text-steel-dim text-lg mb-6">
                   V tuto chvíli nejsou k dispozici žádná volná místa.
                 </p>
-                <p className="text-gray-600">
-                  Napište nám na <a href="mailto:kariera@ac-heating.cz" className="text-brand-primary font-semibold">kariera@ac-heating.cz</a> a
+                <p className="text-steel-dim">
+                  Napište nám na <a href="mailto:kariera@ac-heating.cz" className="text-accent font-semibold hover:text-accent/80">kariera@ac-heating.cz</a> a
                   my vás budeme mít na mysli.
                 </p>
               </div>
@@ -178,21 +182,21 @@ export default function CareerPage() {
       {/* Contact Section */}
       <section id="contact" className="container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-steel">
             Jak se přihlásit?
           </h2>
-          <div className="bg-white rounded-2xl shadow-lg border-2 border-gray-100 p-12">
-            <p className="text-lg text-gray-700 mb-6">
+          <div className="bg-graphite rounded-2xl shadow-lg border border-graphite-light/50 p-12">
+            <p className="text-lg text-steel-dim mb-6">
               Máte zájem pracovat pro AC Heating? Pošlěte nám svůj životopis a motivační
               dopis na následující e-mailovou adresu:
             </p>
             <a
               href="mailto:kariera@ac-heating.cz"
-              className="inline-block px-8 py-4 bg-brand-primary text-white rounded-xl font-bold hover:bg-brand-primary/90 transition-colors mb-6"
+              className="inline-block px-8 py-4 bg-accent text-white rounded-xl font-bold hover:bg-accent-dark transition-colors mb-6"
             >
               kariera@ac-heating.cz
             </a>
-            <p className="text-gray-600">
+            <p className="text-steel-dim">
               Odpovíme vám do 7 pracovních dnů. Budeme se těšit na váš zájem!
             </p>
           </div>
@@ -200,8 +204,11 @@ export default function CareerPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-br from-brand-primary to-brand-secondary py-20">
-        <div className="container mx-auto px-4 text-center">
+      <section className="relative overflow-hidden bg-gradient-to-br from-accent to-accent-dark py-20">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-full h-full bg-[url('/grid.svg')] bg-center" />
+        </div>
+        <div className="relative z-10 container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Chcete vědět více o AC Heating?
           </h2>
@@ -211,7 +218,7 @@ export default function CareerPage() {
           </p>
           <Link
             href="/o-spolecnosti"
-            className="inline-block px-10 py-5 bg-white text-brand-primary rounded-xl font-bold text-lg shadow-2xl hover:shadow-white/30 transition-all"
+            className="inline-block px-10 py-5 bg-white text-accent rounded-xl font-bold text-lg shadow-2xl hover:shadow-white/30 transition-all"
           >
             O společnosti
           </Link>

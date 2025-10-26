@@ -11,9 +11,285 @@
 
  ✓ Starting...
  ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
- ✓ Ready in 2.4s
- ○ Compiling / ...
- GET / 200 in 11.9s (compile: 10.6s, proxy.ts: 135ms, render: 1111ms)
+ ✓ Ready in 2.1s
  ⚠ Cross origin request detected from 91.99.126.53 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
 Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
- GET /icon?3bc3389763c581a 200 in 2.6s (proxy.ts: 26ms)
+ ○ Compiling / ...
+ GET / 200 in 10.3s (compile: 8.6s, proxy.ts: 119ms, render: 1544ms)
+ GET / 200 in 9.5s (compile: 8.6s, proxy.ts: 10ms, render: 859ms)
+ GET /icon?3bc3389763c581a 200 in 2.6s (proxy.ts: 11ms)
+ GET / 200 in 304ms (compile: 16ms, proxy.ts: 21ms, render: 267ms)
+ GET /regulace 200 in 1650ms (compile: 1482ms, proxy.ts: 14ms, render: 154ms)
+ GET / 200 in 223ms (compile: 10ms, proxy.ts: 8ms, render: 205ms)
+ GET /pripravit-rozpocet 200 in 1190ms (compile: 1142ms, proxy.ts: 11ms, render: 37ms)
+ GET / 200 in 227ms (compile: 16ms, proxy.ts: 8ms, render: 203ms)
+ ⨯ The requested resource isn't a valid image for /images/AdobeStock_496154205.jpg received null
+ ⨯ The requested resource isn't a valid image for /images/AdobeStock_496154205.jpg received null
+ ⨯ The requested resource isn't a valid image for /images/AdobeStock_496154205.jpg received null
+ GET / 200 in 477ms (compile: 18ms, proxy.ts: 14ms, render: 445ms)
+ ⨯ The requested resource isn't a valid image for /images/AdobeStock_496154205.jpg received null
+ GET / 200 in 533ms (compile: 21ms, proxy.ts: 21ms, render: 491ms)
+ GET /icon?3bc3389763c581a 200 in 59ms (proxy.ts: 5ms)
+ GET / 200 in 428ms (compile: 16ms, proxy.ts: 5ms, render: 408ms)
+ GET /produkty 200 in 1971ms (compile: 1518ms, proxy.ts: 11ms, render: 442ms)
+ GET /produkty 200 in 387ms (compile: 13ms, proxy.ts: 7ms, render: 367ms)
+ GET /produkty 200 in 353ms (compile: 6ms, proxy.ts: 5ms, render: 342ms)
+ GET /produkty 200 in 167ms (compile: 13ms, proxy.ts: 14ms, render: 140ms)
+ GET /produkty 200 in 184ms (compile: 12ms, proxy.ts: 15ms, render: 156ms)
+ GET /o-nas 200 in 1142ms (compile: 1064ms, proxy.ts: 9ms, render: 70ms)
+ GET / 200 in 175ms (compile: 10ms, proxy.ts: 9ms, render: 157ms)
+ ⨯ The requested resource isn't a valid image for /images/AdobeStock_496154205.jpg received null
+ GET /regulace 200 in 147ms (compile: 9ms, proxy.ts: 5ms, render: 133ms)
+ GET / 200 in 199ms (compile: 7ms, proxy.ts: 5ms, render: 187ms)
+ ✓ Compiled in 232ms
+ ✓ Compiled in 188ms
+ ✓ Compiled in 217ms
+ ✓ Compiled in 301ms
+ ✓ Compiled in 1443ms
+ GET / 200 in 554ms (compile: 249ms, proxy.ts: 8ms, render: 297ms)
+ ✓ Compiled in 203ms
+ ✓ Compiled in 463ms
+ GET / 200 in 179ms (compile: 14ms, proxy.ts: 26ms, render: 138ms)
+ ✓ Compiled in 171ms
+ GET / 200 in 159ms (compile: 11ms, proxy.ts: 11ms, render: 138ms)
+ ⨯ The requested resource isn't a valid image for /images/AdobeStock_496154205.jpg received null
+ GET / 200 in 796ms (compile: 10ms, proxy.ts: 5ms, render: 781ms)
+ GET /icon?3bc3389763c581a 200 in 59ms (proxy.ts: 6ms)
+ ⨯ The requested resource isn't a valid image for /images/AdobeStock_496154205.jpg received null
+ GET /novinky 200 in 1329ms (compile: 1145ms, proxy.ts: 13ms, render: 171ms)
+ ⨯ The requested resource isn't a valid image for /images/AdobeStock_496154205.jpg received null
+ ⨯ Error: Attempted to call createMotionComponent() from the server but createMotionComponent is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+    at AboutPage (src/app/o-nas/page.tsx:24:19)
+  22 |       <section className="py-12">
+  23 |         <div className="max-w-4xl mx-auto">
+> 24 |           <motion.div
+     |                   ^
+  25 |             initial={{ opacity: 0, y: 20 }}
+  26 |             whileInView={{ opacity: 1, y: 0 }}
+  27 |             transition={{ duration: 0.6 }} {
+  digest: '2051999129'
+}
+ GET /o-nas 200 in 685ms (compile: 387ms, proxy.ts: 16ms, render: 283ms)
+ GET /blog 200 in 1950ms (compile: 1281ms, proxy.ts: 5ms, render: 664ms)
+ ⨯ The requested resource isn't a valid image for /images/AdobeStock_496154205.jpg received null
+ GET /novinky 200 in 152ms (compile: 7ms, proxy.ts: 5ms, render: 140ms)
+ ⨯ The requested resource isn't a valid image for /images/AdobeStock_496154205.jpg received null
+ ⨯ Error: Attempted to call createMotionComponent() from the server but createMotionComponent is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+    at ProductsPage (src/app/produkty/page.tsx:43:17)
+  41 |       {/* Stats */}
+  42 |       <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 max-w-4xl mx-auto">
+> 43 |         <motion.div
+     |                 ^
+  44 |           initial={{ opacity: 0, y: 20 }}
+  45 |           whileInView={{ opacity: 1, y: 0 }}
+  46 |           transition={{ duration: 0.6, delay: 0 }} {
+  digest: '712136129'
+}
+ GET /produkty 200 in 635ms (compile: 294ms, proxy.ts: 14ms, render: 327ms)
+ GET /regulace 200 in 179ms (compile: 29ms, proxy.ts: 10ms, render: 141ms)
+ ⨯ Error: Attempted to call createMotionComponent() from the server but createMotionComponent is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+    at AboutCompanyPage (src/app/o-spolecnosti/page.tsx:28:17)
+  26 |       {/* Company Overview */}
+  27 |       <section className="py-12">
+> 28 |         <motion.div
+     |                 ^
+  29 |           initial={{ opacity: 0, y: 20 }}
+  30 |           whileInView={{ opacity: 1, y: 0 }}
+  31 |           transition={{ duration: 0.6 }} {
+  digest: '1679001091'
+}
+ GET /o-spolecnosti 200 in 1251ms (compile: 1180ms, proxy.ts: 4ms, render: 68ms)
+ ⨯ Error: Attempted to call createMotionComponent() from the server but createMotionComponent is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+    at AboutPage (src/app/o-nas/page.tsx:24:19)
+  22 |       <section className="py-12">
+  23 |         <div className="max-w-4xl mx-auto">
+> 24 |           <motion.div
+     |                   ^
+  25 |             initial={{ opacity: 0, y: 20 }}
+  26 |             whileInView={{ opacity: 1, y: 0 }}
+  27 |             transition={{ duration: 0.6 }} {
+  digest: '2051999129'
+}
+ GET /o-nas 200 in 81ms (compile: 9ms, proxy.ts: 7ms, render: 65ms)
+ ⨯ Error: Attempted to call createMotionComponent() from the server but createMotionComponent is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+    at AboutPage (src/app/o-nas/page.tsx:24:19)
+  22 |       <section className="py-12">
+  23 |         <div className="max-w-4xl mx-auto">
+> 24 |           <motion.div
+     |                   ^
+  25 |             initial={{ opacity: 0, y: 20 }}
+  26 |             whileInView={{ opacity: 1, y: 0 }}
+  27 |             transition={{ duration: 0.6 }} {
+  digest: '2051999129'
+}
+ GET /o-nas 200 in 64ms (compile: 8ms, proxy.ts: 9ms, render: 47ms)
+ ✓ Compiled in 188ms
+ ⨯ Error: Attempted to call createMotionComponent() from the server but createMotionComponent is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+    at AboutPage (src/app/o-nas/page.tsx:24:19)
+  22 |       <section className="py-12">
+  23 |         <div className="max-w-4xl mx-auto">
+> 24 |           <motion.div
+     |                   ^
+  25 |             initial={{ opacity: 0, y: 20 }}
+  26 |             whileInView={{ opacity: 1, y: 0 }}
+  27 |             transition={{ duration: 0.6 }} {
+  digest: '2051999129'
+}
+ GET /o-nas 200 in 135ms (compile: 7ms, proxy.ts: 13ms, render: 114ms)
+ ✓ Compiled in 256ms
+ ⨯ Error: Attempted to call createMotionComponent() from the server but createMotionComponent is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+    at AboutPage (src/app/o-nas/page.tsx:24:19)
+  22 |       <section className="py-12">
+  23 |         <div className="max-w-4xl mx-auto">
+> 24 |           <motion.div
+     |                   ^
+  25 |             initial={{ opacity: 0, y: 20 }}
+  26 |             whileInView={{ opacity: 1, y: 0 }}
+  27 |             transition={{ duration: 0.6 }} {
+  digest: '2051999129'
+}
+ GET /o-nas 200 in 104ms (compile: 23ms, proxy.ts: 7ms, render: 75ms)
+ GET / 200 in 288ms (compile: 22ms, proxy.ts: 17ms, render: 249ms)
+ ⨯ The requested resource isn't a valid image for /images/AdobeStock_496154205.jpg received null
+ GET /regulace 200 in 178ms (compile: 34ms, proxy.ts: 12ms, render: 132ms)
+ ⨯ Error: Attempted to call createMotionComponent() from the server but createMotionComponent is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+    at ProductsPage (src/app/produkty/page.tsx:43:17)
+  41 |       {/* Stats */}
+  42 |       <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 max-w-4xl mx-auto">
+> 43 |         <motion.div
+     |                 ^
+  44 |           initial={{ opacity: 0, y: 20 }}
+  45 |           whileInView={{ opacity: 1, y: 0 }}
+  46 |           transition={{ duration: 0.6, delay: 0 }} {
+  digest: '712136129'
+}
+ GET /produkty 200 in 124ms (compile: 22ms, proxy.ts: 8ms, render: 95ms)
+ GET /novinky 200 in 586ms (compile: 243ms, proxy.ts: 5ms, render: 338ms)
+ ⨯ The requested resource isn't a valid image for /images/AdobeStock_496154205.jpg received null
+ GET /grid.svg 404 in 1356ms (compile: 995ms, proxy.ts: 6ms, render: 355ms)
+ GET /blog 200 in 483ms (compile: 30ms, proxy.ts: 11ms, render: 443ms)
+ ⨯ The requested resource isn't a valid image for /images/AdobeStock_496154205.jpg received null
+ ⨯ Error: Attempted to call createMotionComponent() from the server but createMotionComponent is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+    at AboutPage (src/app/o-nas/page.tsx:24:19)
+  22 |       <section className="py-12">
+  23 |         <div className="max-w-4xl mx-auto">
+> 24 |           <motion.div
+     |                   ^
+  25 |             initial={{ opacity: 0, y: 20 }}
+  26 |             whileInView={{ opacity: 1, y: 0 }}
+  27 |             transition={{ duration: 0.6 }} {
+  digest: '2051999129'
+}
+ GET /o-nas 200 in 72ms (compile: 7ms, proxy.ts: 6ms, render: 58ms)
+ ⨯ Error: Attempted to call createMotionComponent() from the server but createMotionComponent is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+    at AboutCompanyPage (src/app/o-spolecnosti/page.tsx:28:17)
+  26 |       {/* Company Overview */}
+  27 |       <section className="py-12">
+> 28 |         <motion.div
+     |                 ^
+  29 |           initial={{ opacity: 0, y: 20 }}
+  30 |           whileInView={{ opacity: 1, y: 0 }}
+  31 |           transition={{ duration: 0.6 }} {
+  digest: '1679001091'
+}
+ GET /o-spolecnosti 200 in 176ms (compile: 135ms, proxy.ts: 6ms, render: 35ms)
+ GET /kariera 200 in 909ms (compile: 831ms, proxy.ts: 5ms, render: 72ms)
+ GET /kontakt 200 in 1020ms (compile: 911ms, proxy.ts: 12ms, render: 97ms)
+ ✓ Compiled in 181ms
+ GET /kontakt 200 in 142ms (compile: 9ms, proxy.ts: 8ms, render: 125ms)
+ ✓ Compiled in 167ms
+ GET /kontakt 200 in 116ms (compile: 7ms, proxy.ts: 4ms, render: 105ms)
+ ⨯ Error: Attempted to call createMotionComponent() from the server but createMotionComponent is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+    at AboutPage (src/app/o-nas/page.tsx:24:19)
+  22 |       <section className="py-12">
+  23 |         <div className="max-w-4xl mx-auto">
+> 24 |           <motion.div
+     |                   ^
+  25 |             initial={{ opacity: 0, y: 20 }}
+  26 |             whileInView={{ opacity: 1, y: 0 }}
+  27 |             transition={{ duration: 0.6 }} {
+  digest: '2051999129'
+}
+ GET /o-nas 200 in 103ms (compile: 13ms, proxy.ts: 16ms, render: 75ms)
+ GET / 200 in 247ms (compile: 8ms, proxy.ts: 10ms, render: 229ms)
+ ⨯ The requested resource isn't a valid image for /images/AdobeStock_496154205.jpg received null
+ ✓ Compiled in 328ms
+ ⨯ Error: Attempted to call createMotionComponent() from the server but createMotionComponent is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+    at AboutPage (src/app/o-nas/page.tsx:24:19)
+  22 |       <section className="py-12">
+  23 |         <div className="max-w-4xl mx-auto">
+> 24 |           <motion.div
+     |                   ^
+  25 |             initial={{ opacity: 0, y: 20 }}
+  26 |             whileInView={{ opacity: 1, y: 0 }}
+  27 |             transition={{ duration: 0.6 }} {
+  digest: '2051999129'
+}
+ GET /o-nas 200 in 108ms (compile: 26ms, proxy.ts: 14ms, render: 68ms)
+ GET /regulace 200 in 166ms (compile: 32ms, proxy.ts: 18ms, render: 117ms)
+ GET /kombinace-tc-fve 404 in 235ms (compile: 39ms, proxy.ts: 4ms, render: 193ms)
+ GET / 200 in 253ms (compile: 13ms, proxy.ts: 7ms, render: 233ms)
+ ⨯ Error: Attempted to call createMotionComponent() from the server but createMotionComponent is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+    at ProductsPage (src/app/produkty/page.tsx:43:17)
+  41 |       {/* Stats */}
+  42 |       <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 max-w-4xl mx-auto">
+> 43 |         <motion.div
+     |                 ^
+  44 |           initial={{ opacity: 0, y: 20 }}
+  45 |           whileInView={{ opacity: 1, y: 0 }}
+  46 |           transition={{ duration: 0.6, delay: 0 }} {
+  digest: '712136129'
+}
+ GET /produkty 200 in 139ms (compile: 26ms, proxy.ts: 6ms, render: 108ms)
+ GET /novinky 200 in 157ms (compile: 11ms, proxy.ts: 11ms, render: 135ms)
+ ⨯ The requested resource isn't a valid image for /images/AdobeStock_496154205.jpg received null
+ GET /grid.svg 404 in 207ms (compile: 49ms, proxy.ts: 5ms, render: 154ms)
+ GET /blog 200 in 411ms (compile: 12ms, proxy.ts: 8ms, render: 392ms)
+ ⨯ The requested resource isn't a valid image for /images/AdobeStock_496154205.jpg received null
+ ⨯ Error: Attempted to call createMotionComponent() from the server but createMotionComponent is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+    at AboutPage (src/app/o-nas/page.tsx:24:19)
+  22 |       <section className="py-12">
+  23 |         <div className="max-w-4xl mx-auto">
+> 24 |           <motion.div
+     |                   ^
+  25 |             initial={{ opacity: 0, y: 20 }}
+  26 |             whileInView={{ opacity: 1, y: 0 }}
+  27 |             transition={{ duration: 0.6 }} {
+  digest: '2051999129'
+}
+ GET /o-nas 200 in 95ms (compile: 7ms, proxy.ts: 5ms, render: 83ms)
+ ⨯ Error: Attempted to call createMotionComponent() from the server but createMotionComponent is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+    at AboutCompanyPage (src/app/o-spolecnosti/page.tsx:28:17)
+  26 |       {/* Company Overview */}
+  27 |       <section className="py-12">
+> 28 |         <motion.div
+     |                 ^
+  29 |           initial={{ opacity: 0, y: 20 }}
+  30 |           whileInView={{ opacity: 1, y: 0 }}
+  31 |           transition={{ duration: 0.6 }} {
+  digest: '1679001091'
+}
+ GET /o-spolecnosti 200 in 74ms (compile: 27ms, proxy.ts: 10ms, render: 38ms)
+ GET /kariera 200 in 329ms (compile: 206ms, proxy.ts: 11ms, render: 112ms)
+ GET /kontakt 200 in 80ms (compile: 23ms, proxy.ts: 9ms, render: 49ms)
+ GET / 200 in 196ms (compile: 5ms, proxy.ts: 4ms, render: 187ms)
+ ✓ Compiled in 220ms
+ GET / 200 in 184ms (compile: 9ms, proxy.ts: 15ms, render: 161ms)
+ ✓ Compiled in 188ms
+ GET / 200 in 159ms (compile: 8ms, proxy.ts: 8ms, render: 142ms)
+ ✓ Compiled in 174ms
+ GET / 200 in 149ms (compile: 9ms, proxy.ts: 7ms, render: 132ms)
+ ✓ Compiled in 160ms
+ GET / 200 in 323ms (compile: 8ms, proxy.ts: 17ms, render: 298ms)
+ ✓ Compiled in 278ms
+ ✓ Compiled in 182ms
+ GET / 200 in 295ms (compile: 152ms, proxy.ts: 6ms, render: 137ms)
+ ✓ Compiled in 149ms
+ GET / 200 in 211ms (compile: 29ms, proxy.ts: 8ms, render: 174ms)
+ ✓ Compiled in 182ms
+ GET / 200 in 238ms (compile: 88ms, proxy.ts: 11ms, render: 139ms)
+ ✓ Compiled in 155ms
+ GET / 200 in 147ms (compile: 60ms, proxy.ts: 8ms, render: 80ms)
+ GET / 200 in 121ms (compile: 9ms, proxy.ts: 6ms, render: 106ms)
+ ✓ Compiled in 202ms
+ GET / 200 in 135ms (compile: 8ms, proxy.ts: 11ms, render: 115ms)

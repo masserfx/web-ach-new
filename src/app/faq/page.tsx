@@ -77,17 +77,21 @@ const faqs = [
 
 export default function FAQPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white">
+    <main className="min-h-screen bg-black">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-brand-primary/10 via-white to-brand-secondary/10 py-20">
-        <div className="container mx-auto px-4">
+      <section className="relative overflow-hidden bg-gradient-to-b from-carbon via-graphite to-carbon py-20">
+        {/* Background blobs */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-1/4 -left-20 w-96 h-96 bg-accent/30 rounded-full mix-blend-multiply filter blur-3xl" />
+          <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-accent/20 rounded-full mix-blend-multiply filter blur-3xl" />
+        </div>
+
+        <div className="relative z-10 container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl md:text-6xl font-black mb-6">
-              <span className="bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
-                Často kladené otázky
-              </span>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-steel mb-6 leading-tight">
+              Často kladené otázky
             </h1>
-            <p className="text-xl text-gray-700 leading-relaxed">
+            <p className="text-xl md:text-2xl text-steel-dim leading-relaxed">
               Odpovědi na nejčastější dotazy o tepelných čerpadlech, instalaci,
               servis a dotacích.
             </p>
@@ -100,7 +104,7 @@ export default function FAQPage() {
         <div className="max-w-4xl mx-auto space-y-12">
           {faqs.map((category, idx) => (
             <div key={idx}>
-              <h2 className="text-3xl font-bold mb-6 text-gray-900">
+              <h2 className="text-3xl font-bold mb-6 text-steel">
                 {category.category}
               </h2>
               <div className="space-y-4">
@@ -114,8 +118,11 @@ export default function FAQPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-br from-brand-primary to-brand-secondary py-20">
-        <div className="container mx-auto px-4 text-center">
+      <section className="relative overflow-hidden bg-gradient-to-br from-accent to-accent-dark py-20">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-full h-full bg-[url('/grid.svg')] bg-center" />
+        </div>
+        <div className="relative z-10 container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Nenašli jste odpověď?
           </h2>
@@ -126,13 +133,13 @@ export default function FAQPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="/kontakt"
-              className="px-10 py-5 bg-white text-brand-primary rounded-xl font-bold text-lg shadow-2xl hover:shadow-white/30 transition-all"
+              className="px-10 py-5 bg-white text-accent rounded-xl font-bold text-lg shadow-2xl hover:shadow-white/30 transition-all"
             >
               Kontaktujte nás
             </a>
             <a
               href="/pripravit-rozpocet"
-              className="px-10 py-5 bg-brand-primary text-white rounded-xl font-bold text-lg shadow-2xl hover:bg-brand-primary/90 transition-all"
+              className="px-10 py-5 bg-graphite text-white rounded-xl font-bold text-lg shadow-2xl hover:bg-carbon transition-all border-2 border-white/20"
             >
               Nezávazná poptávka
             </a>
@@ -147,14 +154,14 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg border-2 border-gray-100 overflow-hidden">
+    <div className="bg-graphite rounded-2xl shadow-lg border border-graphite-light/50 hover:border-accent/50 overflow-hidden transition-all">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-50 transition-colors"
+        className="w-full p-6 text-left flex items-center justify-between hover:bg-graphite-light/20 transition-colors"
       >
-        <h3 className="text-lg font-bold text-gray-900 pr-4">{question}</h3>
+        <h3 className="text-lg font-bold text-steel pr-4">{question}</h3>
         <ChevronDown
-          className={`w-6 h-6 text-brand-primary flex-shrink-0 transition-transform ${
+          className={`w-6 h-6 text-accent flex-shrink-0 transition-transform ${
             isOpen ? 'transform rotate-180' : ''
           }`}
         />
@@ -167,7 +174,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="px-6 pb-6 text-gray-700 leading-relaxed border-t border-gray-100 pt-4">
+            <div className="px-6 pb-6 text-steel-dim leading-relaxed border-t border-graphite-light/50 pt-4">
               {answer}
             </div>
           </motion.div>

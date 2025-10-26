@@ -10,12 +10,12 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+    <main className="min-h-screen bg-black">
       {/* Back Button */}
       <div className="container mx-auto px-4 pt-8">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-brand-primary hover:text-brand-primary/80 transition-colors"
+          className="inline-flex items-center gap-2 text-accent hover:text-accent/80 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           Zpět na homepage
@@ -26,14 +26,14 @@ export default function PrivacyPage() {
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center gap-4 mb-6">
-            <div className="w-16 h-16 bg-brand-primary/10 rounded-2xl flex items-center justify-center">
-              <Shield className="w-8 h-8 text-brand-primary" />
+            <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center border border-accent/30">
+              <Shield className="w-8 h-8 text-accent" />
             </div>
             <div>
-              <h1 className="text-5xl font-bold text-gray-900">
+              <h1 className="text-5xl font-bold text-steel">
                 Ochrana osobních údajů
               </h1>
-              <p className="text-gray-600 mt-2">
+              <p className="text-steel-dim mt-2">
                 Platné od 1. 1. 2024 | V souladu s GDPR
               </p>
             </div>
@@ -43,8 +43,8 @@ export default function PrivacyPage() {
 
       {/* Content */}
       <div className="container mx-auto px-4 pb-24">
-        <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-12">
-          <div className="prose prose-lg max-w-none">
+        <div className="max-w-4xl mx-auto bg-graphite rounded-2xl shadow-xl p-12 border border-graphite-light/50">
+          <div className="prose prose-lg max-w-none prose-invert">
             <h2>1. Správce osobních údajů</h2>
             <p>
               Správcem vašich osobních údajů je společnost <strong>{siteConfig.company.name}</strong>, 
