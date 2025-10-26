@@ -132,7 +132,7 @@ export default function FAQPage() {
             </a>
             <a
               href="/pripravit-rozpocet"
-              className="px-10 py-5 bg-brand-accentDark text-white rounded-xl font-bold text-lg shadow-2xl hover:bg-brand-accentDark/90 transition-all"
+              className="px-10 py-5 bg-brand-primary text-white rounded-xl font-bold text-lg shadow-2xl hover:bg-brand-primary/90 transition-all"
             >
               Nezávazná poptávka
             </a>

@@ -27,7 +27,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     const variants = {
       primary: 'bg-gradient-to-r from-brand-primary to-brand-primary/90 text-white hover:from-brand-primary/90 hover:to-brand-primary shadow-lg hover:shadow-xl',
-      secondary: 'bg-gradient-to-r from-brand-accentDark to-brand-accentDark/90 text-white hover:from-brand-accentDark/90 hover:to-brand-accentDark shadow-lg hover:shadow-xl',
+      secondary: 'bg-gradient-to-r from-brand-primary to-brand-primary/85 text-white hover:from-brand-primary/90 hover:to-brand-primary shadow-lg hover:shadow-xl',
       outline: 'border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-white',
       ghost: 'text-brand-primary hover:bg-brand-primary/10',
       link: 'text-brand-primary hover:underline',

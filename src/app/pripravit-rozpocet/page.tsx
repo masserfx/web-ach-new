@@ -257,7 +257,7 @@ export default function QuotePage() {
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full px-8 py-4 bg-gradient-to-r from-brand-accentDark to-brand-accentDark/90 text-white rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full px-8 py-4 bg-gradient-to-r from-brand-primary to-brand-primary/90 text-white rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isLoading ? 'Odesílání...' : 'Odeslat nezávaznou poptávku'}
                   </button>

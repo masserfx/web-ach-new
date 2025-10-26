@@ -33,7 +33,7 @@ export function HeroSection() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-brand-accentDark to-brand-accentDark/80 text-white rounded-full shadow-lg mb-8"
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-brand-primary to-brand-primary/80 text-white rounded-full shadow-lg mb-8"
           >
             <Award className="w-5 h-5" />
             <span className="text-sm font-bold tracking-wide">
@@ -43,7 +43,7 @@ export function HeroSection() {
 
           {/* Headline */}
           <h1 className="text-6xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight">
-            <span className="bg-gradient-to-r from-brand-primary via-brand-accent to-brand-secondary bg-clip-text text-transparent drop-shadow-sm">
+            <span className="text-brand-primary drop-shadow-sm">
               Chytré vytápění
             </span>
             <br />
@@ -84,7 +84,7 @@ export function HeroSection() {
             >
               <Link
                 href="/pripravit-rozpocet"
-                className="inline-flex items-center gap-2 px-10 py-5 bg-gradient-to-r from-brand-accentDark to-brand-accentDark/90 text-white rounded-xl font-bold text-lg shadow-2xl hover:shadow-accentDark/50 transition-all border-2 border-brand-accentDark/20"
+                className="inline-flex items-center gap-2 px-10 py-5 bg-gradient-to-r from-brand-primary to-brand-primary/90 text-white rounded-xl font-bold text-lg shadow-2xl hover:shadow-primary/50 transition-all border-2 border-brand-primary/20"
               >
                 <Zap className="w-6 h-6" fill="currentColor" />
                 Nezávazná poptávka

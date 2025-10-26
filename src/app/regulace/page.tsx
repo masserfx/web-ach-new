@@ -31,7 +31,7 @@ export default function RegulatePage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/pripravit-rozpocet"
-                className="px-8 py-4 bg-gradient-to-r from-brand-accentDark to-brand-accentDark/90 text-white rounded-xl font-bold hover:shadow-lg transition-all"
+                className="px-8 py-4 bg-gradient-to-r from-brand-primary to-brand-primary/90 text-white rounded-xl font-bold hover:shadow-lg transition-all"
               >
                 Nezávazná poptávka
               </a>
@@ -92,7 +92,7 @@ export default function RegulatePage() {
               {smartFeatures.map((feature, idx) => (
                 <div key={idx} className="flex gap-4">
                   <div className="flex-shrink-0">
-                    <CheckCircle className="w-6 h-6 text-brand-secondary mt-1" />
+                    <CheckCircle className="w-6 h-6 text-brand-secondaryDark mt-1" />
                   </div>
                   <div>
                     <h3 className="text-xl font-bold mb-2 text-gray-900">
@@ -154,7 +154,7 @@ export default function RegulatePage() {
                         }`}
                       >
                         {(feature as unknown as Record<string, boolean>)[variant.key] === true ? (
-                          <CheckCircle className="w-6 h-6 text-brand-secondary mx-auto" />
+                          <CheckCircle className="w-6 h-6 text-brand-secondaryDark mx-auto" />
                         ) : (
                           <span className="text-gray-300">−</span>
                         )}
@@ -204,7 +204,7 @@ export default function RegulatePage() {
             <ul className="space-y-4">
               {fveFeatures.map((feature, idx) => (
                 <li key={idx} className="flex gap-4">
-                  <CheckCircle className="w-6 h-6 text-brand-secondary flex-shrink-0 mt-1" />
+                  <CheckCircle className="w-6 h-6 text-brand-secondaryDark flex-shrink-0 mt-1" />
                   <span className="text-gray-700">{feature}</span>
                 </li>
               ))}

@@ -15,10 +15,10 @@ export function StatsSection({ stats }: StatsSectionProps) {
   return (
     <section className="relative container mx-auto px-4 py-16 bg-gradient-to-br from-brand-primary/15 via-white to-brand-secondary/12">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
-        <StatCard number={stats.articles} label="Článků" gradient="from-brand-primary to-amber-700" />
-        <StatCard number={stats.products} label="Produktů" gradient="from-brand-secondary to-green-600" />
-        <StatCard number={`${stats.installations}+`} label="Instalací" gradient="from-brand-accent to-orange-600" />
-        <StatCard number={`${stats.experience}+`} label="Let zkušeností" gradient="from-purple-600 to-pink-600" />
+        <StatCard number={stats.articles} label="Články" gradient="from-brand-primary to-amber-700" />
+        <StatCard number={stats.products} label="Produktů" gradient="from-brand-secondaryDark to-green-700" />
+        <StatCard number={`${stats.installations}+`} label="Instalací" gradient="from-brand-accentDarker to-orange-700" />
+        <StatCard number={`${stats.experience}+`} label="Let zkušeností" gradient="from-purple-700 to-pink-700" />
       </div>
     </section>
   );

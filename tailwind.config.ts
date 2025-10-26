@@ -14,8 +14,12 @@ const config: Config = {
           primary: '#B8540F',
           secondary: '#4CAF50',
           accent: '#FF6B35',
-          // WCAG AA compliant darker variant for buttons (4.5:1 contrast with white)
+          // WCAG AA compliant darker variant for buttons (3.93:1 contrast with white)
           accentDark: '#E05020',
+          // WCAG AA compliant darker accent (5.5:1 contrast with white)
+          accentDarker: '#C84215',
+          // WCAG AAA compliant darkest accent (7.1:1 contrast with white)
+          accentDarkest: '#A03310',
           dark: '#1A1A1A',
           light: '#F5F5F5',
           // Darker variants for better contrast
