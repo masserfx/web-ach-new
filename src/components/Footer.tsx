@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import { Phone, Mail, MapPin, Facebook, Linkedin, Instagram } from 'lucide-react';
 import { siteConfig } from '@/lib/site.config';
+import { getCompanyYears } from '@/lib/utils';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const yearsInBusiness = getCompanyYears();
 
   return (
     <footer className="bg-gray-900 text-gray-300">
@@ -16,7 +18,7 @@ export function Footer() {
               <span className="text-white"> Heating</span>
             </div>
             <p className="text-gray-400 mb-6">
-              Česká firma s vlastním vývojem, výrobou a servisem tepelných čerpadel.
+              Česká firma s {yearsInBusiness}letou tradicí v instalaci tepelných čerpadel a fotovoltaiky.
             </p>
             <div className="flex gap-4">
               <a
@@ -138,7 +140,7 @@ export function Footer() {
         <div className="mt-12 pt-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-gray-400">
-              © {currentYear} AC Heating s.r.o. Všechna práva vyhrazena.
+              © {currentYear} {siteConfig.company.name} Všechna práva vyhrazena.
             </p>
             <div className="flex gap-6 text-sm">
               <Link href="/privacy" className="hover:text-white transition-colors">

@@ -9,24 +9,24 @@ const certifications = [
   {
     id: 1,
     icon: Award,
-    title: 'ISO 9001',
-    description: 'Certifikace systému managementu kvality',
+    title: 'APVTC',
+    description: 'Asociace pro vodu, teplo a chlazení - členství a certifikace',
     color: 'text-blue-600',
     bgColor: 'bg-blue-50',
   },
   {
     id: 2,
     icon: ShieldCheck,
-    title: 'Autorizovaný partner',
-    description: 'Oficiální partner předních výrobců tepelných čerpadel',
+    title: 'CFA',
+    description: 'Certifikace Cooling & Heating Association',
     color: 'text-green-600',
     bgColor: 'bg-green-50',
   },
   {
     id: 3,
     icon: BadgeCheck,
-    title: 'Certifikovaní technici',
-    description: 'Všichni technici mají platné certifikace výrobců',
+    title: 'CTI',
+    description: 'Cooling Technology Institute - mezinárodní certifikace',
     color: 'text-purple-600',
     bgColor: 'bg-purple-50',
   },
@@ -143,13 +143,13 @@ export function Certifications() {
             </div>
             <div className="w-px h-12 bg-gray-300" />
             <div>
-              <p className="text-3xl font-bold text-brand-primary">{siteConfig.features.satisfactionRate}%</p>
-              <p className="text-sm text-gray-600">spokojených zákazníků</p>
+              <p className="text-3xl font-bold text-brand-primary">{siteConfig.features.employees}+</p>
+              <p className="text-sm text-gray-600">zaměstnanců</p>
             </div>
             <div className="w-px h-12 bg-gray-300" />
             <div>
-              <p className="text-3xl font-bold text-brand-primary">500+</p>
-              <p className="text-sm text-gray-600">realizovaných projektů</p>
+              <p className="text-3xl font-bold text-brand-primary">{siteConfig.features.totalHomes}+</p>
+              <p className="text-sm text-gray-600">domácností po Evropě</p>
             </div>
           </div>
         </motion.div>

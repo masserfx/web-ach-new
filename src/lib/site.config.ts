@@ -13,15 +13,15 @@ export const siteConfig = {
   // Contact Information
   contact: {
     email: 'info@ac-heating.cz',
-    phone: '+420 731 402 055',
-    phoneFormatted: '+420 731 402 055',
-    phoneRaw: '+420731402055',
+    phone: '+420 725 539 825',
+    phoneFormatted: '+420 725 539 825',
+    phoneRaw: '+420725539825',
     address: {
-      street: 'Mezi Vodami 1950/17',
-      city: 'Praha 4',
-      zip: '143 00',
+      street: 'Staroplzenecká 177',
+      city: 'Letkov',
+      zip: '326 00',
       country: 'Česká republika',
-      full: 'Mezi Vodami 1950/17, 143 00 Praha 4',
+      full: 'Staroplzenecká 177, 326 00 Letkov',
     },
     hours: {
       weekdays: 'Po-Pá: 8:00 - 17:00',
@@ -39,11 +39,12 @@ export const siteConfig = {
 
   // Company Information
   company: {
-    name: 'AC Heating s.r.o.',
-    ico: '12345678',
-    dic: 'CZ12345678',
-    registeredAt: 'Městský soud v Praze',
-    established: 2008,
+    name: 'KUFI INT, s.r.o.',
+    tradingAs: 'AC Heating',
+    ico: '26410656',
+    dic: 'CZ26410656',
+    registeredAt: 'Krajský soud v Plzni',
+    established: 2006,
   },
 
   // Services Coverage
@@ -77,9 +78,12 @@ export const siteConfig = {
 
   // Features & Benefits
   features: {
-    experienceYears: 15,
-    warrantyYears: 5,
+    experienceYears: 18,
+    warrantyYears: 7,
     maxSubsidy: 130000,
+    installationsYearly: 1500,
+    totalHomes: 7500,
+    employees: 100,
     satisfactionRate: 98,
   },
 

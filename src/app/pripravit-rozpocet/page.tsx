@@ -323,10 +323,10 @@ export default function QuotePage() {
                 Proč nám věřit?
               </h3>
               <ul className="space-y-2 text-sm text-gray-700">
-                <li>✓ 20 let zkušeností</li>
-                <li>✓ 1000+ spokojených zákazníků</li>
+                <li>✓ 18+ let zkušeností</li>
+                <li>✓ 7500+ domácností po Evropě</li>
                 <li>✓ 7 let záruka</li>
-                <li>✓ Vlastní servis</li>
+                <li>✓ 24/7 servis</li>
               </ul>
             </div>
           </div>

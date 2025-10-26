@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     default: 'AC Heating - Tepelná čerpadla a fotovoltaika | 7 let záruka',
     template: '%s | AC Heating',
   },
-  description: 'Řešíme chytré vytápění pro rodinné, bytové i komerční domy již 20 let. Jsme česká firma s vlastním vývojem i výrobou. Pokrytí celé ČR. 7 let záruka, 1000+ instalací.',
+  description: 'KUFI INT s.r.o. (AC Heating) - česká firma s více než 18letou tradicí v instalaci tepelných čerpadel a fotovoltaiky. 7500+ domácností po Evropě. 7 let záruka.',
   keywords: [
     'tepelná čerpadla',
     'fotovoltaika',
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     url: 'https://www.ac-heating.cz',
     siteName: 'AC Heating',
     title: 'AC Heating - Tepelná čerpadla a fotovoltaika | 7 let záruka',
-    description: 'Řešíme chytré vytápění pro rodinné, bytové i komerční domy již 20 let. Česká firma s vlastním vývojem a výrobou. 1000+ instalací po celé ČR.',
+    description: 'KUFI INT s.r.o. (AC Heating) - instalace tepelných čerpadel a fotovoltaiky. Více než 18 let zkušeností. 7500+ domácností a 1500+ instalací ročně.',
     images: [
       {
         url: '/og-image.jpg',
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'AC Heating - Tepelná čerpadla a fotovoltaika',
-    description: 'Řešíme chytré vytápění pro rodinné, bytové i komerční domy již 20 let.',
+    description: 'KUFI INT s.r.o. - instalace tepelných čerpadel a fotovoltaiky. Česká firma s 18+ lety zkušeností.',
     images: ['/og-image.jpg'],
   },
   alternates: {

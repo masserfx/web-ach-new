@@ -116,15 +116,15 @@ export function Testimonials() {
           className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8"
         >
           <div className="text-center">
-            <div className="text-5xl font-bold text-brand-primary mb-2">98%</div>
-            <p className="text-gray-600">Spokojených zákazníků</p>
+            <div className="text-5xl font-bold text-brand-primary mb-2">7 500+</div>
+            <p className="text-gray-600">Domácností po celé Evropě</p>
           </div>
           <div className="text-center">
-            <div className="text-5xl font-bold text-brand-primary mb-2">500+</div>
-            <p className="text-gray-600">Realizovaných projektů</p>
+            <div className="text-5xl font-bold text-brand-primary mb-2">1 500+</div>
+            <p className="text-gray-600">Instalací ročně</p>
           </div>
           <div className="text-center">
-            <div className="text-5xl font-bold text-brand-primary mb-2">15 let</div>
+            <div className="text-5xl font-bold text-brand-primary mb-2">18+ let</div>
             <p className="text-gray-600">Zkušeností na trhu</p>
           </div>
         </motion.div>

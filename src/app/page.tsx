@@ -59,8 +59,8 @@ async function getStats() {
   return {
     articles: blogCount || 0,
     products: productCount || 0,
-    installations: 1000,
-    experience: 20,
+    installations: 1500,
+    experience: 18,
   };
 }
 
@@ -74,29 +74,31 @@ export default async function HomePage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'AC Heating s.r.o.',
-    legalName: 'AC Heating s.r.o.',
+    name: 'AC Heating',
+    legalName: 'KUFI INT, s.r.o.',
     url: 'https://www.ac-heating.cz',
     logo: 'https://www.ac-heating.cz/logo.png',
-    description: 'Česká firma s vlastním vývojem, výrobou a servisem tepelných čerpadel. 20 let zkušeností, 7 let záruka, pokrytí celé ČR.',
-    foundingDate: '2004',
+    description: 'KUFI INT s.r.o. - česká firma s více než 18letou tradicí v instalaci tepelných čerpadel a fotovoltaiky. 7500+ domácností po Evropě.',
+    foundingDate: '2006-01-01',
     address: {
       '@type': 'PostalAddress',
-      addressLocality: 'Praha',
+      streetAddress: 'Staroplzenecká 177',
+      addressLocality: 'Letkov',
+      postalCode: '326 00',
       addressCountry: 'CZ',
     },
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+420-123-456-789',
+      telephone: '+420-725-539-825',
       contactType: 'Zákaznické centrum',
       email: 'info@ac-heating.cz',
-      areaServed: 'CZ',
+      areaServed: ['CZ', 'SK', 'EU'],
       availableLanguage: 'cs',
     },
     sameAs: [
-      'https://www.facebook.com/ac-heating',
+      'https://www.facebook.com/ac.heating.cz',
       'https://www.linkedin.com/company/ac-heating',
-      'https://www.instagram.com/ac-heating',
+      'https://www.instagram.com/ac.heating.cz',
     ],
     aggregateRating: {
       '@type': 'AggregateRating',

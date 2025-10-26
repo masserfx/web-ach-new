@@ -1,12 +1,16 @@
 import { Metadata } from 'next';
-import { Award, Users, Target, Heart } from 'lucide-react';
+import { Award, Users, Target, Heart, Bus, Lightbulb, Shield } from 'lucide-react';
+import { getCompanyYears } from '@/lib/utils';
+import { SymbolSection } from '@/components/about/SymbolSection';
 
 export const metadata: Metadata = {
   title: 'O nás',
-  description: 'AC Heating je česká firma s 20 lety zkušeností v oblasti tepelných čerpadel. Vlastní vývoj, výroba a servis po celé ČR.',
+  description: 'KUFI INT s.r.o. (AC Heating) – česká firma s více než 18letou tradicí v oblasti instalace tepelných čerpadel a fotovoltaiky. Více než 7500 domácností po celé Evropě.',
 };
 
 export default function AboutPage() {
+  const yearsInBusiness = getCompanyYears();
+
   return (
     <main className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white">
       {/* Hero Section */}
@@ -19,8 +23,8 @@ export default function AboutPage() {
               </span>
             </h1>
             <p className="text-xl text-gray-700 leading-relaxed">
-              Jsme česká firma s vlastním vývojem, výrobou a servisem tepelných čerpadel.
-              Již 20 let pomáháme rodinám i firmám šetřit energie a chránit životní prostředí.
+              Jsme česká firma s více než {yearsInBusiness}letou tradicí v oblasti instalace tepelných čerpadel a fotovoltaiky.
+              Pomáháme rodinám i firmám po celé Evropě šetřit energie a chránit životní prostředí.
             </p>
           </div>
         </div>
@@ -34,16 +38,28 @@ export default function AboutPage() {
           </h2>
           <div className="prose prose-lg max-w-none">
             <p className="text-gray-700 leading-relaxed mb-6">
-              AC Heating vznikl v roce 2004 s jasnou vizí - přinést české domácnosti
-              moderní a ekologické řešení vytápění. Za více než 20 let na trhu jsme
-              realizovali přes 1000 instalací a stali se jedním z předních výrobců
-              tepelných čerpadel v České republice.
+              Vše začalo v roce 2006, když Michal Fiala hledal řešení vytápění pro chatu svého
+              otce. Po neúspěšné zkušenosti s dodavatelem, který odmítl projekt kvůli malé
+              zakázce, se Michal rozhodl vytvořit tepelné čerpadlo sám. Společně se svým
+              spolužákem Lubomírem Kuchynkou založili firmu KUFI INT s.r.o.
             </p>
             <p className="text-gray-700 leading-relaxed mb-6">
-              Naše tepelná čerpadla vyvíjíme a vyrábíme výhradně v České republice,
-              což nám umožňuje garantovat nejvyšší kvalitu a poskytovat komplexní
-              servis po celé ČR. Důraz klademe na inovace, kvalitu a spokojenost
-              našich zákazníků.
+              První tepelné čerpadlo nainstalovali v roce 2006 - a fungovalo tak dobře, že
+              otec dodnes využívá stejný systém. Tato první zakázka položila základy naší
+              filozofie: žádná zakázka není příliš malá, každý zákazník si zaslouží stejnou
+              péči a kvalitu.
+            </p>
+            <p className="text-gray-700 leading-relaxed mb-6">
+              Dnes jsme expandovali po celé Evropě s více než 100 zaměstnanci. Každoročně
+              instalujeme přes 1 500 tepelných čerpadel a celkem již více než 7 500 domácností
+              využívá naše systémy. V roce 2022 jsme rozšířili portfolio o fotovoltaiku a
+              solární systémy.
+            </p>
+            <p className="text-gray-700 leading-relaxed mb-6">
+              Naším symbolem je historický autobus RTO 706 s lodí - připomíná nám cestu
+              za svobodou, nezávislostí a odvahu jít vlastní cestou. Stejně jako naši
+              zakladatelé tehdy, i dnes hledáme inovativní řešení a nejsme spokojeni
+              s průměrem.
             </p>
           </div>
         </div>
@@ -57,27 +73,27 @@ export default function AboutPage() {
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
             <ValueCard
-              icon={<Award className="w-12 h-12" />}
-              title="Kvalita"
-              description="7 let záruka na všechny naše produkty. Česká výroba s nejvyššími standardy."
+              icon={<Lightbulb className="w-12 h-12" />}
+              title="Svoboda a nezávislost"
+              description="Hledáme vlastní cesty a inovativní řešení. Nejsme spokojeni s průměrem."
               gradient="from-brand-accent to-orange-600"
             />
             <ValueCard
               icon={<Users className="w-12 h-12" />}
-              title="Zkušenosti"
-              description="Přes 20 let na trhu a více než 1000 úspěšných instalací po celé ČR."
+              title="Péče o zákazníka"
+              description="Žádná zakázka není příliš malá. Každý zákazník si zaslouží stejnou kvalitu."
               gradient="from-brand-primary to-amber-700"
             />
             <ValueCard
               icon={<Target className="w-12 h-12" />}
               title="Inovace"
-              description="Vlastní výzkum a vývoj. Neustále zlepšujeme naše technologie."
+              description="Od roku 2006 neustále vylepšujeme naše technologie a rozšiřujeme portfolio."
               gradient="from-brand-secondary to-green-600"
             />
             <ValueCard
-              icon={<Heart className="w-12 h-12" />}
-              title="Péče"
-              description="Komplexní servis a podpora. Jsme tu pro vás i po instalaci."
+              icon={<Shield className="w-12 h-12" />}
+              title="Certifikace"
+              description="Držíme certifikace APVTC, CFA a CTI pro nejvyšší standardy kvality."
               gradient="from-purple-600 to-pink-600"
             />
           </div>
@@ -91,13 +107,16 @@ export default function AboutPage() {
             Čísla o nás
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <StatCard number="20+" label="Let na trhu" />
-            <StatCard number="1000+" label="Instalací" />
-            <StatCard number="7" label="Let záruka" />
-            <StatCard number="100%" label="Česká výroba" />
+            <StatCard number={`${yearsInBusiness}+`} label="Let na trhu" />
+            <StatCard number="7 500+" label="Domácností" />
+            <StatCard number="1 500+" label="Instalací ročně" />
+            <StatCard number="100+" label="Zaměstnanců" />
           </div>
         </div>
       </section>
+
+      {/* Symbol Section */}
+      <SymbolSection />
 
       {/* CTA Section */}
       <section className="bg-gradient-to-br from-brand-primary to-brand-secondary py-20">

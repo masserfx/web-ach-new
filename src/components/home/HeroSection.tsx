@@ -3,8 +3,15 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowRight, Award, Zap, CheckCircle } from 'lucide-react';
+import { useMemo } from 'react';
+import { getCompanyYears } from '@/lib/utils';
 
 export function HeroSection() {
+  // Dynamicky počítáme roky od založení (1.1.2006)
+  const yearsSinceFoundation = useMemo(() => {
+    return getCompanyYears();
+  }, []);
+
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-brand-primary/10 via-white to-brand-secondary/10">
       {/* Animated Background */}
@@ -30,7 +37,7 @@ export function HeroSection() {
           >
             <Award className="w-5 h-5" />
             <span className="text-sm font-bold tracking-wide">
-              🏆 20 LET ZKUŠENOSTÍ V OBORU
+              🏆 {yearsSinceFoundation}+ LET ZKUŠENOSTÍ V OBORU
             </span>
           </motion.div>
 
@@ -49,7 +56,7 @@ export function HeroSection() {
           <p className="text-xl md:text-2xl text-gray-700 font-medium mb-8 max-w-3xl mx-auto">
             Řešíme moderní vytápění pro rodinné, bytové i komerční domy.
             <span className="block mt-2 text-brand-primary font-bold">
-              Česká firma s vlastním vývojem, výrobou a servisem po celé ČR
+              Česká firma s 18letou tradicí - instalace tepelných čerpadel a fotovoltaiky po celé Evropě
             </span>
           </p>
 
@@ -61,11 +68,11 @@ export function HeroSection() {
             </div>
             <div className="flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-lg shadow-md">
               <CheckCircle className="w-5 h-5 text-brand-secondary" />
-              <span className="font-semibold text-gray-700">Vlastní výroba</span>
+              <span className="font-semibold text-gray-700">100+ zaměstnanců</span>
             </div>
             <div className="flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-lg shadow-md">
               <CheckCircle className="w-5 h-5 text-brand-secondary" />
-              <span className="font-semibold text-gray-700">1000+ instalací</span>
+              <span className="font-semibold text-gray-700">7 500+ domácností</span>
             </div>
           </div>
 
