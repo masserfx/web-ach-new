@@ -34,7 +34,7 @@ export function ProductCard({ product }: { product: ProductCardProps }) {
       className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all border border-gray-100"
     >
       {/* Image */}
-      <Link href={`/produkty/${product.category}/${product.slug}`} className="block relative aspect-square bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
+      <Link href={`/produkty/${product.slug}`} className="block relative aspect-square bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
         {mainImage ? (
           <Image
             src={mainImage.url}
@@ -67,7 +67,7 @@ export function ProductCard({ product }: { product: ProductCardProps }) {
         </div>
 
         {/* Name */}
-        <Link href={`/produkty/${product.category}/${product.slug}`}>
+        <Link href={`/produkty/${product.slug}`}>
           <h3 className="text-2xl font-bold mb-1 text-gray-900 group-hover:text-brand-primary transition-colors">
             {product.name}
           </h3>
@@ -109,7 +109,7 @@ export function ProductCard({ product }: { product: ProductCardProps }) {
         {/* Actions */}
         <div className="flex gap-3">
           <Link
-            href={`/produkty/${product.category}/${product.slug}`}
+            href={`/produkty/${product.slug}`}
             className="flex-1 px-4 py-3 bg-brand-primary text-white rounded-lg font-semibold text-center hover:bg-brand-primary/90 transition-colors inline-flex items-center justify-center gap-2"
           >
             Detail produktu

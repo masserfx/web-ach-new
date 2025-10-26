@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { ShareButton } from '@/components/ShareButton';
+import { siteConfig } from '@/lib/site.config';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, Check, Download, Mail } from 'lucide-react';
@@ -201,7 +202,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 <ShareButton
                   title={product.name}
                   text={product.description || ''}
-                  url={`http://91.99.126.53:3100/produkty/${product.slug}`}
+                  url={`${siteConfig.url}/produkty/${product.slug}`}
                 />
               </div>
             </div>
