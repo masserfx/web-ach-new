@@ -1,15 +1,15 @@
 import { createClient } from '@/lib/supabase/server';
-import { HeroSection } from '@/components/home/HeroSection';
+// Black Steel Components (New Design System)
+import { BlackSteelHeroSection } from '@/components/home/BlackSteelHeroSection';
+import { BlackSteelValuePropsSection } from '@/components/home/BlackSteelValuePropsSection';
+import { BlackSteelSocialProofSection } from '@/components/home/BlackSteelSocialProofSection';
+import { BlackSteelCTAFooterSection } from '@/components/home/BlackSteelCTAFooterSection';
+// Legacy Components (fallback)
 import { FeatureGrid } from '@/components/home/FeatureGrid';
 import { LatestBlogPosts } from '@/components/home/LatestBlogPosts';
 import { FeaturedProducts } from '@/components/home/FeaturedProducts';
-import { StatsSection } from '@/components/home/StatsSection';
-import { Testimonials } from '@/components/home/Testimonials';
-import { InstallationProcess } from '@/components/home/InstallationProcess';
-import { Certifications } from '@/components/home/Certifications';
 import { EnergySavingsCalculator } from '@/components/cro/EnergySavingsCalculator';
 import { ObjectionHandler, commonObjections } from '@/components/cro/ObjectionHandler';
-import { SocialProofSection, TrustBadges } from '@/components/cro/SocialProof';
 
 async function getLatestBlogPosts() {
   const supabase = await createClient();
@@ -116,30 +116,38 @@ export default async function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <main className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white">
-        <HeroSection />
-        <FeatureGrid />
-        <InstallationProcess />
-        <FeaturedProducts products={featuredProducts} />
-        <TrustBadges />
+      <main className="min-h-screen bg-black">
+        {/* BLACK STEEL DESIGN SYSTEM */}
+        <BlackSteelHeroSection />
+        <BlackSteelValuePropsSection />
+        <BlackSteelSocialProofSection />
+        <BlackSteelCTAFooterSection />
 
-        {/* CRO Section: Energy Savings Calculator */}
-        <section className="container mx-auto px-4 py-20">
-          <div className="max-w-5xl mx-auto">
-            <EnergySavingsCalculator />
+        {/* Legacy Sections (fallback - can be customized or removed) */}
+        <section className="bg-white py-20">
+          <div className="container mx-auto px-4">
+            <FeatureGrid />
           </div>
         </section>
 
-        <Testimonials />
-        <Certifications />
-        <StatsSection stats={stats} />
+        {/* CRO Section: Energy Savings Calculator */}
+        <section className="bg-gray-50 py-20">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto">
+              <EnergySavingsCalculator />
+            </div>
+          </div>
+        </section>
 
         {/* CRO Section: Objection Handler */}
-        <section className="bg-gray-50">
+        <section className="bg-white py-20">
           <ObjectionHandler objections={commonObjections} />
         </section>
 
-        <LatestBlogPosts posts={latestPosts} />
+        {/* Latest Blog Posts */}
+        <section className="bg-gray-50 py-20">
+          <LatestBlogPosts posts={latestPosts} />
+        </section>
       </main>
     </>
   );

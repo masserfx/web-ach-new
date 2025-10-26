@@ -10,19 +10,23 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Black Steel Color System (2025 Rebrand)
+        carbon: '#0D0D0D',
+        graphite: '#2B2B2B',
+        steel: '#B4B4B4',
+        accent: '#F36F21',
+        glass: 'rgba(255,255,255,0.2)',
+
+        // Legacy brand colors (fallback for old pages)
         brand: {
           primary: '#B8540F',
           secondary: '#4CAF50',
           accent: '#FF6B35',
-          // WCAG AA compliant darker variant for buttons (3.93:1 contrast with white)
           accentDark: '#E05020',
-          // WCAG AA compliant darker accent (5.5:1 contrast with white)
           accentDarker: '#C84215',
-          // WCAG AAA compliant darkest accent (7.1:1 contrast with white)
           accentDarkest: '#A03310',
           dark: '#1A1A1A',
           light: '#F5F5F5',
-          // Darker variants for better contrast
           primaryDark: '#8B3F0A',
           secondaryDark: '#3D8B3F',
         },
@@ -30,6 +34,14 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
         heading: ['var(--font-heading)', 'system-ui', 'sans-serif'],
+      },
+      backgroundImage: {
+        'hero-gradient': 'linear-gradient(135deg, #0D0D0D, #2B2B2B 40%, #F36F21 100%)',
+        'cta-gradient': 'linear-gradient(90deg, #F36F21, #FF8F3C)',
+      },
+      boxShadow: {
+        'glow': '0 0 20px rgba(243,111,33,0.4)',
+        'glow-lg': '0 0 30px rgba(243,111,33,0.6)',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
