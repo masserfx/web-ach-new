@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Phone, Mail } from 'lucide-react';
+import { siteConfig } from '@/lib/site.config';
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -92,18 +93,18 @@ export function Navigation() {
               {/* Mobile Contact Info */}
               <div className="pt-4 mt-4 border-t border-gray-200 space-y-3">
                 <a
-                  href="tel:+420123456789"
+                  href={`tel:${siteConfig.contact.phoneRaw}`}
                   className="flex items-center gap-2 text-gray-600 hover:text-brand-primary transition-colors"
                 >
                   <Phone className="w-4 h-4" />
-                  <span>+420 123 456 789</span>
+                  <span>{siteConfig.contact.phone}</span>
                 </a>
                 <a
-                  href="mailto:info@ac-heating.cz"
+                  href={`mailto:${siteConfig.contact.email}`}
                   className="flex items-center gap-2 text-gray-600 hover:text-brand-primary transition-colors"
                 >
                   <Mail className="w-4 h-4" />
-                  <span>info@ac-heating.cz</span>
+                  <span>{siteConfig.contact.email}</span>
                 </a>
               </div>
             </div>

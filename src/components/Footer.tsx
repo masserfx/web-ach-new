@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Phone, Mail, MapPin, Facebook, Linkedin, Instagram } from 'lucide-react';
+import { siteConfig } from '@/lib/site.config';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -19,7 +20,7 @@ export function Footer() {
             </p>
             <div className="flex gap-4">
               <a
-                href="https://facebook.com"
+                href={siteConfig.social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-lg bg-gray-800 hover:bg-brand-primary transition-colors"
@@ -28,7 +29,7 @@ export function Footer() {
                 <Facebook className="w-5 h-5" />
               </a>
               <a
-                href="https://linkedin.com"
+                href={siteConfig.social.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-lg bg-gray-800 hover:bg-brand-primary transition-colors"
@@ -37,7 +38,7 @@ export function Footer() {
                 <Linkedin className="w-5 h-5" />
               </a>
               <a
-                href="https://instagram.com"
+                href={siteConfig.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-lg bg-gray-800 hover:bg-brand-primary transition-colors"
@@ -109,24 +110,24 @@ export function Footer() {
               <li className="flex items-start gap-2">
                 <Phone className="w-5 h-5 mt-0.5 flex-shrink-0" />
                 <div>
-                  <a href="tel:+420123456789" className="hover:text-white transition-colors">
-                    +420 123 456 789
+                  <a href={`tel:${siteConfig.contact.phoneRaw}`} className="hover:text-white transition-colors">
+                    {siteConfig.contact.phone}
                   </a>
                 </div>
               </li>
               <li className="flex items-start gap-2">
                 <Mail className="w-5 h-5 mt-0.5 flex-shrink-0" />
                 <div>
-                  <a href="mailto:info@ac-heating.cz" className="hover:text-white transition-colors">
-                    info@ac-heating.cz
+                  <a href={`mailto:${siteConfig.contact.email}`} className="hover:text-white transition-colors">
+                    {siteConfig.contact.email}
                   </a>
                 </div>
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="w-5 h-5 mt-0.5 flex-shrink-0" />
                 <div>
-                  <p>AC Heating s.r.o.</p>
-                  <p>Praha, Česká republika</p>
+                  <p>{siteConfig.company.name}</p>
+                  <p>{siteConfig.contact.address.city}, {siteConfig.contact.address.country}</p>
                 </div>
               </li>
             </ul>
