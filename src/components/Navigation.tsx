@@ -11,6 +11,7 @@ export function Navigation() {
 
   const navItems = [
     { href: '/', label: 'Domů' },
+    { href: '/regulace', label: 'Regulace xCC' },
     { href: '/produkty', label: 'Produkty' },
     { href: '/blog', label: 'Blog' },
     { href: '/o-nas', label: 'O nás' },
