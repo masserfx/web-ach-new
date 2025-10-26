@@ -7,6 +7,9 @@ import { StatsSection } from '@/components/home/StatsSection';
 import { Testimonials } from '@/components/home/Testimonials';
 import { InstallationProcess } from '@/components/home/InstallationProcess';
 import { Certifications } from '@/components/home/Certifications';
+import { EnergySavingsCalculator } from '@/components/cro/EnergySavingsCalculator';
+import { ObjectionHandler, commonObjections } from '@/components/cro/ObjectionHandler';
+import { SocialProofSection, TrustBadges } from '@/components/cro/SocialProof';
 
 async function getLatestBlogPosts() {
   const supabase = await createClient();
@@ -118,9 +121,24 @@ export default async function HomePage() {
         <FeatureGrid />
         <InstallationProcess />
         <FeaturedProducts products={featuredProducts} />
+        <TrustBadges />
+
+        {/* CRO Section: Energy Savings Calculator */}
+        <section className="container mx-auto px-4 py-20">
+          <div className="max-w-5xl mx-auto">
+            <EnergySavingsCalculator />
+          </div>
+        </section>
+
         <Testimonials />
         <Certifications />
         <StatsSection stats={stats} />
+
+        {/* CRO Section: Objection Handler */}
+        <section className="bg-gray-50">
+          <ObjectionHandler objections={commonObjections} />
+        </section>
+
         <LatestBlogPosts posts={latestPosts} />
       </main>
     </>
