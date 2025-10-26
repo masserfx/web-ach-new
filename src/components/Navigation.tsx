@@ -13,6 +13,7 @@ export function Navigation() {
     { href: '/', label: 'Domů' },
     { href: '/regulace', label: 'Regulace xCC' },
     { href: '/produkty', label: 'Produkty' },
+    { href: '/novinky', label: 'Novinky' },
     { href: '/blog', label: 'Blog' },
     { href: '/o-nas', label: 'O nás' },
     { href: '/kontakt', label: 'Kontakt' },
