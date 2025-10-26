@@ -1,18 +1,20 @@
 import { Metadata } from 'next';
 import { createClient } from '@/lib/supabase/server';
 import { BlogPostCard } from '@/components/content/BlogPostCard';
+import { SearchBar } from '@/components/blog/SearchBar';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import { Suspense } from 'react';
 
 export const metadata: Metadata = {
   title: 'Blog - AC Heating',
   description: 'Články o tepelných čerpadlech, fotovoltaice a úsporách energií.',
 };
 
-async function getBlogPosts() {
+async function getBlogPosts(searchQuery?: string) {
   const supabase = await createClient();
 
-  const { data: posts, error } = await supabase
+  let query = supabase
     .from('blog_posts')
     .select(`
       *,
@@ -22,6 +24,13 @@ async function getBlogPosts() {
     .order('published_at', { ascending: false })
     .limit(50);
 
+  // Add search if query exists
+  if (searchQuery && searchQuery.trim()) {
+    query = query.textSearch('search_text', searchQuery.trim());
+  }
+
+  const { data: posts, error } = await query;
+
   if (error) {
     console.error('Error fetching blog posts:', error);
     return [];
@@ -30,8 +39,13 @@ async function getBlogPosts() {
   return posts || [];
 }
 
-export default async function BlogPage() {
-  const posts = await getBlogPosts();
+export default async function BlogPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string }>;
+}) {
+  const params = await searchParams;
+  const posts = await getBlogPosts(params.q);
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white">
@@ -54,10 +68,15 @@ export default async function BlogPage() {
               Náš blog
             </span>
           </h1>
-          <p className="text-xl text-gray-600">
+          <p className="text-xl text-gray-600 mb-8">
             Objevte novinky z oblasti tepelných čerpadel, fotovoltaiky a úspor energií.
             Praktické rady, tipy a zkušenosti z realizací.
           </p>
+
+          {/* Search Bar */}
+          <Suspense fallback={<div className="h-16" />}>
+            <SearchBar />
+          </Suspense>
         </div>
 
         {/* Stats */}

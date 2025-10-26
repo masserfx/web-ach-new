@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { siteConfig } from '@/lib/site.config';
 
 export const metadata: Metadata = {
   title: 'Kontakt',
@@ -36,8 +37,8 @@ export default function ContactPage() {
             <ContactCard
               icon={<Phone className="w-6 h-6" />}
               title="Telefon"
-              content="+420 123 456 789"
-              link="tel:+420123456789"
+              content={siteConfig.contact.phone}
+              link={`tel:${siteConfig.contact.phoneRaw}`}
               gradient="from-brand-accent to-orange-600"
             />
 
@@ -81,11 +82,11 @@ export default function ContactPage() {
               <h3 className="font-bold mb-4 text-gray-900">Nebo nás kontaktujte přímo:</h3>
               <div className="space-y-3">
                 <a
-                  href="tel:+420123456789"
+                  href={`tel:${siteConfig.contact.phoneRaw}`}
                   className="flex items-center gap-3 text-brand-primary hover:text-brand-primary/80 transition-colors"
                 >
                   <Phone className="w-5 h-5" />
-                  <span className="font-medium">+420 123 456 789</span>
+                  <span className="font-medium">{siteConfig.contact.phone}</span>
                 </a>
                 <a
                   href="mailto:info@ac-heating.cz"

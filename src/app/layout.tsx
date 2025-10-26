@@ -4,6 +4,7 @@ import '@/styles/globals.css';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { JsonLd } from '@/components/JsonLd';
+import { Analytics } from '@/components/Analytics';
 
 const inter = Inter({
   subsets: ['latin', 'latin-ext'],
@@ -119,6 +120,7 @@ export default function RootLayout({
         <JsonLd data={organizationSchema} />
       </head>
       <body className="font-sans">
+        <Analytics />
         <Navigation />
         {children}
         <Footer />
