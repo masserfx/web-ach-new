@@ -22,14 +22,14 @@ export function Navigation() {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
+    <nav className="sticky top-0 z-50 bg-carbon/95 backdrop-blur-sm border-b border-white/10 shadow-sm">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
             <div className="text-2xl font-bold">
-              <span className="text-brand-primary">AC</span>
-              <span className="text-brand-secondary"> Heating</span>
+              <span className="text-accent">AC</span>
+              <span className="text-accent-dark"> Heating</span>
             </div>
           </Link>
 
@@ -39,7 +39,7 @@ export function Navigation() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-gray-700 hover:text-brand-primary font-medium transition-colors"
+                className="text-steel hover:text-accent font-medium transition-colors"
               >
                 {item.label}
               </Link>
@@ -47,7 +47,7 @@ export function Navigation() {
 
             <Link
               href="/pripravit-rozpocet"
-              className="px-6 py-2 bg-brand-primary text-white rounded-lg font-semibold hover:bg-brand-primary/90 transition-colors"
+              className="px-6 py-2 bg-accent text-white rounded-lg font-semibold hover:bg-accent/90 transition-colors"
             >
               Poptávka
             </Link>
@@ -56,7 +56,7 @@ export function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            className="md:hidden p-2 rounded-lg hover:bg-graphite-light transition-colors"
             aria-label="Toggle menu"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -72,7 +72,7 @@ export function Navigation() {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden overflow-hidden bg-white border-t border-gray-200"
+            className="md:hidden overflow-hidden bg-carbon border-t border-white/10"
           >
             <div className="container mx-auto px-4 py-4 space-y-2">
               {navItems.map((item) => (
@@ -80,7 +80,7 @@ export function Navigation() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className="block py-3 px-4 rounded-lg text-gray-700 hover:bg-gray-100 hover:text-brand-primary font-medium transition-colors"
+                  className="block py-3 px-4 rounded-lg text-steel hover:bg-graphite-light hover:text-accent font-medium transition-colors"
                 >
                   {item.label}
                 </Link>
@@ -89,23 +89,23 @@ export function Navigation() {
               <Link
                 href="/pripravit-rozpocet"
                 onClick={() => setIsOpen(false)}
-                className="block py-3 px-4 bg-brand-primary text-white rounded-lg font-semibold text-center hover:bg-brand-primary/90 transition-colors"
+                className="block py-3 px-4 bg-accent text-white rounded-lg font-semibold text-center hover:bg-accent/90 transition-colors"
               >
                 Nezávazná poptávka
               </Link>
 
               {/* Mobile Contact Info */}
-              <div className="pt-4 mt-4 border-t border-gray-200 space-y-3">
+              <div className="pt-4 mt-4 border-t border-white/10 space-y-3">
                 <a
                   href={`tel:${siteConfig.contact.phoneRaw}`}
-                  className="flex items-center gap-2 text-gray-600 hover:text-brand-primary transition-colors"
+                  className="flex items-center gap-2 text-steel-dim hover:text-accent transition-colors"
                 >
                   <Phone className="w-4 h-4" />
                   <span>{siteConfig.contact.phone}</span>
                 </a>
                 <a
                   href={`mailto:${siteConfig.contact.email}`}
-                  className="flex items-center gap-2 text-gray-600 hover:text-brand-primary transition-colors"
+                  className="flex items-center gap-2 text-steel-dim hover:text-accent transition-colors"
                 >
                   <Mail className="w-4 h-4" />
                   <span>{siteConfig.contact.email}</span>

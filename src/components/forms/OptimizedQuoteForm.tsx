@@ -104,9 +104,9 @@ export function OptimizedQuoteForm({ compact = false }: { compact?: boolean }) {
         <div className="inline-flex p-4 rounded-full bg-green-100 text-green-600 mb-4">
           <Zap className="w-12 h-12" />
         </div>
-        <h3 className="text-2xl font-bold text-gray-900 mb-2">Děkujeme!</h3>
-        <p className="text-gray-700 mb-4">Tvou poptávku jsme obdrželi. Brzy ti zavoláme!</p>
-        <p className="text-sm text-gray-600">Okno se zavře za chvíli...</p>
+        <h3 className="text-2xl font-bold text-white mb-2">Děkujeme!</h3>
+        <p className="text-steel mb-4">Tvou poptávku jsme obdrželi. Brzy ti zavoláme!</p>
+        <p className="text-sm text-steel-dim">Okno se zavře za chvíli...</p>
       </div>
     );
   }
@@ -119,14 +119,14 @@ export function OptimizedQuoteForm({ compact = false }: { compact?: boolean }) {
       {/* Progress Bar */}
       <div>
         <div className="flex justify-between mb-2">
-          <span className="text-sm font-semibold text-gray-700">
+          <span className="text-sm font-semibold text-steel">
             Krok {currentStep} z {formSteps.length}
           </span>
-          <span className="text-sm font-semibold text-gray-700">{currentFormStep?.title}</span>
+          <span className="text-sm font-semibold text-steel">{currentFormStep?.title}</span>
         </div>
         <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
           <div
-            className="h-full bg-gradient-to-r from-brand-primary to-brand-secondary transition-all duration-300"
+            className="h-full bg-gradient-to-r from-accent to-accent-dark transition-all duration-300"
             style={{ width: `${progressPercentage}%` }}
           />
         </div>
@@ -136,7 +136,7 @@ export function OptimizedQuoteForm({ compact = false }: { compact?: boolean }) {
       {currentStep === 1 && (
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-semibold text-gray-900 mb-2">
+            <label className="block text-sm font-semibold text-white mb-2">
               Jméno *
             </label>
             <input
@@ -146,11 +146,11 @@ export function OptimizedQuoteForm({ compact = false }: { compact?: boolean }) {
               onChange={handleInputChange}
               placeholder="Petr"
               required
-              className="w-full px-4 py-2 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-brand-primary"
+              className="w-full px-4 py-2 border-2 border-white/10 rounded-lg focus:outline-none focus:border-accent"
             />
           </div>
           <div>
-            <label className="block text-sm font-semibold text-gray-900 mb-2">
+            <label className="block text-sm font-semibold text-white mb-2">
               <Mail className="w-4 h-4 inline mr-2" />
               Email *
             </label>
@@ -161,11 +161,11 @@ export function OptimizedQuoteForm({ compact = false }: { compact?: boolean }) {
               onChange={handleInputChange}
               placeholder="petr@example.com"
               required
-              className="w-full px-4 py-2 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-brand-primary"
+              className="w-full px-4 py-2 border-2 border-white/10 rounded-lg focus:outline-none focus:border-accent"
             />
           </div>
           <div>
-            <label className="block text-sm font-semibold text-gray-900 mb-2">
+            <label className="block text-sm font-semibold text-white mb-2">
               <Phone className="w-4 h-4 inline mr-2" />
               Telefon *
             </label>
@@ -176,7 +176,7 @@ export function OptimizedQuoteForm({ compact = false }: { compact?: boolean }) {
               onChange={handleInputChange}
               placeholder="+420 XXX XXX XXX"
               required
-              className="w-full px-4 py-2 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-brand-primary"
+              className="w-full px-4 py-2 border-2 border-white/10 rounded-lg focus:outline-none focus:border-accent"
             />
           </div>
         </div>
@@ -186,7 +186,7 @@ export function OptimizedQuoteForm({ compact = false }: { compact?: boolean }) {
       {currentStep === 2 && (
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-semibold text-gray-900 mb-2">
+            <label className="block text-sm font-semibold text-white mb-2">
               <Home className="w-4 h-4 inline mr-2" />
               Typ domu
             </label>
@@ -194,7 +194,7 @@ export function OptimizedQuoteForm({ compact = false }: { compact?: boolean }) {
               name="houseType"
               value={formData.houseType}
               onChange={handleInputChange}
-              className="w-full px-4 py-2 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-brand-primary"
+              className="w-full px-4 py-2 border-2 border-white/10 rounded-lg focus:outline-none focus:border-accent"
             >
               <option value="family-house">Rodinný dům</option>
               <option value="apartment">Byt/Apartmán</option>
@@ -202,8 +202,8 @@ export function OptimizedQuoteForm({ compact = false }: { compact?: boolean }) {
             </select>
           </div>
           <div>
-            <label className="block text-sm font-semibold text-gray-900 mb-2">
-              Velikost: <span className="text-brand-primary">{formData.squareMeters} m²</span>
+            <label className="block text-sm font-semibold text-white mb-2">
+              Velikost: <span className="text-accent">{formData.squareMeters} m²</span>
             </label>
             <input
               type="range"
@@ -213,11 +213,11 @@ export function OptimizedQuoteForm({ compact = false }: { compact?: boolean }) {
               step="10"
               value={formData.squareMeters}
               onChange={handleInputChange}
-              className="w-full accent-brand-primary"
+              className="w-full accent-accent"
             />
           </div>
           <div>
-            <label className="block text-sm font-semibold text-gray-900 mb-2">
+            <label className="block text-sm font-semibold text-white mb-2">
               <Zap className="w-4 h-4 inline mr-2" />
               Aktuální vytápění
             </label>
@@ -225,7 +225,7 @@ export function OptimizedQuoteForm({ compact = false }: { compact?: boolean }) {
               name="currentHeating"
               value={formData.currentHeating}
               onChange={handleInputChange}
-              className="w-full px-4 py-2 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-brand-primary"
+              className="w-full px-4 py-2 border-2 border-white/10 rounded-lg focus:outline-none focus:border-accent"
             >
               <option value="gas">Zemní plyn</option>
               <option value="oil">Topný olej</option>
@@ -240,7 +240,7 @@ export function OptimizedQuoteForm({ compact = false }: { compact?: boolean }) {
       {currentStep === 3 && (
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-semibold text-gray-900 mb-3">
+            <label className="block text-sm font-semibold text-white mb-3">
               Co tě zajímá?
             </label>
             <div className="space-y-2">
@@ -255,23 +255,23 @@ export function OptimizedQuoteForm({ compact = false }: { compact?: boolean }) {
                     type="checkbox"
                     checked={formData.interested.includes(option.value)}
                     onChange={() => handleCheckboxChange(option.value)}
-                    className="w-4 h-4 rounded accent-brand-primary"
+                    className="w-4 h-4 rounded accent-accent"
                   />
-                  <span className="text-gray-700">{option.label}</span>
+                  <span className="text-steel">{option.label}</span>
                 </label>
               ))}
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-900 mb-2">
+            <label className="block text-sm font-semibold text-white mb-2">
               Časový horizont
             </label>
             <select
               name="timeline"
               value={formData.timeline}
               onChange={handleInputChange}
-              className="w-full px-4 py-2 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-brand-primary"
+              className="w-full px-4 py-2 border-2 border-white/10 rounded-lg focus:outline-none focus:border-accent"
             >
               <option value="">-- Vybrat --</option>
               <option value="urgent">Hned (během měsíce)</option>
@@ -282,7 +282,7 @@ export function OptimizedQuoteForm({ compact = false }: { compact?: boolean }) {
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-900 mb-2">
+            <label className="block text-sm font-semibold text-white mb-2">
               Poznámka
             </label>
             <textarea
@@ -291,7 +291,7 @@ export function OptimizedQuoteForm({ compact = false }: { compact?: boolean }) {
               onChange={handleInputChange}
               placeholder="Co bys nám rád(a) sdělil(a)?"
               rows={3}
-              className="w-full px-4 py-2 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-brand-primary resize-none"
+              className="w-full px-4 py-2 border-2 border-white/10 rounded-lg focus:outline-none focus:border-accent resize-none"
             />
           </div>
         </div>
@@ -303,7 +303,7 @@ export function OptimizedQuoteForm({ compact = false }: { compact?: boolean }) {
           <button
             type="button"
             onClick={() => setCurrentStep(currentStep - 1)}
-            className="flex-1 px-6 py-2 border-2 border-gray-300 text-gray-900 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
+            className="flex-1 px-6 py-2 border-2 border-white/20 text-white rounded-lg font-semibold hover:bg-graphite-light transition-colors"
           >
             ← Zpět
           </button>
@@ -313,7 +313,7 @@ export function OptimizedQuoteForm({ compact = false }: { compact?: boolean }) {
           <button
             type="button"
             onClick={() => setCurrentStep(currentStep + 1)}
-            className="flex-1 px-6 py-2 bg-gradient-to-r from-brand-primary to-brand-secondary text-white rounded-lg font-semibold hover:shadow-lg transition-all"
+            className="flex-1 px-6 py-2 bg-gradient-to-r from-accent to-accent-dark text-white rounded-lg font-semibold hover:shadow-lg transition-all"
           >
             Dál →
           </button>
@@ -321,14 +321,14 @@ export function OptimizedQuoteForm({ compact = false }: { compact?: boolean }) {
           <button
             type="submit"
             disabled={loading}
-            className="flex-1 px-6 py-2 bg-gradient-to-r from-brand-primary to-brand-secondary text-white rounded-lg font-semibold hover:shadow-lg transition-all disabled:opacity-50"
+            className="flex-1 px-6 py-2 bg-gradient-to-r from-accent to-accent-dark text-white rounded-lg font-semibold hover:shadow-lg transition-all disabled:opacity-50"
           >
             {loading ? 'Odesílám...' : 'Odeslat poptávku'}
           </button>
         )}
       </div>
 
-      <p className="text-xs text-gray-500 text-center">
+      <p className="text-xs text-steel-dim text-center">
         Tvoje data budeme používat jen k odpovědi na tvou poptávku.
       </p>
     </form>

@@ -28,23 +28,23 @@ export function SocialProofSection({ testimonials, className = '' }: SocialProof
           {/* Header with Stats */}
           <div className="grid md:grid-cols-3 gap-8 mb-16">
             <div className="text-center">
-              <div className="text-4xl font-black text-brand-primary mb-2">7 500+</div>
-              <div className="text-lg font-semibold text-gray-700">Spokojených zákazníků</div>
+              <div className="text-4xl font-black text-accent mb-2">7 500+</div>
+              <div className="text-lg font-semibold text-steel">Spokojených zákazníků</div>
             </div>
             <div className="text-center">
               <div className="flex items-center justify-center gap-1 mb-2">
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
-                    className={`w-8 h-8 ${i < Math.floor(avgRating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-400'}`}
+                    className={`w-8 h-8 ${i < Math.floor(avgRating) ? 'fill-yellow-400 text-yellow-400' : 'text-steel-dim/70'}`}
                   />
                 ))}
               </div>
-              <div className="text-lg font-semibold text-gray-700">{avgRating} z 5 hvězd</div>
+              <div className="text-lg font-semibold text-steel">{avgRating} z 5 hvězd</div>
             </div>
             <div className="text-center">
               <div className="text-4xl font-black text-green-600 mb-2">18+</div>
-              <div className="text-lg font-semibold text-gray-700">Let zkušeností</div>
+              <div className="text-lg font-semibold text-steel">Let zkušeností</div>
             </div>
           </div>
 
@@ -66,34 +66,34 @@ export function SocialProofSection({ testimonials, className = '' }: SocialProof
 
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
-    <div className="bg-white rounded-2xl shadow-2xl border-2 border-brand-primary/10 p-8 hover:shadow-3xl transition-all">
+    <div className="bg-carbon rounded-2xl shadow-2xl border-2 border-accent/10 p-8 hover:shadow-3xl transition-all">
       {/* Rating */}
       <div className="flex gap-1 mb-4">
         {[...Array(5)].map((_, i) => (
           <Star
             key={i}
             className={`w-5 h-5 ${
-              i < testimonial.rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-400'
+              i < testimonial.rating ? 'fill-yellow-400 text-yellow-400' : 'text-steel-dim/70'
             }`}
           />
         ))}
       </div>
 
       {/* Text */}
-      <p className="text-gray-700 leading-relaxed mb-6 italic">"{testimonial.text}"</p>
+      <p className="text-steel leading-relaxed mb-6 italic">"{testimonial.text}"</p>
 
       {/* Savings */}
       {testimonial.savings && (
         <div className="mb-6 p-4 bg-green-50 rounded-lg border-2 border-green-200">
-          <div className="text-sm font-semibold text-gray-600 mb-1">Roční úspora</div>
+          <div className="text-sm font-semibold text-steel-dim mb-1">Roční úspora</div>
           <div className="text-2xl font-black text-green-600">{testimonial.savings}</div>
         </div>
       )}
 
       {/* Author */}
-      <div className="border-t border-gray-200 pt-4">
-        <div className="font-bold text-gray-900">{testimonial.name}</div>
-        <div className="text-sm text-gray-600">{testimonial.location}</div>
+      <div className="border-t border-white/10 pt-4">
+        <div className="font-bold text-white">{testimonial.name}</div>
+        <div className="text-sm text-steel-dim">{testimonial.location}</div>
       </div>
     </div>
   );
@@ -120,17 +120,17 @@ export function TrustBadges() {
   ];
 
   return (
-    <section className="bg-gray-50 py-16">
+    <section className="bg-graphite-light py-16">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-3 gap-8">
             {badges.map((badge, idx) => (
               <div key={idx} className="text-center">
-                <div className="inline-flex p-4 rounded-full bg-brand-primary/10 text-brand-primary mb-4">
+                <div className="inline-flex p-4 rounded-full bg-accent/10 text-accent mb-4">
                   {badge.icon}
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{badge.label}</h3>
-                <p className="text-gray-600">{badge.description}</p>
+                <h3 className="text-xl font-bold text-white mb-2">{badge.label}</h3>
+                <p className="text-steel-dim">{badge.description}</p>
               </div>
             ))}
           </div>

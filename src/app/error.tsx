@@ -16,7 +16,7 @@ export default function Error({
   }, [error]);
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white flex items-center justify-center py-20">
+    <main className="min-h-screen bg-gradient-to-b from-carbon via-graphite to-carbon flex items-center justify-center py-20">
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto text-center">
           {/* Error Icon */}
@@ -25,10 +25,10 @@ export default function Error({
           </div>
 
           {/* Message */}
-          <h1 className="text-4xl md:text-5xl font-black mb-4 text-gray-900">
+          <h1 className="text-4xl md:text-5xl font-black mb-4 text-white">
             Něco se pokazilo
           </h1>
-          <p className="text-xl text-gray-600 mb-8">
+          <p className="text-xl text-steel-dim mb-8">
             Omlouváme se, ale došlo k neočekávané chybě. Zkuste to prosím znovu.
           </p>
 
@@ -45,14 +45,14 @@ export default function Error({
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={reset}
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-brand-primary to-brand-primary/90 text-white rounded-xl font-bold hover:shadow-lg transition-all"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-accent to-accent/90 text-white rounded-xl font-bold hover:shadow-lg transition-all"
             >
               <RefreshCcw className="w-5 h-5" />
               Zkusit znovu
             </button>
             <Link
               href="/"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-brand-primary border-2 border-brand-primary rounded-xl font-bold hover:bg-brand-primary hover:text-white transition-all"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-carbon text-accent border-2 border-accent rounded-xl font-bold hover:bg-accent hover:text-white transition-all"
             >
               <Home className="w-5 h-5" />
               Zpět na homepage
@@ -60,13 +60,13 @@ export default function Error({
           </div>
 
           {/* Support Info */}
-          <div className="mt-12 pt-8 border-t border-gray-200">
-            <p className="text-sm text-gray-500 mb-2">
+          <div className="mt-12 pt-8 border-t border-graphite">
+            <p className="text-sm text-steel-dim mb-2">
               Pokud problém přetrvává, kontaktujte nás:
             </p>
             <a
               href="mailto:info@ac-heating.cz"
-              className="text-brand-primary hover:text-brand-primary/80 font-medium"
+              className="text-accent hover:text-accent/80 font-medium"
             >
               info@ac-heating.cz
             </a>

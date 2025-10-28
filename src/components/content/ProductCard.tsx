@@ -31,10 +31,10 @@ export function ProductCard({ product }: { product: ProductCardProps }) {
       viewport={{ once: true }}
       whileHover={{ y: -8 }}
       transition={{ duration: 0.3 }}
-      className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all border border-gray-100"
+      className="group bg-carbon rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all border border-gray-100"
     >
       {/* Image */}
-      <Link href={`/produkty/${product.slug}`} className="block relative aspect-square bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
+      <Link href={`/produkty/${product.slug}`} className="block relative aspect-square bg-gradient-to-br from-graphite-light to-graphite overflow-hidden">
         {mainImage ? (
           <Image
             src={mainImage.url}
@@ -44,7 +44,7 @@ export function ProductCard({ product }: { product: ProductCardProps }) {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         ) : (
-          <div className="flex items-center justify-center h-full text-gray-500">
+          <div className="flex items-center justify-center h-full text-steel-dim">
             <span className="text-6xl">🏷️</span>
           </div>
         )}
@@ -62,26 +62,26 @@ export function ProductCard({ product }: { product: ProductCardProps }) {
       {/* Content */}
       <div className="p-6">
         {/* Category */}
-        <div className="text-sm text-brand-primary font-semibold mb-2 uppercase tracking-wide">
+        <div className="text-sm text-accent font-semibold mb-2 uppercase tracking-wide">
           {product.category.replace('-', ' ')}
         </div>
 
         {/* Name */}
         <Link href={`/produkty/${product.slug}`}>
-          <h3 className="text-2xl font-bold mb-1 text-gray-900 group-hover:text-brand-primary transition-colors">
+          <h3 className="text-2xl font-bold mb-1 text-white group-hover:text-accent transition-colors">
             {product.name}
           </h3>
         </Link>
 
         {/* Model */}
         {product.model && (
-          <p className="text-gray-600 text-sm mb-3">
+          <p className="text-steel-dim text-sm mb-3">
             Model: {product.model}
           </p>
         )}
 
         {/* Description */}
-        <p className="text-gray-600 mb-4 line-clamp-2">
+        <p className="text-steel-dim mb-4 line-clamp-2">
           {product.description}
         </p>
 
@@ -89,8 +89,8 @@ export function ProductCard({ product }: { product: ProductCardProps }) {
         {product.features && product.features.length > 0 && (
           <ul className="space-y-2 mb-4">
             {product.features.slice(0, 3).map((feature, index) => (
-              <li key={index} className="flex items-start gap-2 text-sm text-gray-700">
-                <Check className="w-4 h-4 text-brand-secondary mt-0.5 flex-shrink-0" />
+              <li key={index} className="flex items-start gap-2 text-sm text-steel">
+                <Check className="w-4 h-4 text-accent-dark mt-0.5 flex-shrink-0" />
                 <span>{feature}</span>
               </li>
             ))}
@@ -100,7 +100,7 @@ export function ProductCard({ product }: { product: ProductCardProps }) {
         {/* Price */}
         {product.price_from && (
           <div className="mb-4">
-            <span className="text-2xl font-bold text-brand-primary">
+            <span className="text-2xl font-bold text-accent">
               od {product.price_from.toLocaleString('cs-CZ')} Kč
             </span>
           </div>
@@ -110,7 +110,7 @@ export function ProductCard({ product }: { product: ProductCardProps }) {
         <div className="flex gap-3">
           <Link
             href={`/produkty/${product.slug}`}
-            className="flex-1 px-4 py-3 bg-brand-primary text-white rounded-lg font-semibold text-center hover:bg-brand-primary/90 transition-colors inline-flex items-center justify-center gap-2"
+            className="flex-1 px-4 py-3 bg-accent text-white rounded-lg font-semibold text-center hover:bg-accent/90 transition-colors inline-flex items-center justify-center gap-2"
           >
             Detail produktu
             <ExternalLink className="w-4 h-4" />
@@ -118,7 +118,7 @@ export function ProductCard({ product }: { product: ProductCardProps }) {
 
           <Link
             href="/pripravit-rozpocet"
-            className="px-4 py-3 border-2 border-brand-primary text-brand-primary rounded-lg font-semibold hover:bg-brand-primary/5 transition-colors inline-flex items-center gap-2"
+            className="px-4 py-3 border-2 border-accent text-accent rounded-lg font-semibold hover:bg-accent/5 transition-colors inline-flex items-center gap-2"
             title="Nezávazná poptávka"
           >
             <Download className="w-4 h-4" />

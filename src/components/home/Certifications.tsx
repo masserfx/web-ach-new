@@ -49,7 +49,7 @@ const partners = [
 
 export function Certifications() {
   return (
-    <section className="py-20 bg-gradient-to-br from-white to-gray-50/40">
+    <section className="py-20 bg-gradient-to-br from-carbon to-graphite/40">
       <div className="container mx-auto px-4">
         {/* Header */}
         <motion.div
@@ -58,10 +58,10 @@ export function Certifications() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-5xl font-bold text-white mb-4">
             Certifikace a partnerstv\u00ed
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-steel-dim max-w-3xl mx-auto">
             Naše kvalita je potvrzena certifikacemi a partnerstvími s předními výrobci
           </p>
         </motion.div>
@@ -83,10 +83,10 @@ export function Certifications() {
                     <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl ${cert.bgColor} flex items-center justify-center`}>
                       <Icon className={`w-8 h-8 ${cert.color}`} />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">
+                    <h3 className="text-xl font-bold text-white mb-2">
                       {cert.title}
                     </h3>
-                    <p className="text-gray-600 text-sm">
+                    <p className="text-steel-dim text-sm">
                       {cert.description}
                     </p>
                   </CardContent>
@@ -101,9 +101,9 @@ export function Certifications() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-white rounded-2xl shadow-2xl p-12 border-2 border-brand-primary/10"
+          className="bg-carbon rounded-2xl shadow-2xl p-12 border-2 border-accent/10"
         >
-          <h3 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+          <h3 className="text-3xl font-bold text-white mb-8 text-center">
             Autorizovaní partneři
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -116,11 +116,11 @@ export function Certifications() {
                 transition={{ delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="p-6 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:shadow-lg transition-shadow">
-                  <p className="text-2xl font-bold text-gray-900 mb-2">
+                <div className="p-6 bg-gradient-to-br from-graphite-light to-carbon rounded-xl border border-gray-100 hover:shadow-lg transition-shadow">
+                  <p className="text-2xl font-bold text-white mb-2">
                     {partner.name}
                   </p>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-steel-dim">
                     {partner.category}
                   </p>
                 </div>
@@ -136,20 +136,20 @@ export function Certifications() {
           viewport={{ once: true }}
           className="mt-16 text-center"
         >
-          <div className="inline-flex items-center gap-8 px-12 py-6 bg-gradient-to-r from-brand-primary/10 to-brand-accent/10 rounded-2xl">
+          <div className="inline-flex items-center gap-8 px-12 py-6 bg-gradient-to-r from-accent/10 to-brand-accent/10 rounded-2xl">
             <div>
-              <p className="text-3xl font-bold text-brand-primary">{siteConfig.features.experienceYears}+</p>
-              <p className="text-sm text-gray-600">let zkušeností</p>
+              <p className="text-3xl font-bold text-accent">{siteConfig.features.experienceYears}+</p>
+              <p className="text-sm text-steel-dim">let zkušeností</p>
             </div>
             <div className="w-px h-12 bg-gray-300" />
             <div>
-              <p className="text-3xl font-bold text-brand-primary">{siteConfig.features.employees}+</p>
-              <p className="text-sm text-gray-600">zaměstnanců</p>
+              <p className="text-3xl font-bold text-accent">{siteConfig.features.employees}+</p>
+              <p className="text-sm text-steel-dim">zaměstnanců</p>
             </div>
             <div className="w-px h-12 bg-gray-300" />
             <div>
-              <p className="text-3xl font-bold text-brand-primary">{siteConfig.features.totalHomes}+</p>
-              <p className="text-sm text-gray-600">domácností po Evropě</p>
+              <p className="text-3xl font-bold text-accent">{siteConfig.features.totalHomes}+</p>
+              <p className="text-sm text-steel-dim">domácností po Evropě</p>
             </div>
           </div>
         </motion.div>

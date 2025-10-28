@@ -23,14 +23,14 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref
   ) => {
-    const baseStyles = 'inline-flex items-center justify-center gap-2 font-semibold rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2';
+    const baseStyles = 'inline-flex items-center justify-center gap-2 font-semibold rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2';
 
     const variants = {
-      primary: 'bg-gradient-to-r from-brand-primary to-brand-primary/90 text-white hover:from-brand-primary/90 hover:to-brand-primary shadow-lg hover:shadow-xl',
-      secondary: 'bg-gradient-to-r from-brand-primary to-brand-primary/85 text-white hover:from-brand-primary/90 hover:to-brand-primary shadow-lg hover:shadow-xl',
-      outline: 'border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-white',
-      ghost: 'text-brand-primary hover:bg-brand-primary/10',
-      link: 'text-brand-primary hover:underline',
+      primary: 'bg-gradient-to-r from-accent to-accent/90 text-white hover:from-accent/90 hover:to-accent shadow-lg hover:shadow-xl',
+      secondary: 'bg-gradient-to-r from-accent to-accent/85 text-white hover:from-accent/90 hover:to-accent shadow-lg hover:shadow-xl',
+      outline: 'border-2 border-accent text-accent hover:bg-accent hover:text-white',
+      ghost: 'text-accent hover:bg-accent/10',
+      link: 'text-accent hover:underline',
     };
 
     const sizes = {

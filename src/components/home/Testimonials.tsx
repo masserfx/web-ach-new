@@ -45,7 +45,7 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50/50 to-white">
+    <section className="py-20 bg-gradient-to-br from-graphite/50 to-carbon">
       <div className="container mx-auto px-4">
         {/* Header */}
         <motion.div
@@ -54,10 +54,10 @@ export function Testimonials() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-5xl font-bold text-white mb-4">
             Co říkají naši zákazníci
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-steel-dim max-w-3xl mx-auto">
             Přečtěte si recenze od skutečných zákazníků, kteří si vybrali AC Heating
           </p>
         </motion.div>
@@ -76,7 +76,7 @@ export function Testimonials() {
                 <CardContent className="p-6">
                   {/* Quote Icon */}
                   <div className="mb-4">
-                    <Quote className="w-10 h-10 text-brand-primary/60" />
+                    <Quote className="w-10 h-10 text-accent/60" />
                   </div>
 
                   {/* Rating */}
@@ -90,15 +90,15 @@ export function Testimonials() {
                   </div>
 
                   {/* Testimonial Text */}
-                  <p className="text-gray-700 mb-6 leading-relaxed">
+                  <p className="text-steel mb-6 leading-relaxed">
                     "{testimonial.text}"
                   </p>
 
                   {/* Author */}
-                  <div className="pt-4 border-t border-brand-primary/15">
-                    <p className="font-bold text-gray-900">{testimonial.name}</p>
-                    <p className="text-sm text-gray-600">{testimonial.location}</p>
-                    <p className="text-sm text-brand-primary font-semibold mt-1">
+                  <div className="pt-4 border-t border-accent/15">
+                    <p className="font-bold text-white">{testimonial.name}</p>
+                    <p className="text-sm text-steel-dim">{testimonial.location}</p>
+                    <p className="text-sm text-accent font-semibold mt-1">
                       {testimonial.service}
                     </p>
                   </div>
@@ -116,16 +116,16 @@ export function Testimonials() {
           className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8"
         >
           <div className="text-center">
-            <div className="text-5xl font-bold text-brand-primary mb-2">7 500+</div>
-            <p className="text-gray-600">Domácností po celé Evropě</p>
+            <div className="text-5xl font-bold text-accent mb-2">7 500+</div>
+            <p className="text-steel-dim">Domácností po celé Evropě</p>
           </div>
           <div className="text-center">
-            <div className="text-5xl font-bold text-brand-primary mb-2">1 500+</div>
-            <p className="text-gray-600">Instalací ročně</p>
+            <div className="text-5xl font-bold text-accent mb-2">1 500+</div>
+            <p className="text-steel-dim">Instalací ročně</p>
           </div>
           <div className="text-center">
-            <div className="text-5xl font-bold text-brand-primary mb-2">18+ let</div>
-            <p className="text-gray-600">Zkušeností na trhu</p>
+            <div className="text-5xl font-bold text-accent mb-2">18+ let</div>
+            <p className="text-steel-dim">Zkušeností na trhu</p>
           </div>
         </motion.div>
       </div>

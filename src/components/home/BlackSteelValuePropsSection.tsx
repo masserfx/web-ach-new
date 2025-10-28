@@ -38,10 +38,7 @@ const valuePropCards: ValuePropCard[] = [
 
 export function BlackSteelValuePropsSection() {
   return (
-    <section className="relative w-full bg-gradient-to-b from-black via-graphite to-black py-20 px-6 md:px-12 overflow-hidden">
-      {/* Background Accent */}
-      <div className="absolute top-20 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl opacity-30 -z-0" />
-
+    <section className="relative w-full bg-carbon py-20 px-6 md:px-12 overflow-hidden">
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Section Heading */}
         <motion.div
@@ -51,16 +48,13 @@ export function BlackSteelValuePropsSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
-            Proč si zákazníci vybírají právě nás
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
+            Proč si zákazníci vybrali právě nás
           </h2>
-          <p className="text-lg text-steel max-w-2xl mx-auto">
-            Kombinace inovace, kvalité a osobního přístupu, která nás odlišuje od konkurence.
-          </p>
         </motion.div>
 
-        {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        {/* Cards Grid - Black boxes like mockup */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           {valuePropCards.map((card, index) => (
             <motion.div
               key={card.title}
@@ -68,68 +62,39 @@ export function BlackSteelValuePropsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.15 }}
               viewport={{ once: true }}
-              className="group relative h-full"
+              className="group relative"
             >
-              {/* Glass Card Background */}
-              <div className="absolute inset-0 bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl group-hover:border-accent/30 transition-all duration-300" />
-
-              {/* Gradient Hover Effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl" />
-
-              {/* Glow on Hover */}
-              <div className="absolute -inset-1 bg-gradient-to-br from-accent/40 to-accent/0 rounded-3xl blur-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-300 -z-10" />
-
-              {/* Content */}
-              <div className="relative z-10 p-8 md:p-10 h-full flex flex-col justify-between space-y-6">
-                {/* Icon */}
-                <div className="flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-accent/30 to-accent/10 group-hover:from-accent/50 group-hover:to-accent/20 transition-all duration-300">
-                  <div className="text-accent group-hover:scale-110 transition-transform duration-300">
+              {/* Black Card Background like mockup */}
+              <div className="relative bg-graphite rounded-2xl p-8 hover:bg-graphite-light transition-all duration-300">
+                {/* Icon with Orange Accent */}
+                <div className="flex items-center justify-start mb-6">
+                  <div className="text-[#F36F21]">
                     {card.icon}
                   </div>
                 </div>
 
                 {/* Title */}
-                <h3 className="text-2xl font-black text-white group-hover:text-accent transition-colors duration-300">
+                <h3 className="text-xl font-bold text-white mb-4">
                   {card.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-steel text-base leading-relaxed flex-grow">
+                <p className="text-white/70 text-sm leading-relaxed mb-6">
                   {card.description}
                 </p>
 
-                {/* CTA Link */}
+                {/* CTA Link with Orange Color */}
                 <Link
                   href={card.href}
-                  className="inline-flex items-center gap-2 text-accent font-bold hover:gap-3 transition-all duration-300 group/link"
+                  className="inline-flex items-center gap-2 text-[#F36F21] font-bold hover:gap-3 transition-all duration-300 group/link text-sm"
                 >
                   <span>{card.cta}</span>
-                  <span className="text-xl group-hover/link:translate-x-2 transition-transform duration-300">→</span>
+                  <span className="text-lg group-hover/link:translate-x-1 transition-transform duration-300">→</span>
                 </Link>
               </div>
             </motion.div>
           ))}
         </div>
-
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          viewport={{ once: true }}
-          className="text-center mt-16"
-        >
-          <p className="text-steel mb-6 text-lg">
-            Chcete se dozvědět více o našem přístupu?
-          </p>
-          <Link
-            href="/o-spolecnosti"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-accent text-white font-bold rounded-xl shadow-glow hover:shadow-glow-lg transition-all duration-300 hover:scale-105"
-          >
-            <span>Více o AC Heating</span>
-            <span>→</span>
-          </Link>
-        </motion.div>
       </div>
     </section>
   );

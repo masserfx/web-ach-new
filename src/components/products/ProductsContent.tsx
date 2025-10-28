@@ -1,17 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ProductCard } from '@/components/content/ProductCard';
+import { ProductCard, ProductCardProps } from '@/components/content/ProductCard';
 import Link from 'next/link';
 
-interface Product {
-  id: string;
-  slug: string;
-  name: string;
-  model: string;
-  category: string;
-  description: string;
-  images?: string[];
+// Use ProductCardProps type for consistency
+interface Product extends ProductCardProps {
   features?: string[];
   price_from?: number;
   featured?: boolean;

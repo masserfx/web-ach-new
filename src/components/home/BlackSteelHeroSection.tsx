@@ -5,6 +5,34 @@ import Link from 'next/link';
 import { ArrowRight, Zap } from 'lucide-react';
 import { useMemo } from 'react';
 import { getCompanyYears } from '@/lib/utils';
+import Image from 'next/image';
+
+/**
+ * RESPONSIVE HERO SECTION RULES:
+ * 
+ * 1. Background Image:
+ *    - Mobile: object-position left (show heat pump on left)
+ *    - Desktop: object-position center
+ * 
+ * 2. Layout:
+ *    - Mobile: Stack vertically, text above image area
+ *    - Tablet: 60/40 split (text/image space)
+ *    - Desktop: 50/50 grid
+ * 
+ * 3. Overlays:
+ *    - Mobile: Stronger gradient (90% opacity) for readability
+ *    - Desktop: Lighter gradient (70% opacity) to show more image
+ * 
+ * 4. Typography:
+ *    - Mobile: text-4xl (36px)
+ *    - Tablet: text-5xl (48px)
+ *    - Desktop: text-6xl/7xl (60-72px)
+ * 
+ * 5. Spacing:
+ *    - Mobile: px-4 py-16 (compact)
+ *    - Tablet: px-6 py-20
+ *    - Desktop: px-12 py-24 (spacious)
+ */
 
 export function BlackSteelHeroSection() {
   const yearsSinceFoundation = useMemo(() => {
@@ -12,146 +40,118 @@ export function BlackSteelHeroSection() {
   }, []);
 
   return (
-    <section className="relative w-full min-h-screen bg-hero-gradient overflow-hidden flex items-center">
-      {/* Glass Reflection Overlay */}
-      <div className="absolute inset-0 bg-white/15 backdrop-blur-[40px] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-      {/* Animated Background Blobs (optional enhancement) */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-accent/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob" />
-        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-accent/15 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" />
+    <section className="relative w-full min-h-[100svh] overflow-hidden flex items-center">
+      {/* Background Image with Responsive Overlays */}
+      <div className="absolute inset-0">
+        {/* NG ONE Hero Image - Responsive object position */}
+        <Image
+          src="/images/hero-ng-one.jpg"
+          alt="AC Heating NG ONE tepelné čerpadlo"
+          fill
+          className="object-cover object-left md:object-center"
+          priority
+          quality={90}
+          sizes="100vw"
+        />
+        
+        {/* Mobile: Strong dark overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-carbon/95 via-carbon/90 to-carbon/85 md:hidden" />
+        
+        {/* Tablet+: Left-to-right gradient (stronger on text side) */}
+        <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-carbon/90 via-carbon/75 to-carbon/50 lg:from-carbon/85 lg:via-carbon/65 lg:to-carbon/40" />
+        
+        {/* Subtle orange accent - visible on all sizes */}
+        <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-accent/5" />
       </div>
 
-      {/* Main Content Container */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 py-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        {/* Left Column - Text */}
+      {/* Main Content Container - Responsive Padding */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-16 sm:py-20 md:py-24">
+        {/* Text Content - Responsive Width */}
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="flex flex-col justify-center space-y-8"
+          className="flex flex-col justify-center space-y-4 sm:space-y-6 max-w-full md:max-w-xl lg:max-w-2xl"
         >
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-3 w-fit px-6 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full hover:bg-white/15 transition-all"
-          >
-            <span className="text-2xl">🏆</span>
-            <span className="text-sm font-bold text-white tracking-wide">
-              {yearsSinceFoundation}+ LET ZKUŠENOSTI V OBORU
-            </span>
-          </motion.div>
-
-          {/* Main Headline */}
+          {/* Main Headline - Responsive Typography */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="text-6xl md:text-7xl lg:text-8xl font-black text-steel leading-tight"
+            transition={{ delay: 0.2 }}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-tight drop-shadow-[0_2px_20px_rgba(0,0,0,0.9)]"
           >
             Tepelné čerpadlo bez kompromisů.
           </motion.h1>
 
-          {/* Subheadline */}
+          {/* Subheadline - Responsive Typography */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="text-xl md:text-2xl text-steel-dim font-medium leading-relaxed max-w-2xl"
+            transition={{ delay: 0.3 }}
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-steel font-normal leading-relaxed drop-shadow-lg"
           >
-            Convert NG One – <span className="text-accent font-bold">výkon, design, ticho.</span>
+            Convert NG One – výkon, design, ticho.
           </motion.p>
 
-          {/* Meta Info */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="text-sm text-steel-dim space-y-1"
-          >
-            <div>✓ Vyrobeno v Česku</div>
-            <div>✓ Záruka 7 let</div>
-            <div>✓ Dotace až 180 000 Kč</div>
-          </motion.p>
-
-          {/* CTA Buttons */}
+          {/* CTA Buttons - Responsive Layout */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 pt-4"
+            transition={{ delay: 0.4 }}
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-4"
           >
-            {/* Primary CTA */}
+            {/* Primary CTA - Responsive Sizing */}
             <Link
               href="/pripravit-rozpocet"
-              className="group relative inline-flex items-center gap-3 px-8 py-4 bg-accent text-white font-bold text-lg rounded-xl shadow-glow hover:shadow-glow-lg transition-all duration-300 hover:scale-105"
+              className="group relative inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#F36F21] to-[#FF8F3C] text-white font-bold text-sm sm:text-base rounded-lg shadow-[0_4px_20px_rgba(243,111,33,0.4)] hover:shadow-[0_8px_30px_rgba(243,111,33,0.6)] transition-all duration-300 hover:scale-105 active:scale-95"
             >
-              <Zap className="w-6 h-6" fill="currentColor" />
-              <span>Zjisti, kolik ušetříš</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+              <span>Získejte nabídku</span>
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
 
-            {/* Secondary CTA */}
+            {/* Secondary CTA - Responsive Sizing */}
             <Link
               href="/produkty"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-white/10 border-2 border-white/30 text-white font-bold text-lg rounded-xl hover:bg-white/20 hover:border-white/50 transition-all duration-300"
+              className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-graphite/80 backdrop-blur-sm border-2 border-white/30 text-white font-semibold text-sm sm:text-base rounded-lg hover:bg-graphite hover:border-white/50 transition-all duration-300 active:scale-95"
             >
               <span>Porovnat varianty</span>
-              <ArrowRight className="w-5 h-5" />
             </Link>
           </motion.div>
-        </motion.div>
 
-        {/* Right Column - Product Render (Placeholder) */}
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative h-full min-h-[500px] flex items-center justify-center"
-        >
-          {/* Glass Effect Box for Product */}
-          <div className="relative w-full h-full max-w-md mx-auto">
-            {/* Gradient Border Effect */}
-            <div className="absolute inset-0 bg-gradient-to-br from-accent/40 to-accent/10 rounded-3xl blur-2xl opacity-60" />
-
-            {/* Glass Container */}
-            <div className="relative bg-white/5 backdrop-blur-xl border border-white/20 rounded-3xl p-12 shadow-2xl overflow-hidden group">
-              {/* Inner Glow */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-              {/* Product Placeholder (Can be replaced with actual image) */}
-              <div className="relative z-10 flex flex-col items-center justify-center space-y-6">
-                {/* Pseudo 3D Icon */}
-                <div className="relative w-40 h-40 flex items-center justify-center">
-                  <div className="absolute inset-0 bg-gradient-to-br from-accent to-accent/30 rounded-3xl blur-3xl opacity-40 animate-pulse" />
-                  <div className="relative bg-gradient-to-br from-graphite to-carbon rounded-3xl p-8 border border-white/20">
-                    <div className="w-24 h-24 bg-white/10 rounded-2xl flex items-center justify-center">
-                      <span className="text-6xl">🔥</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Product Name */}
-                <h2 className="text-2xl font-black text-white text-center">
-                  Convert NG One
-                </h2>
-
-                {/* Key Features */}
-                <div className="space-y-3 text-sm text-steel text-center">
-                  <div>⚡ Efektivní vytápění</div>
-                  <div>🔇 Ultra tichý provoz</div>
-                  <div>♻️ Přátelský k prostředí</div>
-                </div>
-              </div>
+          {/* Trust Badges - Mobile Optimized */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="flex flex-wrap gap-2 sm:gap-3 pt-4 sm:pt-6"
+          >
+            <div className="px-3 sm:px-4 py-2 bg-graphite/70 backdrop-blur-sm rounded-lg border border-white/10">
+              <span className="text-xs sm:text-sm font-semibold text-steel">✓ 7 let záruka</span>
             </div>
-          </div>
+            <div className="px-3 sm:px-4 py-2 bg-graphite/70 backdrop-blur-sm rounded-lg border border-white/10">
+              <span className="text-xs sm:text-sm font-semibold text-steel">✓ {yearsSinceFoundation}+ let zkušeností</span>
+            </div>
+            <div className="px-3 sm:px-4 py-2 bg-graphite/70 backdrop-blur-sm rounded-lg border border-white/10">
+              <span className="text-xs sm:text-sm font-semibold text-steel">✓ 7 500+ instalací</span>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
 
-      {/* Bottom Wave (optional) */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/50 to-transparent" />
+      {/* Bottom gradient fade - Responsive */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 sm:h-32 bg-gradient-to-t from-carbon to-transparent pointer-events-none" />
+      
+      {/* Scroll indicator - Hidden on mobile */}
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1, repeat: Infinity, repeatType: "reverse", duration: 1.5 }}
+        className="hidden md:block absolute bottom-8 left-1/2 -translate-x-1/2 text-steel/50"
+      >
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg>
+      </motion.div>
     </section>
   );
 }

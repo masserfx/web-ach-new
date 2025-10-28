@@ -24,15 +24,15 @@ export function LatestBlogPosts({ posts }: LatestBlogPostsProps) {
   if (posts.length === 0) return null;
 
   return (
-    <section className="container mx-auto px-4 py-16 bg-gradient-to-b from-gray-50/40 to-white">
+    <section className="container mx-auto px-4 py-16 bg-gradient-to-b from-graphite/40 to-carbon">
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto mb-12">
         <h2 className="text-4xl md:text-5xl font-bold mb-4">
-          <span className="bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-accent to-brand-accent bg-clip-text text-transparent">
             Nejnovější články
           </span>
         </h2>
-        <p className="text-xl text-gray-600">
+        <p className="text-xl text-steel-dim">
           Tipy, rady a novinky ze světa tepelných čerpadel a fotovoltaiky
         </p>
       </div>
@@ -52,7 +52,7 @@ export function LatestBlogPosts({ posts }: LatestBlogPostsProps) {
         >
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 px-10 py-5 bg-gradient-to-r from-brand-primary to-brand-primary/90 text-white rounded-xl font-bold text-lg shadow-2xl hover:shadow-primary/30 transition-all"
+            className="inline-flex items-center gap-2 px-10 py-5 bg-gradient-to-r from-accent to-accent/90 text-white rounded-xl font-bold text-lg shadow-2xl hover:shadow-primary/30 transition-all"
           >
             Zobrazit všechny články
             <ArrowRight className="w-5 h-5" />
@@ -71,8 +71,8 @@ function BlogPostCard({ post, index }: { post: BlogPost; index: number }) {
   });
 
   const gradients = [
-    'from-brand-primary/10 to-amber-700/10',
-    'from-brand-secondary/10 to-green-600/10',
+    'from-accent/10 to-amber-700/10',
+    'from-accent-dark/10 to-green-600/10',
     'from-brand-accent/10 to-orange-600/10'
   ];
   const gradient = gradients[index % gradients.length];
@@ -84,14 +84,14 @@ function BlogPostCard({ post, index }: { post: BlogPost; index: number }) {
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
       whileHover={{ y: -8, scale: 1.02 }}
-      className="relative group bg-white rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all border-2 border-brand-primary/10"
+      className="relative group bg-carbon rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all border-2 border-accent/10"
     >
       {/* Gradient overlay */}
       <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${gradient.replace('/10', '')}`} />
 
       {/* Image */}
       {post.featured_image && (
-        <Link href={`/blog/${post.slug}`} className="block relative aspect-video overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
+        <Link href={`/blog/${post.slug}`} className="block relative aspect-video overflow-hidden bg-gradient-to-br from-graphite-light to-graphite">
           <Image
             src={post.featured_image}
             alt={post.title}
@@ -107,14 +107,14 @@ function BlogPostCard({ post, index }: { post: BlogPost; index: number }) {
       {/* Content */}
       <div className="relative p-6">
         {/* Meta */}
-        <div className="flex items-center gap-4 text-sm text-gray-600 mb-3">
+        <div className="flex items-center gap-4 text-sm text-steel-dim mb-3">
           <span className="flex items-center gap-1">
             <Calendar className="w-4 h-4 text-brand-accent" />
             {publishedDate}
           </span>
           {post.reading_time && (
             <span className="flex items-center gap-1">
-              <Clock className="w-4 h-4 text-brand-secondary" />
+              <Clock className="w-4 h-4 text-accent-dark" />
               {post.reading_time} min
             </span>
           )}
@@ -122,18 +122,18 @@ function BlogPostCard({ post, index }: { post: BlogPost; index: number }) {
 
         {/* Title */}
         <Link href={`/blog/${post.slug}`}>
-          <h3 className="text-xl font-bold mb-3 text-gray-900 group-hover:text-brand-primary transition-colors line-clamp-2">
+          <h3 className="text-xl font-bold mb-3 text-white group-hover:text-accent transition-colors line-clamp-2">
             {post.title}
           </h3>
         </Link>
 
         {/* Excerpt */}
-        <p className="text-gray-600 mb-4 line-clamp-3 leading-relaxed">{post.excerpt}</p>
+        <p className="text-steel-dim mb-4 line-clamp-3 leading-relaxed">{post.excerpt}</p>
 
         {/* Read More */}
         <Link
           href={`/blog/${post.slug}`}
-          className="inline-flex items-center gap-2 text-brand-primary font-bold hover:gap-3 transition-all"
+          className="inline-flex items-center gap-2 text-accent font-bold hover:gap-3 transition-all"
         >
           Číst více
           <ArrowRight className="w-4 h-4" />

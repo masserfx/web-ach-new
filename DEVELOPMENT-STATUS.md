@@ -1,12 +1,292 @@
 # AC Heating Web - Development Status Report
-**Datum**: 2025-10-26 08:00  
-**Status**: 🟡 Částečně funkční - Kritické opravy provedeny, další práce potřebná
+**Datum**: 2025-10-27 12:00
+**Status**: 🟢 Phase 5 Complete - AI-Powered CMS Implementation Finished
 
 ---
 
 ## 🎯 Přehled
 
 Tento dokument sleduje stav vývoje nového Next.js webu AC Heating ve srovnání s požadavky z MIGRATION-README.md a strategického plánu.
+
+---
+
+## ✅ Phase 5: AI-Powered CMS (2025-10-27) - COMPLETE
+
+### Implementované komponenty
+
+#### 1. Database Schema (Migration 003)
+**Soubor**: `/supabase/migrations/003_ai_cms.sql`
+
+**Nové tabulky:**
+
+**cms_content:**
+- Strukturovaný content management systém
+- Support pro: page, blog, case_study, landing_page, product_detail
+- AI tracking (ai_generated, ai_model, ai_prompt)
+- Segment targeting (RD, BD, Developery, Obce)
+- Status workflow: draft → published → archived
+- SEO fields (meta_title, meta_description, keywords)
+
+**cms_edit_history:**
+- Tracking všech změn obsahu
+- Edit types: ai_generated, human_edited, ai_suggested, approved, rejected
+- Diff tracking (changes, previous_version)
+- AI model logging
+- Editor attribution
+
+**revenue_projections:**
+- Business data 2023-2027
+- Kategorie: RD TČ, BD TČ, RD FVE, BD FVE, etc.
+- 40+ záznamů s tržbami a počty instalací
+
+**personnel_planning:**
+- HR plánování 2025-2027
+- Departments: Obchod, Marketing, Projekce, Provoz, Výroba
+- Fluktuace tracking, nábor requirements
+- 45+ záznamů
+
+**Impact:**
+- ✅ Kompletní CMS infrastruktura
+- ✅ AI content generation support
+- ✅ Business intelligence data ready
+- ✅ Edit tracking & versioning
+- ✅ Segment-based personalization možná
+
+---
+
+#### 2. Admin Dashboard
+**Soubor**: `/src/app/admin/page.tsx`
+
+**Funkce:**
+- ✅ KPI Dashboard (6 primary metrics)
+- ✅ AI Content Generator interface
+- ✅ Content Type selector (blog, page, case_study, landing_page)
+- ✅ Natural language prompt input
+- ✅ Preview & Approve workflow
+- ✅ Recent content listing
+- ✅ Edit history timeline
+- ✅ Black Steel design (Carbon #0D0D0D, Orange #F36F21)
+
+**UX Features:**
+- Glass morphism effects
+- Hover states s AC Orange accent
+- Responsive grid layout
+- Loading states
+- Error handling
+
+---
+
+#### 3. AI Assistant API
+**Soubor**: `/src/app/api/cms/generate/route.ts`
+
+**Technologie:**
+- Claude Sonnet 4.5 (claude-sonnet-4-5-20250929)
+- Anthropic SDK (@anthropic-ai/sdk)
+
+**Funkce:**
+- ✅ Natural language prompt processing
+- ✅ AC Heating business context injection
+- ✅ Content type-specific templates
+- ✅ Segment targeting support
+- ✅ SEO optimization (meta tags, keywords)
+- ✅ Structured JSON output
+- ✅ Automatic slug generation
+- ✅ Database persistence (draft status)
+- ✅ Edit history logging
+
+**Prompt Engineering:**
+- System prompt s AC Heating vision, mission, values
+- SWOT analýzu v kontextu
+- Product portfolio knowledge
+- Target segment understanding
+- Brand tone guidelines (profesionální, přátelský, technický)
+
+**Content Templates:**
+- Blog článek (intro, sections, conclusion, CTA)
+- Static page (hero, sections, features)
+- Case study (client, challenge, solution, results, testimonial)
+- Landing page (hero, benefits, social proof, features, CTA)
+
+---
+
+#### 4. Publish API
+**Soubor**: `/src/app/api/cms/publish/route.ts`
+
+**Funkce:**
+- ✅ Approve/Reject workflow
+- ✅ Status update (draft → published/archived)
+- ✅ Publish timestamp tracking
+- ✅ Edit history logging
+- ✅ Published URL generation
+- ✅ Content preview retrieval
+
+**Endpoints:**
+- `POST /api/cms/publish` - Approve or reject content
+- `GET /api/cms/publish?content_id=xxx` - Get content details
+
+---
+
+#### 5. Documentation
+**Soubor**: `/docs/CMS_USAGE_GUIDE.md`
+
+**Obsah:**
+- ✅ Quick start guide
+- ✅ Dashboard overview
+- ✅ AI Content Generator usage
+- ✅ Prompt examples (blog, landing page, case study)
+- ✅ Content structure schemas
+- ✅ Workflow documentation
+- ✅ API endpoints reference
+- ✅ Database schema reference
+- ✅ Customization guide
+- ✅ Troubleshooting section
+- ✅ Best practices
+
+---
+
+### Použití
+
+#### Setup
+
+```bash
+# 1. Apply migration
+cd ~/ac-heating-web-new
+npx supabase db push
+
+# 2. Configure .env.local
+echo "ANTHROPIC_API_KEY=sk-ant-xxx" >> .env.local
+
+# 3. Start dev server
+npm run dev
+
+# 4. Access admin
+open http://localhost:3100/admin
+```
+
+#### Create Content
+
+```typescript
+// 1. Navštiv /admin
+// 2. Vyber Content Type (blog, page, case_study, landing_page)
+// 3. Zadej prompt:
+"Vytvoř článek o dotacích 2025 pro rodinné domy"
+
+// 4. Klikni "Vygenerovat obsah"
+// 5. Preview & Review
+// 6. Publikuj nebo Zahoď
+```
+
+#### Prompt Examples
+
+```
+✅ Blog: "Vytvoř článek o dotacích NZÚ 2025 pro TČ v RD"
+✅ Landing: "Vytvoř landing page pro TČ + FVE balíček"
+✅ Case study: "Vytvoř referenci instalace v BD Praha, 30 BJ, úspora 60%"
+✅ Page: "Optimalizuj O nás stránku pro segment Bytové domy"
+```
+
+---
+
+### Impact & Benefits
+
+**Business:**
+- ✅ Zkrácení času na vytvoření obsahu z hodin na minuty
+- ✅ Konzistentní brand voice (AI trénovaný na AC Heating tone)
+- ✅ SEO optimalizace automaticky
+- ✅ Segment-specific personalization
+- ✅ A/B testing support (multiple drafts)
+
+**Technical:**
+- ✅ Scalable architecture (Supabase + Next.js API routes)
+- ✅ Version control (cms_edit_history)
+- ✅ AI model tracking (budoucí analytics)
+- ✅ Type-safe TypeScript
+- ✅ ROW Level Security policies
+
+**Content Quality:**
+- ✅ Structured JSON content (easy to render)
+- ✅ AC Heating domain expertise (18+ let zkušeností v promptu)
+- ✅ Data-driven (revenue projections, personnel planning v DB)
+- ✅ Target segment awareness (RD 60%, BD 25%, B2B 15%)
+
+---
+
+## ✅ Phase 4: Database Optimization (2025-10-27) - COMPLETE
+
+### Nové databázové tabulky
+**Soubor**: `/supabase/migrations/002_business_strategy.sql`
+
+#### 1. business_strategy
+- **Účel**: Vize, Mise, Values, SWOT analýza
+- **Záznamy**: 23 records
+  - 1x Vision
+  - 1x Mission
+  - 1x Values
+  - 20x SWOT (6 Strengths, 5 Weaknesses, 5 Opportunities, 4 Threats)
+
+#### 2. target_segments
+- **Účel**: Customer segmenty a persony
+- **Záznamy**: 3 segments
+  - Rodinné domy (B2C) - 60% revenue - "Ekologický optimizátor"
+  - Bytové domy (B2B/B2C) - 25% revenue - "Správce objektu"
+  - Firemní objekty (B2B) - 15% revenue - "ESG Manager"
+
+#### 3. kpis
+- **Účel**: Business metrics tracking (Q1-Q4 2025)
+- **Záznamy**: 14 KPIs
+  - 7x Primary KPIs (Conversion Rate, Lead Quality, Cost per Lead, atd.)
+  - 7x Secondary metrics
+  - Baseline → Q4 targets defined
+  - Actual values ready for updates
+
+#### 4. competitors
+- **Účel**: Competitive analysis
+- **Záznamy**: 7 competitors
+  - 3x Premium (Viessmann, Vaillant, Buderus)
+  - 3x Mid-range (Nibe, Regulus, Thermona)
+  - 1x Low-cost (Chinese aggregate)
+  - Includes market share, pricing comparison, strengths/weaknesses
+
+#### 5. products (enhanced)
+- **Přidané sloupce**:
+  - `pricing` (JSONB) - Base price, installation, financing, subsidies
+  - `technical_specs` (JSONB) - COP, output, rating, regulation
+  - `target_segment_ids` (UUID[]) - Links to target segments
+  - `usp` (TEXT) - Unique selling proposition
+  - `roi_months` (INTEGER) - Payback period
+  - `bundle_options` (JSONB) - Package deals with discounts
+  - `warranty_years` (INTEGER) - Warranty period
+- **Enhanced**: 10 existing products
+
+### Seed Data
+**Soubor**: `/scripts/seed-business-data.ts`
+**Command**: `npm run seed:business`
+
+Všechna data z BUSINESS_STRATEGY.md byla naimportována:
+- ✅ Vision: "Být nejdůvěryhodnější značkou inteligentního vytápění v ČR"
+- ✅ Mission: "Komplexní energetická řešení s vlastním vývojem a výrobou"
+- ✅ Values: Kvalita, Transparentnost, Odbornost, Udržitelnost, Inovace
+- ✅ SWOT: Kompletní analýza se všemi 20 položkami
+- ✅ Target Segments: 3 persony s demographics, motivations, entry channels, messaging
+- ✅ KPIs: Baseline 2024 → Q1-Q4 2025 targets pro všechny klíčové metriky
+- ✅ Competitors: 7 konkurentů s market share, pricing, strengths/weaknesses
+
+### Frontend Queries
+**Dokumentace**: `/docs/PHASE4_QUERIES.md`
+
+Příklady queries pro Next.js komponenty:
+- Business Strategy (Vision, Mission, Values, SWOT)
+- Target Segments & Personalizace
+- KPI Dashboard & Tracking
+- Competitive Analysis
+- Enhanced Products s business daty
+
+### Impact
+- ✅ Databáze připravena pro AI personalizaci
+- ✅ KPI tracking systém pro business reporting
+- ✅ Competitive intelligence data
+- ✅ Segment-specific landing pages možné
+- ✅ Product catalog s complete business context
 
 ---
 

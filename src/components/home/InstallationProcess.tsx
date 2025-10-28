@@ -56,7 +56,7 @@ const steps = [
 
 export function InstallationProcess() {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-carbon">
       <div className="container mx-auto px-4">
         {/* Header */}
         <motion.div
@@ -65,10 +65,10 @@ export function InstallationProcess() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-5xl font-bold text-white mb-4">
             Jak probíhá instalace?
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-steel-dim max-w-3xl mx-auto">
             Celý proces od první poptávky po uvedení do provozu zabere průměrně 4-6 týdnů
           </p>
         </motion.div>
@@ -88,7 +88,7 @@ export function InstallationProcess() {
               >
                 {/* Connecting Line */}
                 {index < steps.length - 1 && (
-                  <div className="hidden md:block absolute left-12 top-24 w-0.5 h-32 bg-gradient-to-b from-brand-primary/20 to-brand-primary/5" />
+                  <div className="hidden md:block absolute left-12 top-24 w-0.5 h-32 bg-gradient-to-b from-accent/20 to-accent/5" />
                 )}
 
                 {/* Step Card */}
@@ -101,22 +101,22 @@ export function InstallationProcess() {
                   </div>
 
                   {/* Content */}
-                  <div className="flex-grow bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 border border-gray-100 shadow-lg hover:shadow-xl transition-shadow">
+                  <div className="flex-grow bg-gradient-to-br from-graphite-light to-carbon rounded-2xl p-8 border border-gray-100 shadow-lg hover:shadow-xl transition-shadow">
                     <div className="flex items-start justify-between mb-4">
                       <div>
-                        <div className="inline-block px-3 py-1 bg-brand-primary/10 text-brand-primary text-sm font-bold rounded-full mb-2">
+                        <div className="inline-block px-3 py-1 bg-accent/10 text-accent text-sm font-bold rounded-full mb-2">
                           Krok {step.id}
                         </div>
-                        <h3 className="text-2xl font-bold text-gray-900">
+                        <h3 className="text-2xl font-bold text-white">
                           {step.title}
                         </h3>
                       </div>
                       <div className="text-right">
-                        <span className="text-sm text-gray-700">Časová náročnost</span>
-                        <p className="font-bold text-brand-primary">{step.duration}</p>
+                        <span className="text-sm text-steel">Časová náročnost</span>
+                        <p className="font-bold text-accent">{step.duration}</p>
                       </div>
                     </div>
-                    <p className="text-gray-600 leading-relaxed">
+                    <p className="text-steel-dim leading-relaxed">
                       {step.description}
                     </p>
                   </div>
@@ -135,13 +135,13 @@ export function InstallationProcess() {
         >
           <a
             href="/pripravit-rozpocet"
-            className="inline-flex items-center gap-2 px-10 py-5 bg-gradient-to-r from-brand-primary to-brand-primary/90 text-white rounded-lg font-bold text-lg hover:from-brand-primary/90 hover:to-brand-primary shadow-xl hover:shadow-2xl transition-all"
+            className="inline-flex items-center gap-2 px-10 py-5 bg-gradient-to-r from-accent to-accent/90 text-white rounded-lg font-bold text-lg hover:from-accent/90 hover:to-accent shadow-xl hover:shadow-2xl transition-all"
           >
             Začít proces instalace
             <CheckCircle className="w-5 h-5" />
           </a>
-          <p className="text-gray-600 mt-4">
-            Nebo nás kontaktujte na <a href="tel:+420731402055" className="text-brand-primary hover:underline">+420 731 402 055</a>
+          <p className="text-steel-dim mt-4">
+            Nebo nás kontaktujte na <a href="tel:+420731402055" className="text-accent hover:underline">+420 731 402 055</a>
           </p>
         </motion.div>
       </div>

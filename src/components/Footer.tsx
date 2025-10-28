@@ -8,7 +8,7 @@ export function Footer() {
   const yearsInBusiness = getCompanyYears();
 
   return (
-    <footer className="bg-gray-900 text-gray-300">
+    <footer className="bg-carbon text-steel-dim/60">
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}
@@ -17,7 +17,7 @@ export function Footer() {
               <span className="text-brand-accent">AC</span>
               <span className="text-white"> Heating</span>
             </div>
-            <p className="text-gray-400 mb-6">
+            <p className="text-steel-dim/70 mb-6">
               Česká firma s {yearsInBusiness}letou tradicí v instalaci tepelných čerpadel a fotovoltaiky.
             </p>
             <div className="flex gap-4">
@@ -25,7 +25,7 @@ export function Footer() {
                 href={siteConfig.social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-gray-800 hover:bg-brand-primary transition-colors"
+                className="p-2 rounded-lg bg-graphite hover:bg-accent transition-colors"
                 aria-label="Facebook"
               >
                 <Facebook className="w-5 h-5" />
@@ -34,7 +34,7 @@ export function Footer() {
                 href={siteConfig.social.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-gray-800 hover:bg-brand-primary transition-colors"
+                className="p-2 rounded-lg bg-graphite hover:bg-accent transition-colors"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-5 h-5" />
@@ -43,7 +43,7 @@ export function Footer() {
                 href={siteConfig.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-gray-800 hover:bg-brand-primary transition-colors"
+                className="p-2 rounded-lg bg-graphite hover:bg-accent transition-colors"
                 aria-label="Instagram"
               >
                 <Instagram className="w-5 h-5" />
@@ -139,7 +139,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-steel-dim/70">
               © {currentYear} {siteConfig.company.name} Všechna práva vyhrazena.
             </p>
             <div className="flex gap-6 text-sm">

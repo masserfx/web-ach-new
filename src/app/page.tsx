@@ -124,14 +124,14 @@ export default async function HomePage() {
         <BlackSteelCTAFooterSection />
 
         {/* Legacy Sections (fallback - can be customized or removed) */}
-        <section className="bg-white py-20">
+        <section className="bg-carbon py-20">
           <div className="container mx-auto px-4">
             <FeatureGrid />
           </div>
         </section>
 
         {/* CRO Section: Energy Savings Calculator */}
-        <section className="bg-gray-50 py-20">
+        <section className="bg-graphite-light py-20">
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
               <EnergySavingsCalculator />
@@ -140,12 +140,12 @@ export default async function HomePage() {
         </section>
 
         {/* CRO Section: Objection Handler */}
-        <section className="bg-white py-20">
+        <section className="bg-carbon py-20">
           <ObjectionHandler objections={commonObjections} />
         </section>
 
         {/* Latest Blog Posts */}
-        <section className="bg-gray-50 py-20">
+        <section className="bg-graphite-light py-20">
           <LatestBlogPosts posts={latestPosts} />
         </section>
       </main>

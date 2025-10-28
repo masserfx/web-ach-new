@@ -19,11 +19,11 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
     },
     ref
   ) => {
-    const baseStyles = 'bg-white rounded-2xl transition-all duration-300';
+    const baseStyles = 'bg-carbon rounded-2xl transition-all duration-300';
 
     const variants = {
       default: 'shadow-2xl',
-      bordered: 'border-2 border-brand-primary/12',
+      bordered: 'border-2 border-accent/12',
       elevated: 'shadow-3xl',
     };
 
@@ -72,7 +72,7 @@ const CardTitle = forwardRef<HTMLHeadingElement, HTMLAttributes<HTMLHeadingEleme
   ({ className, ...props }, ref) => (
     <h3
       ref={ref}
-      className={cn('text-2xl font-bold text-gray-900', className)}
+      className={cn('text-2xl font-bold text-white', className)}
       {...props}
     />
   )
@@ -83,7 +83,7 @@ const CardDescription = forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLPara
   ({ className, ...props }, ref) => (
     <p
       ref={ref}
-      className={cn('text-gray-600', className)}
+      className={cn('text-steel-dim', className)}
       {...props}
     />
   )

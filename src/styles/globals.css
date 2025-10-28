@@ -1,22 +1,28 @@
 @import "tailwindcss";
 
+/* Tailwind v4 theme customization */
+@theme {
+  /* Black Steel Color System */
+  --color-carbon: #0D0D0D;
+  --color-graphite: #2B2B2B;
+  --color-graphite-light: #3F3F3F;
+  --color-steel: #E8E8E8;
+  --color-steel-dim: #E0E0E0;
+  --color-accent: #FF9F43;
+  --color-accent-dark: #E07B28;
+  
+  /* Font family */
+  --font-family-inter: 'Inter', system-ui, sans-serif;
+  --font-family-heading: 'Inter', system-ui, sans-serif;
+}
+
 @layer base {
-  :root {
-    --font-inter: 'Inter', system-ui, sans-serif;
-    --font-heading: 'Inter', system-ui, sans-serif;
-  }
-
+  /* Black Steel defaults */
   body {
-    @apply bg-white text-gray-900 antialiased;
-  }
-
-  /* Animation delay utilities */
-  .animation-delay-2000 {
-    animation-delay: 2s;
-  }
-
-  .animation-delay-4000 {
-    animation-delay: 4s;
+    background-color: var(--color-carbon);
+    color: var(--color-steel);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   /* Smooth scrolling */
@@ -26,7 +32,18 @@
 
   /* Focus visible for accessibility */
   *:focus-visible {
-    outline: 2px solid #7A4200;
+    outline: 2px solid var(--color-accent);
     outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  /* Animation delays */
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4s;
   }
 }

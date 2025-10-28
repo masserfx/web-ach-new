@@ -25,15 +25,15 @@ export function FeaturedProducts({ products }: FeaturedProductsProps) {
   if (products.length === 0) return null;
 
   return (
-    <section className="container mx-auto px-4 py-16 bg-gradient-to-br from-white via-gray-50/30 to-white">
+    <section className="container mx-auto px-4 py-16 bg-gradient-to-br from-carbon via-graphite/30 to-carbon">
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto mb-12">
         <h2 className="text-4xl md:text-5xl font-bold mb-4">
-          <span className="bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-accent to-accent-dark bg-clip-text text-transparent">
             Naše produkty
           </span>
         </h2>
-        <p className="text-xl text-gray-600 font-medium">
+        <p className="text-xl text-steel-dim font-medium">
           Tepelná čerpadla vyráběná v České republice
         </p>
       </div>
@@ -53,7 +53,7 @@ export function FeaturedProducts({ products }: FeaturedProductsProps) {
         >
           <Link
             href="/produkty"
-            className="inline-flex items-center gap-2 px-10 py-5 bg-gradient-to-r from-brand-secondary to-green-600 text-white rounded-xl font-bold text-lg shadow-2xl hover:shadow-secondary/30 transition-all"
+            className="inline-flex items-center gap-2 px-10 py-5 bg-gradient-to-r from-accent-dark to-green-600 text-white rounded-xl font-bold text-lg shadow-2xl hover:shadow-secondary/30 transition-all"
           >
             Zobrazit všechny produkty
             <ArrowRight className="w-5 h-5" />
@@ -70,8 +70,8 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
   const categoryColors: Record<string, string> = {
     'tepelna-cerpadla': 'from-brand-accent to-orange-600',
     'fotovoltaika': 'from-yellow-500 to-amber-600',
-    'regulace': 'from-brand-secondary to-green-600',
-    'default': 'from-brand-primary to-amber-700'
+    'regulace': 'from-accent-dark to-green-600',
+    'default': 'from-accent to-amber-700'
   };
 
   const categoryGradient = categoryColors[product.category] || categoryColors['default'];
@@ -83,7 +83,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
       whileHover={{ y: -10, scale: 1.02 }}
-      className="relative group bg-white rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all border-2 border-brand-primary/10"
+      className="relative group bg-carbon rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all border-2 border-accent/10"
     >
       {/* Category badge */}
       <div className={`absolute top-4 right-4 z-10 px-4 py-2 bg-gradient-to-r ${categoryGradient} text-white rounded-full text-xs font-bold uppercase tracking-wide shadow-lg`}>
@@ -91,7 +91,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
       </div>
 
       {/* Image */}
-      <Link href={`/produkty/${product.slug}`} className="block relative aspect-square bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
+      <Link href={`/produkty/${product.slug}`} className="block relative aspect-square bg-gradient-to-br from-graphite-light to-graphite overflow-hidden">
         {mainImage ? (
           <Image
             src={mainImage.url}
@@ -101,7 +101,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         ) : (
-          <div className="flex items-center justify-center h-full text-gray-500">
+          <div className="flex items-center justify-center h-full text-steel-dim">
             <span className="text-6xl">🏷️</span>
           </div>
         )}
@@ -113,20 +113,20 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
       <div className="relative p-6">
         {/* Name */}
         <Link href={`/produkty/${product.slug}`}>
-          <h3 className="text-2xl font-bold mb-2 text-gray-900 group-hover:text-brand-primary transition-colors">
+          <h3 className="text-2xl font-bold mb-2 text-white group-hover:text-accent transition-colors">
             {product.name}
           </h3>
         </Link>
 
         {/* Model */}
         {product.model && (
-          <p className="text-gray-600 text-sm font-medium mb-3">
+          <p className="text-steel-dim text-sm font-medium mb-3">
             Model: {product.model}
           </p>
         )}
 
         {/* Description */}
-        <p className="text-gray-600 mb-4 line-clamp-2 leading-relaxed">
+        <p className="text-steel-dim mb-4 line-clamp-2 leading-relaxed">
           {product.description}
         </p>
 
@@ -134,8 +134,8 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
         {product.features && product.features.length > 0 && (
           <ul className="space-y-2 mb-4">
             {product.features.slice(0, 3).map((feature, idx) => (
-              <li key={idx} className="flex items-start gap-2 text-sm text-gray-700">
-                <Check className="w-4 h-4 text-brand-secondary mt-0.5 flex-shrink-0" />
+              <li key={idx} className="flex items-start gap-2 text-sm text-steel">
+                <Check className="w-4 h-4 text-accent-dark mt-0.5 flex-shrink-0" />
                 <span>{feature}</span>
               </li>
             ))}
