@@ -92,18 +92,21 @@ class BaseAgent(ABC):
                 output_tokens=usage.output_tokens,
             )
 
+            # Convert Decimal to float for JSON serialization
+            output_for_json = json.loads(json.dumps(processed_output, default=str))
+
             # Log execution
             execution_log_id = db.log_execution(
                 task_id=task_id,
                 agent_name=self.agent_name,
                 execution_type=ExecutionType.GENERATION.value,
-                trigger_source=trigger_source,
+                trigger_source=trigger_source or "orchestrator",
                 status=ExecutionStatus.SUCCESS.value,
                 input_prompt=user_prompt,
-                output_data=processed_output,
+                output_data=output_for_json,
                 tokens_used=usage.input_tokens + usage.output_tokens,
-                api_cost=api_cost,
-                quality_score=processed_output.get("quality_score"),
+                api_cost=float(api_cost),
+                quality_score=float(processed_output.get("quality_score", 0)),
             )
 
             # Update task status
@@ -111,9 +114,9 @@ class BaseAgent(ABC):
                 "strategy_tasks",
                 {
                     "status": "review",
-                    "output_data": json.dumps(processed_output),
+                    "output_data": json.dumps(output_for_json),
                     "progress": 80,
-                    "quality_score": processed_output.get("quality_score"),
+                    "quality_score": float(processed_output.get("quality_score", 0)),
                     "actual_hours": duration_ms / (1000 * 60 * 60),
                 },
                 {"id": task_id},
@@ -143,7 +146,7 @@ class BaseAgent(ABC):
                 task_id=task_id,
                 agent_name=self.agent_name,
                 execution_type=ExecutionType.GENERATION.value,
-                trigger_source=trigger_source,
+                trigger_source=trigger_source or "orchestrator",
                 status=ExecutionStatus.FAILED.value,
                 error_message=str(e),
             )
