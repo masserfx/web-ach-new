@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { ChevronRight, Plus } from 'lucide-react';
 
 interface Task {
@@ -34,7 +33,6 @@ export function StrategyKanban({ onRefresh }: StrategyKanbanProps) {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
   const [expandedTask, setExpandedTask] = useState<string | null>(null);
-  const supabase = createClientComponentClient();
 
   useEffect(() => {
     loadTasks();
@@ -42,15 +40,9 @@ export function StrategyKanban({ onRefresh }: StrategyKanbanProps) {
 
   async function loadTasks() {
     try {
-      const { data } = await supabase
-        .from('strategy_tasks')
-        .select('*')
-        .order('priority', { ascending: true })
-        .order('created_at', { ascending: false });
-
-      if (data) {
-        setTasks(data as Task[]);
-      }
+      const response = await fetch('/api/strategy/tasks');
+      const data: Task[] = await response.json();
+      setTasks(data);
     } catch (error) {
       console.error('Error loading tasks:', error);
     } finally {
@@ -60,10 +52,11 @@ export function StrategyKanban({ onRefresh }: StrategyKanbanProps) {
 
   async function updateTaskStatus(taskId: string, newStatus: Task['status']) {
     try {
-      await supabase
-        .from('strategy_tasks')
-        .update({ status: newStatus })
-        .eq('id', taskId);
+      await fetch(`/api/strategy/tasks/${taskId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus }),
+      });
 
       // Aktualizuj lokální stav
       setTasks(tasks.map((t) => (t.id === taskId ? { ...t, status: newStatus } : t)));
