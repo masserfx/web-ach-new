@@ -1,8 +1,8 @@
-import { createAdminClient } from '@/lib/supabase/admin';
+import { createAdminClient } from '@/lib/supabase/server';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {
-  const supabase = createAdminClient();
+  const supabase = createClient();
   const { searchParams } = new URL(request.url);
   const status = searchParams.get('status');
   const limit = searchParams.get('limit') || '50';
@@ -30,7 +30,7 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  const supabase = createAdminClient();
+  const supabase = createClient();
 
   try {
     const body = await request.json();

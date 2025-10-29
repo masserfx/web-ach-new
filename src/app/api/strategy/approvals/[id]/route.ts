@@ -1,11 +1,11 @@
-import { createAdminClient } from '@/lib/supabase/admin';
+import { createAdminClient } from '@/lib/supabase/server';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const supabase = createAdminClient();
+  const supabase = createClient();
   const { id } = await params;
 
   try {
@@ -30,7 +30,7 @@ export async function PUT(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const supabase = createAdminClient();
+  const supabase = createClient();
   const { id } = await params;
 
   try {

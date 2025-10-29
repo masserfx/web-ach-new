@@ -1,4 +1,4 @@
-import { createAdminClient } from '@/lib/supabase/admin';
+import { createAdminClient } from '@/lib/supabase/server';
 import { NextResponse } from 'next/server';
 
 /**
@@ -7,7 +7,7 @@ import { NextResponse } from 'next/server';
  * Used by dashboard and status pages
  */
 export async function GET() {
-  const supabase = createAdminClient();
+  const supabase = createClient();
 
   try {
     // Get all task data

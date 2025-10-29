@@ -1,8 +1,8 @@
-import { createAdminClient } from '@/lib/supabase/admin';
+import { createAdminClient } from '@/lib/supabase/server';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {
-  const supabase = createAdminClient();
+  const supabase = createClient();
   const { searchParams } = new URL(request.url);
   const taskId = searchParams.get('task_id');
   const agentName = searchParams.get('agent_name');
@@ -40,7 +40,7 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  const supabase = createAdminClient();
+  const supabase = createClient();
 
   try {
     const body = await request.json();
