@@ -1,32 +1,24 @@
-import { createAdminClient } from '@/lib/supabase/server';
+import { createClient } from '@/lib/supabase/server';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { searchParams } = new URL(request.url);
-  const taskId = searchParams.get('task_id');
-  const agentName = searchParams.get('agent_name');
   const status = searchParams.get('status');
   const limit = searchParams.get('limit') || '100';
 
   try {
-    let query = supabase.from('execution_logs').select('*');
+    let query = supabase
+      .from('execution_logs')
+      .select('*')
+      .order('started_at', { ascending: false })
+      .limit(parseInt(limit));
 
-    if (taskId) {
-      query = query.eq('task_id', taskId);
-    }
-
-    if (agentName) {
-      query = query.eq('agent_name', agentName);
-    }
-
-    if (status) {
+    if (status && status !== 'all') {
       query = query.eq('status', status);
     }
 
-    const { data, error } = await query
-      .limit(parseInt(limit))
-      .order('started_at', { ascending: false });
+    const { data, error } = await query;
 
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 400 });
@@ -34,29 +26,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(data);
   } catch (error) {
-    console.error('Error fetching logs:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
-  }
-}
-
-export async function POST(request: NextRequest) {
-  const supabase = createClient();
-
-  try {
-    const body = await request.json();
-
-    const { data, error } = await supabase
-      .from('execution_logs')
-      .insert([body])
-      .select();
-
-    if (error) {
-      return NextResponse.json({ error: error.message }, { status: 400 });
-    }
-
-    return NextResponse.json(data?.[0], { status: 201 });
-  } catch (error) {
-    console.error('Error creating log:', error);
+    console.error('Error fetching execution logs:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

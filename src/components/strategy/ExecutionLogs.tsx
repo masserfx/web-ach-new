@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { ChevronDown } from 'lucide-react';
 
 interface ExecutionLog {
@@ -26,7 +25,6 @@ export function ExecutionLogs() {
   const [loading, setLoading] = useState(true);
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [filter, setFilter] = useState<'all' | 'success' | 'failed' | 'running'>('all');
-  const supabase = createClientComponentClient();
 
   useEffect(() => {
     loadLogs();
@@ -34,21 +32,13 @@ export function ExecutionLogs() {
 
   async function loadLogs() {
     try {
-      let query = supabase
-        .from('execution_logs')
-        .select('*')
-        .order('started_at', { ascending: false })
-        .limit(100);
+      const url = filter === 'all'
+        ? '/api/strategy/logs'
+        : `/api/strategy/logs?status=${filter}`;
 
-      if (filter !== 'all') {
-        query = query.eq('status', filter);
-      }
-
-      const { data } = await query;
-
-      if (data) {
-        setLogs(data as ExecutionLog[]);
-      }
+      const response = await fetch(url);
+      const data: ExecutionLog[] = await response.json();
+      setLogs(data);
     } catch (error) {
       console.error('Error loading logs:', error);
     } finally {

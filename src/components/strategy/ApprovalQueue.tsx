@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { Check, X, MessageSquare } from 'lucide-react';
 
 interface Approval {
@@ -34,7 +33,6 @@ export function ApprovalQueue({ onRefresh }: ApprovalQueueProps) {
   const [approverEmail, setApproverEmail] = useState('');
   const [approverNotes, setApproverNotes] = useState('');
   const [processingId, setProcessingId] = useState<string | null>(null);
-  const supabase = createClientComponentClient();
 
   useEffect(() => {
     loadApprovals();
@@ -42,31 +40,13 @@ export function ApprovalQueue({ onRefresh }: ApprovalQueueProps) {
 
   async function loadApprovals() {
     try {
-      let query = supabase
-        .from('task_approvals')
-        .select(`
-          id,
-          task_id,
-          version,
-          review_status,
-          submitted_by,
-          submitted_at,
-          reviewer_email,
-          reviewed_at,
-          decision,
-          reviewer_notes
-        `)
-        .order('submitted_at', { ascending: false });
+      const url = filter === 'all'
+        ? '/api/strategy/approvals'
+        : `/api/strategy/approvals?status=${filter}`;
 
-      if (filter !== 'all') {
-        query = query.eq('review_status', filter);
-      }
-
-      const { data } = await query;
-
-      if (data) {
-        setApprovals(data as Approval[]);
-      }
+      const response = await fetch(url);
+      const data: Approval[] = await response.json();
+      setApprovals(data);
     } catch (error) {
       console.error('Error loading approvals:', error);
     } finally {
@@ -91,16 +71,23 @@ export function ApprovalQueue({ onRefresh }: ApprovalQueueProps) {
         request_revision: 'needs_revision' as const,
       };
 
-      await supabase
-        .from('task_approvals')
-        .update({
+      // TODO: Create PATCH endpoint for approvals
+      // For now, just update local state
+      const response = await fetch(`/api/strategy/approvals/${approvalId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
           review_status: statusMap[decision],
           decision,
           reviewer_email: approverEmail,
           reviewer_notes: approverNotes || null,
           reviewed_at: new Date().toISOString(),
-        })
-        .eq('id', approvalId);
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update approval');
+      }
 
       // Aktualizuj lokální stav
       setApprovals(
