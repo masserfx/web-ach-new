@@ -1,8 +1,15 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { ChevronDown, CheckCircle, Circle, AlertCircle } from 'lucide-react';
+
+interface Task {
+  id: string;
+  title: string;
+  category: string;
+  status: string;
+  priority: number;
+}
 
 interface StrategySection {
   id: string;
@@ -10,12 +17,7 @@ interface StrategySection {
   category: string;
   icon: string;
   description: string;
-  tasks: {
-    id: string;
-    title: string;
-    status: string;
-    priority: number;
-  }[];
+  tasks: Task[];
   totalTasks: number;
   completedTasks: number;
 }
@@ -24,7 +26,6 @@ export function StrategyChecklist() {
   const [sections, setSections] = useState<StrategySection[]>([]);
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-  const supabase = createClientComponentClient();
 
   useEffect(() => {
     loadStrategyData();
@@ -32,10 +33,8 @@ export function StrategyChecklist() {
 
   async function loadStrategyData() {
     try {
-      const { data: tasks } = await supabase
-        .from('strategy_tasks')
-        .select('id, title, category, status, priority')
-        .order('category', { ascending: true });
+      const response = await fetch('/api/strategy/tasks');
+      const tasks: Task[] = await response.json();
 
       if (tasks) {
         // Group by category

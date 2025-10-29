@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { StrategyChecklist } from '@/components/strategy/StrategyChecklist';
 import { StrategyKanban } from '@/components/strategy/StrategyKanban';
 import { ApprovalQueue } from '@/components/strategy/ApprovalQueue';
@@ -19,6 +18,12 @@ interface DashboardStats {
   successRate: number;
 }
 
+interface Task {
+  id: string;
+  status: string;
+  quality_score: number | null;
+}
+
 export default function StrategyDashboard() {
   const [activeTab, setActiveTab] = useState<TabType>('overview');
   const [stats, setStats] = useState<DashboardStats>({
@@ -30,7 +35,6 @@ export default function StrategyDashboard() {
     successRate: 0,
   });
   const [loading, setLoading] = useState(true);
-  const supabase = createClientComponentClient();
 
   useEffect(() => {
     loadDashboardStats();
@@ -39,11 +43,10 @@ export default function StrategyDashboard() {
   async function loadDashboardStats() {
     try {
       // Celkový počet tasků
-      const { data: tasks } = await supabase
-        .from('strategy_tasks')
-        .select('id, status, quality_score', { count: 'exact' });
+      const response = await fetch('/api/strategy/tasks');
+      const tasks: Task[] = await response.json();
 
-      if (tasks) {
+      if (tasks && Array.isArray(tasks)) {
         const completed = tasks.filter((t) => t.status === 'done').length;
         const inProgress = tasks.filter((t) => t.status === 'in_progress').length;
         const avgQuality = tasks
@@ -60,18 +63,11 @@ export default function StrategyDashboard() {
         }));
       }
 
-      // Počet čekajících schválení
-      const { data: approvals } = await supabase
-        .from('task_approvals')
-        .select('id, review_status', { count: 'exact' });
-
-      if (approvals) {
-        const pending = approvals.filter((a) => a.review_status === 'pending').length;
-        setStats((prev) => ({
-          ...prev,
-          pendingApprovals: pending,
-        }));
-      }
+      // TODO: Počet čekajících schválení by měl přijít z API
+      setStats((prev) => ({
+        ...prev,
+        pendingApprovals: 0,
+      }));
     } catch (error) {
       console.error('Error loading dashboard stats:', error);
     } finally {
