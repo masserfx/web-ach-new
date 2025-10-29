@@ -55,7 +55,7 @@ class StrategyOrchestrator:
 
         return True
 
-    def execute_task(self, task: Dict[str, Any], trigger_source: str = "orchestrator") -> Dict[str, Any]:
+    def execute_task(self, task: Dict[str, Any], trigger_source: str = "workflow") -> Dict[str, Any]:
         """Execute a single task."""
         task_id = task.get("id")
         agent_name = task.get("agent_name")
