@@ -14,12 +14,12 @@ class Settings(BaseSettings):
     anthropic_max_tokens: int = 4096
 
     # Database
-    db_host: str = "91.99.126.53"
-    db_port: int = 54321
+    db_host: str = "localhost"
+    db_port: int = 54322
     db_name: str = "postgres"
     db_user: str = "postgres"
     db_password: str = ""
-    db_ssl: bool = True
+    db_ssl: bool = False
 
     # Application
     project_root: Path = Path(__file__).parent.parent.parent
@@ -35,10 +35,8 @@ class Settings(BaseSettings):
     @property
     def db_url(self) -> str:
         """Generate database connection URL."""
-        protocol = "postgresql"
-        if self.db_ssl:
-            protocol += "+psycopg2"
-        return f"{protocol}://{self.db_user}:{self.db_password}@{self.db_host}:{self.db_port}/{self.db_name}?sslmode=require"
+        sslmode = "require" if self.db_ssl else "disable"
+        return f"postgresql://{self.db_user}:{self.db_password}@{self.db_host}:{self.db_port}/{self.db_name}?sslmode={sslmode}"
 
 
 # Load settings
