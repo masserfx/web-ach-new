@@ -1,0 +1,29 @@
+[Unit]
+Description=AC Heating Strategy Orchestrator
+Documentation=file:///path/to/SETUP_GUIDE.md
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/tmp/web-ach-new-temp/scripts/strategy
+Environment="PATH=/home/www-data/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
+EnvironmentFile=/etc/ac-heating/orchestrator.env
+ExecStart=/home/www-data/.local/bin/uv run run_orchestrator.py --continuous --interval 3600
+Restart=on-failure
+RestartSec=60
+
+# Security
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/tmp /var/log
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=ac-orchestrator
+
+[Install]
+WantedBy=multi-user.target

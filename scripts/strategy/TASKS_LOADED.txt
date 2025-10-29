@@ -1,0 +1,134 @@
+✅ AC HEATING STRATEGY IMPLEMENTATION - SAMPLE TASKS LOADED
+
+📊 SOUHRN
+==================================================
+Celkem tasků: 20
+Status: Ready for import
+Database: Pending connection (SSL issue on 91.99.126.53)
+
+🎯 VIZE (3 úkoly)
+==================================================
+[1] Vytvoř Brand Positioning dokument
+    Priority: 1 (Critical) | Agent: content_writer | Hours: 4
+    Definuj jasnou pozici AC Heating jako lídra v energetických službách
+
+[2] Vytvoř Brand Identity Guidelines  
+    Priority: 1 (Critical) | Agent: content_writer | Hours: 6
+    Design guide s logem, barvami, typografií
+
+[3] Optimalizuj Homepage Hero Section
+    Priority: 1 (Critical) | Agent: marketing_copy | Hours: 3
+    Přepracuj hero text na základě brand positioning
+
+💬 MISE (2 úkoly)
+==================================================
+[4] Vytvoř Mise Statement & Values Messaging
+    Priority: 2 (High) | Agent: content_writer | Hours: 3
+    Jasné vyjádření mise: pomáhat snižovat energetickou náročnost
+
+[5] Vytvoř obsah pro About Us stránku
+    Priority: 2 (High) | Agent: content_writer | Hours: 4
+    Příběh, historie, expertise, testimonials
+
+📈 CÍLE (1 úkol)
+==================================================
+[6] Nastav KPI Dashboard pro sledování cílů
+    Priority: 1 (Critical) | Agent: technical | Hours: 8
+    Dashboard pro tracking 373M → 432M → 522M Kč a HR (108→129)
+
+🏠 OBCHOD (4 úkoly)
+==================================================
+[7] Vytvoř content strategie pro Rodinné domy
+    Priority: 1 (Critical) | Agent: content_writer | Hours: 6
+    Blog série o tepelných čerpadlech, dotacích, instalaci
+
+[8] Vytvoř Google Ads kampaň pro Rodinné domy
+    Priority: 1 (Critical) | Agent: marketing_copy | Hours: 5
+    PPC strategie: ad sety, landing pages, tracking
+
+[9] Vytvoř Content pro Bytové domy
+    Priority: 2 (High) | Agent: content_writer | Hours: 5
+    Case studies a technical guides pro SVJ a družstva
+
+[10] Vytvoř B2B Partner Portal koncept
+     Priority: 2 (High) | Agent: product_manager | Hours: 6
+     Whitepaper pro developery, stavební firmy, projektanty
+
+🔍 SEO & VIDITELNOST (4 úkoly)
+==================================================
+[11] Napiš SEO obsah - Tepelná čerpadla
+     Priority: 1 (Critical) | Agent: seo_specialist | Hours: 4
+     Detailní blog posts o funkcích, porovnání, dlouho-tailové keywords
+
+[12] Optimalizuj Product Pages - SEO
+     Priority: 1 (Critical) | Agent: seo_specialist | Hours: 5
+     Meta tagy, schéma.org, internal linking pro všechny produkty
+
+[13] Vytvoř Video Marketing strategie
+     Priority: 2 (High) | Agent: marketing_copy | Hours: 4
+     Plán pro 5-10 videí: demos, instalace, testimonials, how-tos
+
+[14] Auditoruj Social Media přítomnost
+     Priority: 3 (Normal) | Agent: marketing_copy | Hours: 3
+     LinkedIn, Instagram, Facebook - content calendar
+
+✨ PERSONALIZACE (6 úkolů)
+==================================================
+[15] Vytvoř Email Newsletter sekvenči
+     Priority: 2 (High) | Agent: marketing_copy | Hours: 3
+     5-7 emailů pro leads nurturing, segmentované
+
+[16] Vytvoř Case Study - Instalace Rodinný dům
+     Priority: 2 (High) | Agent: content_writer | Hours: 4
+     Detail případ: před/po, náklady, úspora, timeline
+
+[17] Vytvoř Landing Page - 'Dotace 2025'
+     Priority: 2 (High) | Agent: marketing_copy | Hours: 5
+     LP o dostupných dotacích, kalkátor, CTA optimalizace
+
+[18] Vytvoř Product Comparison Guide
+     Priority: 2 (High) | Agent: product_manager | Hours: 4
+     Porovnání všech 8 produktů: specs, cena, výhody
+
+[19] Vytvoř UX Copy pro Kalkátor dotací
+     Priority: 1 (Critical) | Agent: marketing_copy | Hours: 3
+     Persuasivní texty, jasné CTAs, error messages
+
+[20] Vytvoř HR Employer Branding materál
+     Priority: 3 (Normal) | Agent: content_writer | Hours: 4
+     Nábor obsah: values, team story, career, benefits
+
+📊 STATISTIKA
+==================================================
+Distribuace podle Priority:
+  🔴 Critical (1): 7 tasků
+  🟠 High (2):    9 tasků
+  🟡 Normal (3):  4 tasky
+
+Distribuace podle Kategorie:
+  📝 content:     7 tasků
+  🎯 marketing:   8 tasků
+  🔍 seo:         2 tasky
+  📦 product:     2 tasky
+  ⚙️  technical:    1 task
+
+Distribuace podle Agenta:
+  📝 content_writer:    6 tasků
+  💬 marketing_copy:    7 tasků
+  🔍 seo_specialist:    2 tasky
+  📦 product_manager:   3 tasky
+  ⚙️  technical:        1 task (manual)
+
+Odhadovaný čas:
+  Total hours: 89.5 hodin
+  Průměr na task: 4.5 hodin
+
+🚀 DALŠÍKROK
+==================================================
+Pro import do databáze (když se DB připojí):
+
+  cd scripts/strategy
+  uv run import_sample_tasks.py
+
+To vytvoří všechny tasky v Supabase a uvidíš je v dashboardu:
+  http://localhost:3100/admin/strategy

@@ -16,10 +16,7 @@ async function getBlogPosts(searchQuery?: string) {
 
   let query = supabase
     .from('blog_posts')
-    .select(`
-      *,
-      category:categories(slug, name)
-    `)
+    .select(`*`)
     .eq('published', true)
     .order('published_at', { ascending: false })
     .limit(50);

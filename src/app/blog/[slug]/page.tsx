@@ -4,7 +4,7 @@ import { createClient } from '@/lib/supabase/server';
 import { ContentRenderer } from '@/components/content/ContentRenderer';
 import { ShareButton } from '@/components/ShareButton';
 import { siteConfig } from '@/lib/site.config';
-import Image from 'next/image';
+
 import Link from 'next/link';
 import { Calendar, Clock, Tag, ArrowLeft } from 'lucide-react';
 
@@ -15,24 +15,32 @@ interface BlogPostPageProps {
 }
 
 async function getBlogPost(slug: string) {
-  const supabase = await createClient();
+  try {
+    const supabase = await createClient();
 
-  const { data: post, error } = await supabase
-    .from('blog_posts')
-    .select(`
-      *,
-      category:categories(slug, name),
-      author:users(name, avatar_url)
-    `)
-    .eq('slug', slug)
-    .eq('published', true)
-    .single();
+    const { data: post, error } = await supabase
+      .from('blog_posts')
+      .select(`*`)
+      .eq('slug', slug)
+      .eq('published', true)
+      .single();
 
-  if (error || !post) {
+    if (error) {
+      console.error(`[getBlogPost] Supabase error for slug ${slug}:`, error);
+      return null;
+    }
+
+    if (!post) {
+      console.log(`[getBlogPost] No post found for slug ${slug}`);
+      return null;
+    }
+
+    console.log(`[getBlogPost] Found post: ${post.title}, featured_image: ${post.featured_image?.substring(0, 60) || 'none'}`);
+    return post;
+  } catch (err) {
+    console.error(`[getBlogPost] Error:`, err);
     return null;
   }
-
-  return post;
 }
 
 export async function generateMetadata(
@@ -92,13 +100,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       {/* Hero Section */}
       <article className="container mx-auto px-4 py-12">
         {/* Category Badge */}
-        {post.category && (
-          <div className="mb-4">
-            <span className="inline-block px-4 py-1 bg-accent text-white text-sm font-semibold rounded-full">
-              {post.category.name}
-            </span>
-          </div>
-        )}
+        {/* Removed - category relationship not available */}
 
         {/* Title */}
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-steel mb-6 leading-tight">
@@ -114,20 +116,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
         {/* Meta Info */}
         <div className="flex flex-wrap items-center gap-6 text-steel-dim mb-8">
-          {post.author && (
-            <div className="flex items-center gap-2">
-              {post.author.avatar_url && (
-                <Image
-                  src={post.author.avatar_url}
-                  alt={post.author.name}
-                  width={40}
-                  height={40}
-                  className="rounded-full"
-                />
-              )}
-              <span className="font-medium">{post.author.name}</span>
-            </div>
-          )}
+          {/* Author removed - author relationship not available */}
 
           <div className="flex items-center gap-2">
             <Calendar className="w-4 h-4" />
@@ -150,14 +139,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
         {/* Featured Image */}
         {post.featured_image && (
-          <div className="relative aspect-video rounded-2xl overflow-hidden mb-12 shadow-2xl">
-            <Image
+          <div className="rounded-2xl overflow-hidden mb-12 shadow-2xl">
+            <img
               src={post.featured_image}
               alt={post.title}
-              fill
-              priority
-              className="object-cover"
-              sizes="(max-width: 1200px) 100vw, 1200px"
+              className="w-full h-auto"
             />
           </div>
         )}

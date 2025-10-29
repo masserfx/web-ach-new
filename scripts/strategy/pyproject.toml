@@ -1,0 +1,21 @@
+[project]
+name = "ac-heating-strategy-orchestrator"
+version = "0.1.0"
+description = "AI-powered Strategy Implementation Orchestrator for AC Heating"
+requires-python = ">=3.11"
+dependencies = [
+    "anthropic>=0.25.0",
+    "python-dotenv>=1.0.0",
+    "psycopg2-binary>=2.9.9",
+    "pydantic>=2.0.0",
+    "pydantic-settings>=2.0.0",
+    "requests>=2.31.0",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=7.4.0",
+    "black>=23.10.0",
+    "ruff>=0.11.0",
+    "mypy>=1.6.0",
+]

@@ -3,7 +3,6 @@ import { notFound } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { ShareButton } from '@/components/ShareButton';
 import { siteConfig } from '@/lib/site.config';
-import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, Check, Download, Mail } from 'lucide-react';
 
@@ -88,14 +87,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               {/* Main Image */}
               {mainImage && (
                 <div className="relative aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-graphite to-carbon mb-6 border border-graphite-light/50">
-                  <Image
-                    src={mainImage.url}
-                    alt={mainImage.alt || product.name}
-                    fill
-                    priority
-                    className="object-contain p-8"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                  />
+                  <img src={mainImage.url} alt={mainImage.alt || product.name} className="w-full h-full object-contain" />
                 </div>
               )}
 
@@ -107,13 +99,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
                       key={index}
                       className="relative aspect-square rounded-lg overflow-hidden bg-graphite cursor-pointer hover:ring-2 hover:ring-accent transition-all border border-graphite-light/50"
                     >
-                      <Image
-                        src={image.url}
-                        alt={image.alt || `${product.name} ${index + 2}`}
-                        fill
-                        className="object-cover"
-                        sizes="200px"
-                      />
+                      <img src={image.url}
+                        alt={image.alt || `${product.name} ${index + 2}`} className="object-cover" />
                     </div>
                   ))}
                 </div>

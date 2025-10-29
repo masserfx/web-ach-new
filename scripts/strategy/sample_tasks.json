@@ -1,0 +1,182 @@
+[
+  {
+    "title": "Vytvoř Brand Positioning dokument",
+    "description": "Definuj jasnou pozici AC Heating na trhu jako lídra v energetických službách. Zahrň 3-5 klíčových messaging pilířů.",
+    "category": "content",
+    "priority": 1,
+    "agent_name": "content_writer",
+    "estimated_hours": 4,
+    "strategy_section": "1 Vize"
+  },
+  {
+    "title": "Vytvoř Brand Identity Guidelines",
+    "description": "Detailní design guide s logem, barvami, typografií, tonálností komunikace pro konzistenci.",
+    "category": "content",
+    "priority": 1,
+    "agent_name": "content_writer",
+    "estimated_hours": 6,
+    "strategy_section": "1 Vize"
+  },
+  {
+    "title": "Optimalizuj Homepage Hero Section",
+    "description": "Přepracuj homepage hero text a CTA na základě brand positioning. Fokus na emoci a value proposition.",
+    "category": "seo",
+    "priority": 1,
+    "agent_name": "marketing_copy",
+    "estimated_hours": 3,
+    "strategy_section": "1 Vize"
+  },
+  {
+    "title": "Vytvoř Mise Statement & Values Messaging",
+    "description": "Jasné vyjádření mise AC Heating: pomáhat snižovat energetickou náročnost. Hodnoty: kvalita, inovace, udržitelnost.",
+    "category": "marketing",
+    "priority": 2,
+    "agent_name": "content_writer",
+    "estimated_hours": 3,
+    "strategy_section": "2 Mise"
+  },
+  {
+    "title": "Vytvoř obsah pro About Us stránku",
+    "description": "Příběh AC Heating, história, těchto výroba Convert NG ONE, expertise, testimonials zákazníků.",
+    "category": "content",
+    "priority": 2,
+    "agent_name": "content_writer",
+    "estimated_hours": 4,
+    "strategy_section": "2 Mise"
+  },
+  {
+    "title": "Nastav KPI Dashboard pro sledování cílů",
+    "description": "Interaktivní dashboard pro tracking revenue růstu 373M → 432M → 522M Kč a HR metrics (108→129 osob).",
+    "category": "technical",
+    "priority": 1,
+    "agent_name": null,
+    "estimated_hours": 8,
+    "strategy_section": "3 Cíle"
+  },
+  {
+    "title": "Vytvoř content strategie pro Rodinné domy",
+    "description": "Blog serie o tepelných čerpadlech: dotace 2025, návratnost investice, instalace proces. SEO fokus na lokální vyhledávání.",
+    "category": "content",
+    "priority": 1,
+    "agent_name": "content_writer",
+    "estimated_hours": 6,
+    "strategy_section": "4 Obchod - Rodinné domy"
+  },
+  {
+    "title": "Vytvoř Google Ads kampaň pro Rodinné domy",
+    "description": "PPC strategie: 3-5 ad setů pro různé keywords (tepelné čerpadlo, dotace, instalace). Landing pages a tracking.",
+    "category": "marketing",
+    "priority": 1,
+    "agent_name": "marketing_copy",
+    "estimated_hours": 5,
+    "strategy_section": "4 Obchod - Rodinné domy"
+  },
+  {
+    "title": "Vytvoř Content pro Bytové domy",
+    "description": "Case studies a technical guides o modernizaci bytových domů. Fokus na SVJ a bytová družstva.",
+    "category": "content",
+    "priority": 2,
+    "agent_name": "content_writer",
+    "estimated_hours": 5,
+    "strategy_section": "4 Obchod - Bytové domy"
+  },
+  {
+    "title": "Vytvoř B2B Partner Portal koncept",
+    "description": "Whitepaper a dokumentace pro developpery, stavební firmy, projektanty. Partnerský program struktura.",
+    "category": "product",
+    "priority": 2,
+    "agent_name": "product_manager",
+    "estimated_hours": 6,
+    "strategy_section": "4 Obchod - B2B"
+  },
+  {
+    "title": "Napiš SEO obsah - Tepelná čerpadla",
+    "description": "Detailní blog posts o funkcích, výhodách, porovnání konkurence. Target: dlouho-tailové keywords.",
+    "category": "seo",
+    "priority": 1,
+    "agent_name": "seo_specialist",
+    "estimated_hours": 4,
+    "strategy_section": "5 SEO & Obsah"
+  },
+  {
+    "title": "Optimalizuj Product Pages - SEO",
+    "description": "Meta tagy, schéma.org, internal linking struktura pro všechny 8 produktů AC Heating.",
+    "category": "seo",
+    "priority": 1,
+    "agent_name": "seo_specialist",
+    "estimated_hours": 5,
+    "strategy_section": "5 SEO & Obsah"
+  },
+  {
+    "title": "Vytvoř Video Marketing strategie",
+    "description": "Plán pro 5-10 videí: Product demos, Installation process, Customer testimonials, How-to guides.",
+    "category": "marketing",
+    "priority": 2,
+    "agent_name": "marketing_copy",
+    "estimated_hours": 4,
+    "strategy_section": "5 SEO & Obsah"
+  },
+  {
+    "title": "Vytvoř Email Newsletter sekvenči",
+    "description": "5-7 emailů pro leads nurturing: educational content, case studies, offers, CTAs. Personalizované pro segmenty.",
+    "category": "marketing",
+    "priority": 2,
+    "agent_name": "marketing_copy",
+    "estimated_hours": 3,
+    "strategy_section": "6 Personalizace"
+  },
+  {
+    "title": "Vytvoř Case Study - Instalace Rodinný dům",
+    "description": "Detail případ instalace v Praze: před/po, náklady, úspora, timeline. S fotografiemi a metriky.",
+    "category": "content",
+    "priority": 2,
+    "agent_name": "content_writer",
+    "estimated_hours": 4,
+    "strategy_section": "6 Personalizace"
+  },
+  {
+    "title": "Vytvoř Landing Page - 'Dotace 2025'",
+    "description": "Specifická LP o dostupných dotacích, jak na ně, kalkulátor úspor, conversion optimalizace.",
+    "category": "marketing",
+    "priority": 2,
+    "agent_name": "marketing_copy",
+    "estimated_hours": 5,
+    "strategy_section": "6 Personalizace"
+  },
+  {
+    "title": "Auditoruj Social Media přítomnost",
+    "description": "Analýza LinkedIn, Instagram, Facebook. Plán 4x týdně postů s content calendarems.",
+    "category": "marketing",
+    "priority": 3,
+    "agent_name": "marketing_copy",
+    "estimated_hours": 3,
+    "strategy_section": "5 SEO & Obsah"
+  },
+  {
+    "title": "Vytvoř Product Comparison Guide",
+    "description": "Porovnání všech 8 produktů AC Heating: specifikace, cena, výhody, use cases.",
+    "category": "product",
+    "priority": 2,
+    "agent_name": "product_manager",
+    "estimated_hours": 4,
+    "strategy_section": "4 Obchod"
+  },
+  {
+    "title": "Vytvoř UX Copy pro Kalkátor dotací",
+    "description": "Persuasivní texty pro interaktivní kalkulátor. Jasné CTAs, error messages, success states.",
+    "category": "ux",
+    "priority": 1,
+    "agent_name": "marketing_copy",
+    "estimated_hours": 3,
+    "strategy_section": "6 Personalizace"
+  },
+  {
+    "title": "Vytvoř HR Employer Branding materál",
+    "description": "Obsah pro nábor: Company values, team story, career development, benefits. LinkedIn, web, sociální sítě.",
+    "category": "marketing",
+    "priority": 3,
+    "agent_name": "content_writer",
+    "estimated_hours": 4,
+    "strategy_section": "3 Cíle - HR"
+  }
+]

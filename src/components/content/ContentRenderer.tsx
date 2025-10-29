@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import Link from 'next/link';
 
 /**
@@ -91,9 +90,35 @@ function BlockRenderer({ block, index }: { block: ContentBlock; index: number })
       );
 
     case 'html':
+      // Sanitize HTML content - remove Next.js error messages and scripts with errors
+      const sanitizeHtml = (html: string) => {
+        let cleaned = html;
+
+        // 1. Remove script tags entirely (they contain error messages)
+        cleaned = cleaned.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+
+        // 2. Remove style tags with error content
+        cleaned = cleaned.replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '');
+
+        // 3. Remove various Next.js error message patterns (with flexible whitespace)
+        cleaned = cleaned.replace(/Invalid\s+src\s+prop[\s\S]*?(?=<|$)/gi, '');
+        cleaned = cleaned.replace(/Switched\s+to\s+client\s+rendering[\s\S]*?(?=<|$)/gi, '');
+        cleaned = cleaned.replace(/See\s+more\s+info[\s\S]*?(?=<|$)/gi, '');
+
+        // 4. Remove text nodes containing error indicators
+        cleaned = cleaned.replace(/on\s+[`']next\/image[`']/gi, '');
+        cleaned = cleaned.replace(/hostname\s+["\'][\w\.\:]+["\']\s+is\s+not\s+configured/gi, '');
+
+        // 5. Clean up excessive whitespace left behind
+        cleaned = cleaned.replace(/\n\s*\n/g, '\n');
+        cleaned = cleaned.replace(/>\s+</g, '><');
+
+        return cleaned.trim();
+      };
+
       return (
         <div
-          dangerouslySetInnerHTML={{ __html: block.content || '' }}
+          dangerouslySetInnerHTML={{ __html: sanitizeHtml(block.content || '') }}
           className="my-4"
         />
       );
@@ -174,13 +199,11 @@ function ImageBlock({
       transition={{ delay, duration: 0.5 }}
       className="my-8"
     >
-      <div className="relative aspect-video rounded-xl overflow-hidden bg-gray-100">
-        <Image
+      <div className="rounded-xl overflow-hidden bg-gray-100">
+        <img
           src={src}
           alt={alt}
-          fill
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, 800px"
+          className="w-full h-auto"
         />
       </div>
       {caption && (
