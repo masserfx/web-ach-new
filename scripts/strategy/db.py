@@ -24,13 +24,14 @@ class DatabaseConnection:
     def connect(self) -> None:
         """Establish database connection."""
         try:
+            sslmode = "require" if self.settings.db_ssl else "disable"
             self.conn = psycopg2.connect(
                 host=self.settings.db_host,
                 port=self.settings.db_port,
                 database=self.settings.db_name,
                 user=self.settings.db_user,
                 password=self.settings.db_password,
-                sslmode="require",
+                sslmode=sslmode,
             )
             self.conn.set_session(autocommit=True)
             logger.info(f"Connected to database at {self.settings.db_host}:{self.settings.db_port}")
