@@ -58,12 +58,25 @@ class DatabaseConnection:
 
     def execute(self, query: str, params: Optional[tuple] = None) -> List[Dict[str, Any]]:
         """Execute a SELECT query and return results."""
+        from decimal import Decimal
+
+        def convert_decimals(obj):
+            """Convert Decimal objects to float."""
+            if isinstance(obj, Decimal):
+                return float(obj)
+            elif isinstance(obj, dict):
+                return {k: convert_decimals(v) for k, v in obj.items()}
+            elif isinstance(obj, list):
+                return [convert_decimals(item) for item in obj]
+            return obj
+
         with self.cursor() as cur:
             if params:
                 cur.execute(query, params)
             else:
                 cur.execute(query)
-            return cur.fetchall() if cur.description else []
+            results = cur.fetchall() if cur.description else []
+            return [convert_decimals(row) for row in results]
 
     def execute_one(self, query: str, params: Optional[tuple] = None) -> Optional[Dict[str, Any]]:
         """Execute a query and return single row."""
