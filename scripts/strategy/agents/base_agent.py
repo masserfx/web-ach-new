@@ -100,7 +100,7 @@ class BaseAgent(ABC):
                 task_id=task_id,
                 agent_name=self.agent_name,
                 execution_type=ExecutionType.GENERATION.value,
-                trigger_source=trigger_source or "orchestrator",
+                trigger_source=trigger_source or "workflow",
                 status=ExecutionStatus.SUCCESS.value,
                 input_prompt=user_prompt,
                 output_data=output_for_json,
@@ -146,7 +146,7 @@ class BaseAgent(ABC):
                 task_id=task_id,
                 agent_name=self.agent_name,
                 execution_type=ExecutionType.GENERATION.value,
-                trigger_source=trigger_source or "orchestrator",
+                trigger_source=trigger_source or "workflow",
                 status=ExecutionStatus.FAILED.value,
                 error_message=str(e),
             )
