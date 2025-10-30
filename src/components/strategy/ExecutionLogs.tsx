@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 
 interface ExecutionLog {
@@ -20,31 +20,24 @@ interface ExecutionLog {
   output_quality_score: number | null;
 }
 
-export function ExecutionLogs() {
-  const [logs, setLogs] = useState<ExecutionLog[]>([]);
-  const [loading, setLoading] = useState(true);
+interface ExecutionLogsProps {
+  logs?: ExecutionLog[];
+  title?: string;
+  showFilters?: boolean;
+}
+
+export function ExecutionLogs({
+  logs: initialLogs = [],
+  title = 'Logy spuštění agentů',
+  showFilters = true
+}: ExecutionLogsProps) {
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [filter, setFilter] = useState<'all' | 'success' | 'failed' | 'running'>('all');
 
-  useEffect(() => {
-    loadLogs();
-  }, [filter]);
-
-  async function loadLogs() {
-    try {
-      const url = filter === 'all'
-        ? '/api/strategy/logs'
-        : `/api/strategy/logs?status=${filter}`;
-
-      const response = await fetch(url);
-      const data: ExecutionLog[] = await response.json();
-      setLogs(data);
-    } catch (error) {
-      console.error('Error loading logs:', error);
-    } finally {
-      setLoading(false);
-    }
-  }
+  // Filter logs based on selected status
+  const filteredLogs = filter === 'all'
+    ? initialLogs
+    : initialLogs.filter(log => log.status === filter);
 
   const statusColors = {
     success: 'bg-green-500/20 text-green-400 border-green-500/30',
@@ -60,10 +53,10 @@ export function ExecutionLogs() {
     cancelled: '⊘',
   };
 
-  if (loading) {
+  if (initialLogs.length === 0) {
     return (
-      <div className="flex items-center justify-center h-96">
-        <p className="text-steel-dim">Načítám logy...</p>
+      <div className="flex items-center justify-center h-48 text-steel-dim">
+        <p>Žádné záznamy spuštění</p>
       </div>
     );
   }
@@ -71,7 +64,8 @@ export function ExecutionLogs() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-bold">Logy spuštění agentů</h2>
+        <h2 className="text-xl font-bold">{title}</h2>
+        {showFilters && (
         <div className="flex gap-2">
           {['all', 'success', 'failed', 'running'].map((f) => (
             <button
@@ -90,10 +84,11 @@ export function ExecutionLogs() {
             </button>
           ))}
         </div>
+        )}
       </div>
 
       <div className="space-y-3">
-        {logs.map((log) => (
+        {filteredLogs.map((log) => (
           <div
             key={log.id}
             className="bg-graphite rounded-lg border border-graphite-light/30 overflow-hidden"
