@@ -1,8 +1,6 @@
 # Large image directories (should be in CDN for production)
+# Comment out for UI/UX testing in preview deployments
 public/images/photo
-public/images/cerpadlo
-public/images/heat-pump-detail
-public/images/products
 
 # Backup files
 public/images/*.backup
