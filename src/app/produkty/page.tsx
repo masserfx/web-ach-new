@@ -24,6 +24,9 @@ export const metadata: Metadata = {
 };
 
 async function getProducts() {
+  // Debug: Log Supabase URL
+  console.log('[produkty/page] Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL);
+
   const supabase = await createClient();
 
   const { data: products, error } = await supabase
@@ -33,10 +36,11 @@ async function getProducts() {
     .order('created_at', { ascending: false });
 
   if (error) {
-    console.error('Error fetching products:', error);
+    console.error('[produkty/page] Error fetching products:', error);
     return [];
   }
 
+  console.log('[produkty/page] Products count:', products?.length || 0);
   return products || [];
 }
 
