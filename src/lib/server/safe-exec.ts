@@ -19,13 +19,13 @@ const ALLOWED_COMMANDS = {
     if (!Number.isInteger(port) || port < 1 || port > 65535) {
       throw new Error('Invalid port number');
     }
-    return `lsof -i :${port} -t`;
+    return `ss -tlnp | grep :${port} || true`;
   },
   'port-info': (port: number) => {
     if (!Number.isInteger(port) || port < 1 || port > 65535) {
       throw new Error('Invalid port number');
     }
-    return `lsof -i :${port}`;
+    return `ss -tlnp | grep :${port} || true`;
   },
   'kill-process': (pid: number) => {
     if (!Number.isInteger(pid) || pid <= 0) {
@@ -43,7 +43,8 @@ const ALLOWED_COMMANDS = {
     if (!Number.isInteger(port) || port < 1 || port > 65535) {
       throw new Error('Invalid port number');
     }
-    return `lsof -ti :${port} | xargs kill -9 2>/dev/null || true`;
+    // Extract PID from ss output and kill it
+    return `ss -tlnp | grep :${port} | grep -oP 'pid=\\K[0-9]+' | xargs -r kill -9 2>/dev/null || true`;
   },
   'docker-logs': (containerName: string) => {
     if (!containerName.match(/^[a-zA-Z0-9_-]+$/)) {
@@ -143,31 +144,40 @@ export async function getMemoryInfo() {
 export async function getPortInfo(port: number) {
   try {
     const output = await safeExec('port-info', port);
-    if (!output) {
+    if (!output || output.trim() === '') {
       return { port, status: 'closed', service: 'Unknown', pid: null };
     }
 
-    // Parse lsof output
-    const lines = output.split('\n');
-    if (lines.length < 2) {
-      return { port, status: 'closed', service: 'Unknown', pid: null };
-    }
+    // Parse ss output
+    // Format: LISTEN 0 511 *:3100 *:* users:(("next-server (v1",pid=3802599,fd=22))
+    const pidMatch = output.match(/pid=(\d+)/);
+    const processMatch = output.match(/users:\(\("([^"]+)"/);
 
-    const header = lines[0];
-    const dataLine = lines[1];
-
-    const parts = dataLine.split(/\s+/);
-    const pid = parseInt(parts[1]);
-    const name = parts[0];
+    const pid = pidMatch ? parseInt(pidMatch[1]) : null;
+    const processName = processMatch ? processMatch[1] : 'Unknown';
 
     // Map service names
     const serviceMap: Record<string, string> = {
+      'next-server': 'Next.js Dev',
       'node': 'Next.js Dev',
+      'docker-proxy': 'Docker/Supabase',
       'docker': 'Docker/Supabase',
       'postgres': 'PostgreSQL',
     };
 
-    const service = serviceMap[name] || name;
+    // Find matching service name
+    let service = 'Unknown';
+    for (const [key, value] of Object.entries(serviceMap)) {
+      if (processName.toLowerCase().includes(key)) {
+        service = value;
+        break;
+      }
+    }
+
+    // If still unknown, use the process name
+    if (service === 'Unknown' && processName !== 'Unknown') {
+      service = processName;
+    }
 
     return {
       port,
@@ -175,7 +185,7 @@ export async function getPortInfo(port: number) {
       service,
       pid,
     };
-  } catch {
+  } catch (error) {
     return { port, status: 'closed' as const, service: 'Unknown', pid: null };
   }
 }
