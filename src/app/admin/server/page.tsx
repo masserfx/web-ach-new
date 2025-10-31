@@ -6,16 +6,26 @@ import { ServerStats } from '@/components/admin/ServerStats';
 import { ServiceControl } from '@/components/admin/ServiceControl';
 import { PortMonitor } from '@/components/admin/PortMonitor';
 import { ProcessList } from '@/components/admin/ProcessList';
-import { Activity } from 'lucide-react';
+import { Activity, AlertTriangle, X } from 'lucide-react';
 
 interface ServerStatsData {
   system: any;
   cpu: any;
   memory: any;
+  disk: any;
+  load: any;
+  network: any;
   services: any[];
   ports: any[];
   database: any;
   timestamp: string;
+}
+
+interface Alert {
+  id: string;
+  type: 'cpu' | 'memory' | 'disk';
+  message: string;
+  severity: 'warning' | 'critical';
 }
 
 export default function ServerMonitorPage() {
@@ -24,6 +34,8 @@ export default function ServerMonitorPage() {
   const [error, setError] = useState<string | null>(null);
   const [autoRefresh, setAutoRefresh] = useState(true);
   const [refreshInterval, setRefreshInterval] = useState(5000); // 5 seconds
+  const [alerts, setAlerts] = useState<Alert[]>([]);
+  const [dismissedAlerts, setDismissedAlerts] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     fetchServerStats();
@@ -45,6 +57,9 @@ export default function ServerMonitorPage() {
       const data = await response.json();
       setStats(data);
       setError(null);
+
+      // Check for critical alerts
+      checkForAlerts(data);
     } catch (err: any) {
       console.error('Error fetching server stats:', err);
       setError(err.message);
@@ -53,11 +68,90 @@ export default function ServerMonitorPage() {
     }
   }
 
+  function checkForAlerts(data: ServerStatsData) {
+    const newAlerts: Alert[] = [];
+
+    // CPU Alert
+    if (data.cpu.usage > 90) {
+      newAlerts.push({
+        id: 'cpu-critical',
+        type: 'cpu',
+        message: `CPU usage is critically high: ${data.cpu.usage.toFixed(1)}%`,
+        severity: 'critical',
+      });
+    }
+
+    // Memory Alert
+    if (data.memory.percentage > 90) {
+      newAlerts.push({
+        id: 'memory-critical',
+        type: 'memory',
+        message: `Memory usage is critically high: ${data.memory.percentage.toFixed(1)}%`,
+        severity: 'critical',
+      });
+    }
+
+    // Disk Alert
+    if (data.disk.percentage > 90) {
+      newAlerts.push({
+        id: 'disk-critical',
+        type: 'disk',
+        message: `Disk usage is critically high: ${data.disk.percentage}%`,
+        severity: 'critical',
+      });
+    }
+
+    setAlerts(newAlerts);
+  }
+
+  function dismissAlert(alertId: string) {
+    setDismissedAlerts(prev => new Set(prev).add(alertId));
+
+    // Auto-remove from dismissed after 10 seconds
+    setTimeout(() => {
+      setDismissedAlerts(prev => {
+        const newSet = new Set(prev);
+        newSet.delete(alertId);
+        return newSet;
+      });
+    }, 10000);
+  }
+
+  // Filter out dismissed alerts
+  const visibleAlerts = alerts.filter(alert => !dismissedAlerts.has(alert.id));
+
   return (
     <div className="min-h-screen bg-[#0D0D0D] text-white">
       {/* Header */}
       <header className="border-b border-[#2B2B2B] bg-[#0D0D0D]/95 backdrop-blur-lg sticky top-0 z-50">
         <div className="container mx-auto px-6 py-6">
+          {/* Critical Alerts */}
+          {visibleAlerts.length > 0 && (
+            <div className="mb-6 space-y-2">
+              {visibleAlerts.map((alert) => (
+                <div
+                  key={alert.id}
+                  className="flex items-center justify-between p-4 bg-red-500/10 border-2 border-red-500 rounded-lg animate-pulse"
+                >
+                  <div className="flex items-center gap-3">
+                    <AlertTriangle className="w-5 h-5 text-red-500" />
+                    <div>
+                      <p className="font-semibold text-red-500">Critical Alert</p>
+                      <p className="text-sm text-red-400">{alert.message}</p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => dismissAlert(alert.id)}
+                    className="p-1 hover:bg-red-500/20 rounded transition-colors"
+                    title="Dismiss for 10 seconds"
+                  >
+                    <X className="w-4 h-4 text-red-400" />
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+
           <div className="flex items-center justify-between mb-4">
             <div>
               <h1 className="text-3xl font-bold text-[#F36F21]">Server Monitor</h1>

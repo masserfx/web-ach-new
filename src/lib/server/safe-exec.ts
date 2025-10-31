@@ -56,6 +56,10 @@ const ALLOWED_COMMANDS = {
     'psql -h localhost -p 54322 -U postgres -c "SELECT count(*) FROM pg_stat_activity WHERE state = \'active\';"',
   'get-db-size': () =>
     'psql -h localhost -p 54322 -U postgres -c "SELECT pg_size_pretty(pg_database_size(\'postgres\'));"',
+  'disk-usage': () => 'df -h / | tail -1',
+  'disk-usage-all': () => 'df -h',
+  'network-connections': () => 'ss -tuln | grep LISTEN | wc -l',
+  'load-average': () => 'uptime | grep -o "load average.*" | cut -d: -f2',
 } as const;
 
 type CommandKey = keyof typeof ALLOWED_COMMANDS;
@@ -203,5 +207,59 @@ export async function getRunningProcesses(filter?: string) {
       : processes;
   } catch {
     return [];
+  }
+}
+
+export async function getDiskUsage() {
+  try {
+    const output = await safeExec('disk-usage');
+    const parts = output.split(/\s+/);
+
+    // df output: Filesystem Size Used Avail Use% Mounted
+    return {
+      filesystem: parts[0],
+      total: parts[1],
+      used: parts[2],
+      available: parts[3],
+      percentage: parseInt(parts[4]?.replace('%', '') || '0'),
+      mountpoint: parts[5],
+    };
+  } catch {
+    return {
+      filesystem: 'Unknown',
+      total: '0G',
+      used: '0G',
+      available: '0G',
+      percentage: 0,
+      mountpoint: '/',
+    };
+  }
+}
+
+export async function getLoadAverage() {
+  try {
+    const output = await safeExec('load-average');
+    const loads = output.trim().split(',').map(s => parseFloat(s.trim()));
+
+    return {
+      '1min': loads[0] || 0,
+      '5min': loads[1] || 0,
+      '15min': loads[2] || 0,
+    };
+  } catch {
+    return {
+      '1min': 0,
+      '5min': 0,
+      '15min': 0,
+    };
+  }
+}
+
+export async function getNetworkConnections() {
+  try {
+    const output = await safeExec('network-connections');
+    return parseInt(output.trim()) || 0;
+  } catch {
+    return 0;
   }
 }

@@ -7,6 +7,9 @@ import {
   getMemoryInfo,
   getPortInfo,
   getRunningProcesses,
+  getDiskUsage,
+  getLoadAverage,
+  getNetworkConnections,
   safeExec,
 } from '@/lib/server/safe-exec';
 
@@ -25,10 +28,13 @@ export async function GET(request: NextRequest) {
     await requireAdmin();
 
     // Fetch all system data in parallel
-    const [systemInfo, cpuUsage, memoryInfo, portInfos] = await Promise.all([
+    const [systemInfo, cpuUsage, memoryInfo, diskUsage, loadAverage, networkConnections, portInfos] = await Promise.all([
       getSystemInfo(),
       getCpuUsage(),
       getMemoryInfo(),
+      getDiskUsage(),
+      getLoadAverage(),
+      getNetworkConnections(),
       Promise.all([
         getPortInfo(3100), // Next.js dev
         getPortInfo(54321), // Supabase API
@@ -66,6 +72,22 @@ export async function GET(request: NextRequest) {
         used: memoryInfo.used,
         free: memoryInfo.free,
         percentage: Math.round(memoryInfo.percentage * 100) / 100,
+      },
+      disk: {
+        filesystem: diskUsage.filesystem,
+        total: diskUsage.total,
+        used: diskUsage.used,
+        available: diskUsage.available,
+        percentage: diskUsage.percentage,
+        mountpoint: diskUsage.mountpoint,
+      },
+      load: {
+        '1min': loadAverage['1min'],
+        '5min': loadAverage['5min'],
+        '15min': loadAverage['15min'],
+      },
+      network: {
+        connections: networkConnections,
       },
       services,
       ports: services.map((service) => ({
