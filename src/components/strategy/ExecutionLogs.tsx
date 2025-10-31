@@ -215,7 +215,7 @@ export function ExecutionLogs({
           </div>
         ))}
 
-        {logs.length === 0 && (
+        {filteredLogs.length === 0 && (
           <div className="text-center py-12 text-steel-dim">
             <p>Žádné logy k zobrazení</p>
           </div>
@@ -226,19 +226,19 @@ export function ExecutionLogs({
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-8 pt-8 border-t border-graphite-light/30">
         <div className="bg-graphite rounded-lg p-4 border border-graphite-light/30">
           <p className="text-steel-dim text-sm">Celkem spuštění</p>
-          <p className="text-2xl font-bold text-white mt-2">{logs.length}</p>
+          <p className="text-2xl font-bold text-white mt-2">{filteredLogs.length}</p>
         </div>
         <div className="bg-graphite rounded-lg p-4 border border-graphite-light/30">
           <p className="text-steel-dim text-sm">Úspěšná spuštění</p>
           <p className="text-2xl font-bold text-green-400 mt-2">
-            {logs.filter((l) => l.status === 'success').length}
+            {initialLogs.filter((l) => l.status === 'success').length}
           </p>
         </div>
         <div className="bg-graphite rounded-lg p-4 border border-graphite-light/30">
           <p className="text-steel-dim text-sm">Celkové náklady</p>
           <p className="text-2xl font-bold text-accent mt-2">
             $
-            {logs
+            {initialLogs
               .reduce((sum, l) => sum + (l.api_cost || 0), 0)
               .toFixed(2)}
           </p>
@@ -246,12 +246,12 @@ export function ExecutionLogs({
         <div className="bg-graphite rounded-lg p-4 border border-graphite-light/30">
           <p className="text-steel-dim text-sm">Průměrná kvalita</p>
           <p className="text-2xl font-bold text-blue-400 mt-2">
-            {logs.length > 0
+            {initialLogs.length > 0
               ? (
-                  (logs
+                  (initialLogs
                     .filter((l) => l.output_quality_score)
                     .reduce((sum, l) => sum + (l.output_quality_score || 0), 0) /
-                    logs.filter((l) => l.output_quality_score).length) *
+                    initialLogs.filter((l) => l.output_quality_score).length) *
                   100
                 ).toFixed(0)
               : 'N/A'}

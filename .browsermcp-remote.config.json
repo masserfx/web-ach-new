@@ -1,0 +1,81 @@
+{
+  "name": "AC Heating Browser MCP - Remote",
+  "description": "Browser automation for AC Heating web - Remote mode",
+  "version": "1.0.0",
+  "
+  "remoteConfig": {
+    "enabled": true,
+    "serverUrl": "http://91.99.126.53",
+    "websocketPort": 8765,
+    "httpPort": 3005,
+    "mode": "unified"
+  },
+  "security": {
+    "allowRemoteAccess": true,
+    "requireAuth": false,
+    "corsEnabled": true,
+    "corsOrigins": [
+      "http://localhost:*",
+      "http://127.0.0.1:*",
+      "http://91.99.126.53:*",
+      "chrome-extension://*"
+    ],
+    "headlessMode": true,
+    "noHeadlessOverride": false
+  },
+  "chrome": {
+    "launchArgs": [
+      "--disable-blink-features=AutomationControlled",
+      "--disable-dev-shm-usage",
+      "--no-first-run",
+      "--no-default-browser-check",
+      "--disable-popup-blocking",
+      "--disable-extensions-except=/home/leos/.local/lib/browsermcp-enhanced/chrome-extension",
+      "--load-extension=/home/leos/.local/lib/browsermcp-enhanced/chrome-extension"
+    ],
+    "userDataDir": "/home/leos/.chrome-browsermcp",
+    "timeout": 30000,
+    "viewportWidth": 1920,
+    "viewportHeight": 1080
+  },
+  "sessionManagement": {
+    "maxSessions": 10,
+    "sessionTimeout": 3600000,
+    "autoCleanup": true,
+    "cleanupInterval": 300000
+  },
+  "logging": {
+    "level": "info",
+    "file": "/tmp/browsermcp-remote.log",
+    "maxFileSize": 10485760,
+    "maxFiles": 5
+  },
+  "features": {
+    "screenshot": true,
+    "snapshot": true,
+    "navigate": true,
+    "click": true,
+    "type": true,
+    "hover": true,
+    "scroll": true,
+    "executeJS": true,
+    "debugger": true,
+    "devTools": true,
+    "localStorage": true,
+    "cookies": true,
+    "fileUpload": true
+  },
+  "performance": {
+    "enableCache": true,
+    "cacheDir": "/tmp/browsermcp-cache",
+    "maxCacheSize": 104857600,
+    "enableCompression": true,
+    "compressionLevel": 6
+  },
+  "monitoring": {
+    "enabled": true,
+    "metricsPort": 9090,
+    "healthCheckInterval": 30000,
+    "logProcessStats": true
+  }
+}

@@ -13,13 +13,19 @@ class Settings(BaseSettings):
     anthropic_model: str = "claude-sonnet-4-5-20250929"
     anthropic_max_tokens: int = 4096
 
-    # Database
+    # PostgreSQL Database
     db_host: str = "localhost"
     db_port: int = 54322
     db_name: str = "postgres"
     db_user: str = "postgres"
     db_password: str = ""
     db_ssl: bool = False
+
+    # Neo4j Graph Database
+    neo4j_uri: str = "bolt://localhost:7687"
+    neo4j_user: str = "neo4j"
+    neo4j_password: str = ""
+    neo4j_enabled: bool = True
 
     # Application
     project_root: Path = Path(__file__).parent.parent.parent

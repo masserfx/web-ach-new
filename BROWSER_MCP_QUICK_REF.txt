@@ -1,0 +1,157 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║          Browser MCP Connection - Quick Reference Card                      ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+🎯 PROBLÉM: Extension na Macu se neconnectuje na 91.99.126.53:8765
+
+───────────────────────────────────────────────────────────────────────────────
+
+⚡ TEST 1: Network Connectivity (Mac Terminal)
+
+    nc -zv 91.99.126.53 8765
+
+    ✅ Expected: "Connection successful"
+    ❌ If: "refused" or "timeout" → FIREWALL ISSUE → Use SSH Tunnel
+    ✅ If success → Continue to Test 2
+
+───────────────────────────────────────────────────────────────────────────────
+
+⚡ TEST 2: WebSocket Handshake (Mac Terminal)
+
+    curl -i -N \
+      -H "Connection: Upgrade" \
+      -H "Upgrade: websocket" \
+      -H "Sec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==" \
+      -H "Sec-WebSocket-Version: 13" \
+      http://91.99.126.53:8765/
+
+    ✅ Expected: "HTTP/1.1 101 Switching Protocols" (in first line)
+    ❌ If: "404" or "500" → SERVER CONFIG ISSUE → Restart daemon
+    ⏱️ If: timeout after 3s → FIREWALL ISSUE → Use SSH Tunnel
+    ✅ If 101 → Continue to Test 3
+
+───────────────────────────────────────────────────────────────────────────────
+
+⚡ TEST 3: Extension Permissions (Chrome DevTools)
+
+    1. Chrome: chrome://extensions
+    2. Browser MCP: "Inspect views" → "background page"
+    3. Console tab → paste this:
+
+    chrome.runtime.getManifest((manifest) => {
+      const perms = manifest.host_permissions || [];
+      const has91 = perms.some(p => p.includes('91.99.126.53'));
+      console.log('✅ 91.99.126.53 allowed:', has91);
+    });
+
+    ✅ Expected: "✅ 91.99.126.53 allowed: true"
+    ❌ If: "false" → MANIFEST ISSUE → Update host_permissions
+    ✅ If true → Everything OK, try Reconnect!
+
+───────────────────────────────────────────────────────────────────────────────
+
+🔧 SOLUTION #1: FIREWALL (Test 1 or 2 failed)
+
+    Step 1: Mac Terminal - Create SSH tunnel (leave running)
+        ssh -i ~/.ssh/hetzner_server_ed25519 -N -L 8765:localhost:8765 leos@91.99.126.53
+
+    Step 2: Chrome Extension Settings
+        Host: 127.0.0.1  (was: 91.99.126.53)
+        Port: 8765       (same)
+        URL:  ws://127.0.0.1:8765
+
+    Step 3: Click "Reconnect" button
+
+    ✅ Should work now!
+
+───────────────────────────────────────────────────────────────────────────────
+
+🔧 SOLUTION #2: SERVER CONFIG (Test 2 returns 404/500)
+
+    On Remote Server (SSH):
+        ssh -i ~/.ssh/hetzner_server_ed25519 leos@91.99.126.53
+
+        # Check daemon status
+        ps aux | grep browsermcp | grep -v grep
+
+        # Kill old daemon
+        kill -9 <PID_FROM_ABOVE>
+
+        # Restart daemon
+        cd ~/.local/lib/browsermcp-enhanced
+        npm start
+
+        # Verify it's listening
+        lsof -i :8765
+
+    Back on Mac: Click "Reconnect"
+
+    ✅ Should work now!
+
+───────────────────────────────────────────────────────────────────────────────
+
+🔧 SOLUTION #3: MANIFEST (Test 3 returns false)
+
+    Step 1: Mac - Find extension directory
+        ~/browsermcp-extension  (or find via Chrome devtools)
+
+    Step 2: Edit manifest.json - add/update "host_permissions":
+
+        "host_permissions": [
+          "http://localhost:*/*",
+          "ws://localhost:*/*",
+          "http://127.0.0.1:*/*",
+          "ws://127.0.0.1:*/*",
+          "http://91.99.126.53:*/*",
+          "ws://91.99.126.53:*/*"
+        ]
+
+    Step 3: Chrome: chrome://extensions → Browser MCP → Click 🔄 Reload
+
+    Step 4: Re-test with Test 3 code above
+
+    Step 5: Click "Reconnect" button
+
+    ✅ Should work now!
+
+───────────────────────────────────────────────────────────────────────────────
+
+📋 DECISION TREE
+
+    Does Test 1 (nc) succeed?
+    ├─ NO → Use Solution #1 (SSH Tunnel)
+    └─ YES
+       └─ Does Test 2 (curl) return 101?
+          ├─ NO → Use Solution #2 (Restart Daemon)
+          └─ YES
+             └─ Does Test 3 (manifest) return true?
+                ├─ NO → Use Solution #3 (Update Manifest)
+                └─ YES → Click Reconnect, should work!
+
+───────────────────────────────────────────────────────────────────────────────
+
+📂 FULL DIAGNOSTIC FILES
+
+    - BROWSER_MCP_TROUBLESHOOT.md  ← Step-by-step solutions
+    - BROWSER_MCP_CONNECTION_FIX.md ← Detailed analysis
+    - BROWSER_MCP_REMOTE_DIAGNOSTICS.sh ← Server diagnostics
+
+───────────────────────────────────────────────────────────────────────────────
+
+✅ WHEN IT WORKS, YOU'LL SEE:
+
+    1. Extension icon shows "Connected" status
+    2. Chrome DevTools Network: WebSocket with "101" status
+    3. Admin panel (91.99.126.53:3100): Browser MCP shows "running"
+    4. Extension console: No CORS or timeout errors
+
+───────────────────────────────────────────────────────────────────────────────
+
+💡 KEY INSIGHTS
+
+    • If firewall blocks: ssh tunnel makes it look like local connection
+    • If server not responding: daemon needs restart
+    • If browser complains: manifest permissions must match exactly
+    • All 3 tests passing = solution exists and configuration is OK
+
+───────────────────────────────────────────────────────────────────────────────

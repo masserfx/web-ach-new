@@ -1,0 +1,207 @@
+import { exec } from 'child_process';
+import { promisify } from 'util';
+
+const execAsync = promisify(exec);
+
+// Whitelist allowed commands with parameters
+const ALLOWED_COMMANDS = {
+  'cpu-usage': () => 'top -bn1 | grep "Cpu(s)"',
+  'memory-info': () => 'free -m',
+  'node-version': () => 'node --version',
+  'npm-version': () => 'npm --version',
+  'system-uptime': () => 'uptime -p',
+  'platform-info': () => 'uname -s -m',
+  'cpu-cores': () => 'nproc',
+  'cpu-model': () => "lscpu | grep 'Model name' | head -1",
+  'docker-ps': () => 'docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"',
+  'list-node-processes': () => "ps aux | grep -E '[n]ode|[n]pm' | awk '{print $2, $11, $12, $13}'",
+  'port-check': (port: number) => {
+    if (!Number.isInteger(port) || port < 1 || port > 65535) {
+      throw new Error('Invalid port number');
+    }
+    return `lsof -i :${port} -t`;
+  },
+  'port-info': (port: number) => {
+    if (!Number.isInteger(port) || port < 1 || port > 65535) {
+      throw new Error('Invalid port number');
+    }
+    return `lsof -i :${port}`;
+  },
+  'kill-process': (pid: number) => {
+    if (!Number.isInteger(pid) || pid <= 0) {
+      throw new Error('Invalid process ID');
+    }
+    return `kill -SIGTERM ${pid}`;
+  },
+  'force-kill-process': (pid: number) => {
+    if (!Number.isInteger(pid) || pid <= 0) {
+      throw new Error('Invalid process ID');
+    }
+    return `kill -SIGKILL ${pid}`;
+  },
+  'kill-port': (port: number) => {
+    if (!Number.isInteger(port) || port < 1 || port > 65535) {
+      throw new Error('Invalid port number');
+    }
+    return `lsof -ti :${port} | xargs kill -9 2>/dev/null || true`;
+  },
+  'docker-logs': (containerName: string) => {
+    if (!containerName.match(/^[a-zA-Z0-9_-]+$/)) {
+      throw new Error('Invalid container name');
+    }
+    return `docker logs ${containerName} --tail 100`;
+  },
+  'get-db-version': () => 'psql -h localhost -p 54322 -U postgres -c "SELECT version();"',
+  'get-active-connections': () =>
+    'psql -h localhost -p 54322 -U postgres -c "SELECT count(*) FROM pg_stat_activity WHERE state = \'active\';"',
+  'get-db-size': () =>
+    'psql -h localhost -p 54322 -U postgres -c "SELECT pg_size_pretty(pg_database_size(\'postgres\'));"',
+} as const;
+
+type CommandKey = keyof typeof ALLOWED_COMMANDS;
+
+export async function safeExec(
+  command: CommandKey,
+  ...args: any[]
+): Promise<string> {
+  try {
+    const commandFn = ALLOWED_COMMANDS[command];
+    if (!commandFn) {
+      throw new Error(`Unknown command: ${command}`);
+    }
+
+    const cmd = typeof commandFn === 'function'
+      ? (commandFn as any)(...args)
+      : commandFn;
+
+    const { stdout, stderr } = await execAsync(cmd, {
+      timeout: 10000, // 10 seconds timeout
+      maxBuffer: 1024 * 1024, // 1MB max output
+    });
+
+    if (stderr && command !== 'docker-logs') {
+      console.error(`[${command}] stderr:`, stderr);
+    }
+
+    return stdout.trim();
+  } catch (error: any) {
+    console.error(`[safeExec] Error executing ${command}:`, error.message);
+    throw new Error(`Failed to execute command: ${command}. ${error.message}`);
+  }
+}
+
+// Helper functions for common operations
+export async function getSystemInfo() {
+  const [platform, nodeVersion, npmVersion, uptime, cpuCores, cpuModel] = await Promise.all([
+    safeExec('platform-info'),
+    safeExec('node-version'),
+    safeExec('npm-version'),
+    safeExec('system-uptime'),
+    safeExec('cpu-cores'),
+    safeExec('cpu-model'),
+  ]);
+
+  return {
+    platform: platform.split(' ')[0] === 'Linux' ? 'Linux' : 'Unknown',
+    arch: platform.split(' ')[1] || 'x64',
+    nodeVersion: nodeVersion.trim(),
+    npmVersion: npmVersion.trim(),
+    uptime: uptime.trim(),
+    cpuCores: parseInt(cpuCores.trim()),
+    cpuModel: cpuModel.split(':')[1]?.trim() || 'Unknown',
+  };
+}
+
+export async function getCpuUsage() {
+  const output = await safeExec('cpu-usage');
+  const match = output.match(/Cpu\(s\):\s+([0-9.]+)%us/);
+  return parseFloat(match?.[1] || '0');
+}
+
+export async function getMemoryInfo() {
+  const output = await safeExec('memory-info');
+  const lines = output.split('\n');
+  const memLine = lines[1]; // "Mem:" line
+
+  if (!memLine) {
+    return { total: 0, used: 0, free: 0, percentage: 0 };
+  }
+
+  const parts = memLine.split(/\s+/);
+  const total = parseInt(parts[1]);
+  const used = parseInt(parts[2]);
+  const free = parseInt(parts[3]);
+  const percentage = (used / total) * 100;
+
+  return { total, used, free, percentage };
+}
+
+export async function getPortInfo(port: number) {
+  try {
+    const output = await safeExec('port-info', port);
+    if (!output) {
+      return { port, status: 'closed', service: 'Unknown', pid: null };
+    }
+
+    // Parse lsof output
+    const lines = output.split('\n');
+    if (lines.length < 2) {
+      return { port, status: 'closed', service: 'Unknown', pid: null };
+    }
+
+    const header = lines[0];
+    const dataLine = lines[1];
+
+    const parts = dataLine.split(/\s+/);
+    const pid = parseInt(parts[1]);
+    const name = parts[0];
+
+    // Map service names
+    const serviceMap: Record<string, string> = {
+      'node': 'Next.js Dev',
+      'docker': 'Docker/Supabase',
+      'postgres': 'PostgreSQL',
+    };
+
+    const service = serviceMap[name] || name;
+
+    return {
+      port,
+      status: 'listening' as const,
+      service,
+      pid,
+    };
+  } catch {
+    return { port, status: 'closed' as const, service: 'Unknown', pid: null };
+  }
+}
+
+export async function getRunningProcesses(filter?: string) {
+  try {
+    const output = await safeExec('list-node-processes');
+    if (!output) {
+      return [];
+    }
+
+    const processes = output
+      .split('\n')
+      .filter((line) => line.trim())
+      .map((line) => {
+        const parts = line.split(/\s+/);
+        const pid = parseInt(parts[0]);
+        const command = parts.slice(1).join(' ');
+
+        return {
+          pid,
+          name: command.split('/').pop() || command,
+          command,
+        };
+      });
+
+    return filter
+      ? processes.filter((p) => p.command.includes(filter))
+      : processes;
+  } catch {
+    return [];
+  }
+}

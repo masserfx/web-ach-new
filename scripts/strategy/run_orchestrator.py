@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run the Strategy Orchestrator to execute tasks."""
+"""Run the Strategy Orchestrator to execute tasks with Neo4j integration."""
 
 import argparse
 import json
@@ -29,6 +29,7 @@ def main(
     """Main function."""
     logger.info("Starting Strategy Orchestrator")
     logger.info(f"Configuration: limit={limit}, dry_run={dry_run}, continuous={continuous}")
+    logger.info(f"Neo4j enabled: {settings.neo4j_enabled}")
 
     # Connect to database
     try:
@@ -37,8 +38,35 @@ def main(
         logger.error(f"Failed to connect to database: {e}")
         return False
 
+    # Initialize Neo4j if enabled
+    neo4j_conn = None
+    learning_system = None
+    
+    if settings.neo4j_enabled:
+        try:
+            from neo4j_db import init_neo4j
+            from learning_system import LearningSystem
+            
+            neo4j_conn = init_neo4j(
+                uri=settings.neo4j_uri,
+                user=settings.neo4j_user,
+                password=settings.neo4j_password
+            )
+            learning_system = LearningSystem(neo4j_conn)
+            logger.info("Neo4j and Learning System initialized successfully")
+        except ImportError as e:
+            logger.warning(f"Neo4j driver not installed: {e}")
+            logger.warning("Install with: uv add neo4j")
+            logger.info("Continuing without Neo4j integration")
+        except Exception as e:
+            logger.error(f"Failed to initialize Neo4j: {e}")
+            logger.info("Continuing without Neo4j integration")
+
     # Initialize orchestrator
-    orchestrator = StrategyOrchestrator()
+    orchestrator = StrategyOrchestrator(
+        neo4j_conn=neo4j_conn,
+        learning_system=learning_system
+    )
 
     try:
         while True:
@@ -69,11 +97,24 @@ def main(
                     f"{results['failed']} failed"
                 )
 
+                # Get status report with Neo4j insights
+                status_report = orchestrator.get_status_report()
+                
                 # Save report if requested
                 if report_file:
+                    full_report = {
+                        "batch_results": results,
+                        "status_report": status_report
+                    }
                     with open(report_file, "w") as f:
-                        json.dump(results, f, indent=2, default=str)
+                        json.dump(full_report, f, indent=2, default=str)
                     logger.info(f"Report saved to {report_file}")
+                
+                # Log Neo4j insights if available
+                if "neo4j_insights" in status_report:
+                    logger.info("Neo4j Performance Insights:")
+                    for agent_name, perf in status_report["neo4j_insights"].items():
+                        logger.info(f"  {agent_name}: {perf.get('total_executions', 0)} executions")
 
             if not continuous:
                 break
@@ -86,11 +127,13 @@ def main(
         return False
 
     except Exception as e:
-        logger.error(f"Error during orchestration: {e}")
+        logger.error(f"Error during orchestration: {e}", exc_info=True)
         return False
 
     finally:
         db.disconnect()
+        if neo4j_conn:
+            neo4j_conn.close()
 
     logger.info("Orchestration complete")
     return True

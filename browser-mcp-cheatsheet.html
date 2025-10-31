@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser MCP Cheat Sheet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        header {
+            background: rgba(255,255,255,0.95);
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card h3 {
+            color: #333;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+            font-weight: 600;
+        }
+        .emoji {
+            font-size: 1.3em;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9em;
+            word-break: break-all;
+        }
+        .command {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 12px;
+            border-radius: 6px;
+            margin: 8px 0;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.85em;
+            overflow-x: auto;
+            cursor: pointer;
+            border-left: 4px solid #667eea;
+            transition: all 0.2s;
+        }
+        .command:hover {
+            background: #3d3d3d;
+            border-left-color: #764ba2;
+        }
+        .command:active {
+            background: #1d1d1d;
+        }
+        .result {
+            margin-top: 8px;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-family: 'Monaco', monospace;
+        }
+        .result.success {
+            background: #d4edda;
+            color: #155724;
+            border-left: 3px solid #28a745;
+        }
+        .result.error {
+            background: #f8d7da;
+            color: #721c24;
+            border-left: 3px solid #dc3545;
+        }
+        .result.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border-left: 3px solid #17a2b8;
+        }
+        .decision-tree {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Monaco', monospace;
+            font-size: 0.9em;
+            line-height: 1.6;
+            margin-top: 20px;
+        }
+        .step {
+            margin: 8px 0;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        .step:last-child {
+            border-bottom: none;
+        }
+        .button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-top: 10px;
+            transition: all 0.2s;
+        }
+        .button:hover {
+            background: #764ba2;
+            transform: scale(1.05);
+        }
+        .button:active {
+            transform: scale(0.98);
+        }
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 768px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .status-indicator.ok {
+            background: #28a745;
+        }
+        .status-indicator.error {
+            background: #dc3545;
+        }
+        .status-indicator.pending {
+            background: #ffc107;
+        }
+        footer {
+            text-align: center;
+            color: rgba(255,255,255,0.8);
+            margin-top: 40px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔗 Browser MCP Connection Cheat Sheet</h1>
+            <p class="subtitle">Fast diagnostics and solutions for Mac + Hetzner setup</p>
+        </header>
+
+        <div class="grid">
+            <!-- Test 1: Network Connectivity -->
+            <div class="card">
+                <h2><span class="emoji">🌐</span> Test 1: Network</h2>
+                <p style="color: #666; margin-bottom: 12px;">Is the server reachable?</p>
+                <div class="command" onclick="copyToClipboard(this)">nc -zv 91.99.126.53 8765</div>
+                <h3>✅ Success:</h3>
+                <div class="result success">Connection successful</div>
+                <h3>❌ Failure:</h3>
+                <div class="result error">Connection refused</div>
+                <div class="result error">Timeout</div>
+                <p style="color: #666; font-size: 0.9em; margin-top: 12px;">→ Use SSH Tunnel if fails</p>
+            </div>
+
+            <!-- Test 2: WebSocket -->
+            <div class="card">
+                <h2><span class="emoji">🔌</span> Test 2: WebSocket</h2>
+                <p style="color: #666; margin-bottom: 12px;">Does server support WebSocket?</p>
+                <div class="command" onclick="copyToClipboard(this)">curl -i -N -H "Connection: Upgrade" -H "Upgrade: websocket" -H "Sec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==" -H "Sec-WebSocket-Version: 13" http://91.99.126.53:8765/</div>
+                <h3>✅ Success:</h3>
+                <div class="result success">HTTP/1.1 101 Switching Protocols</div>
+                <h3>❌ Failure:</h3>
+                <div class="result error">HTTP/1.1 404 Not Found</div>
+                <div class="result error">HTTP/1.1 500 Internal Server Error</div>
+                <p style="color: #666; font-size: 0.9em; margin-top: 12px;">→ Restart daemon if 404/500</p>
+            </div>
+
+            <!-- Test 3: Extension -->
+            <div class="card">
+                <h2><span class="emoji">🔐</span> Test 3: Extension</h2>
+                <p style="color: #666; margin-bottom: 12px;">Are permissions correct?</p>
+                <p style="font-size: 0.85em; margin-bottom: 8px;">Run in Chrome DevTools (background page console):</p>
+                <div class="command" onclick="copyToClipboard(this)">chrome.runtime.getManifest((manifest) => { const perms = manifest.host_permissions || []; const has91 = perms.some(p => p.includes('91.99.126.53')); console.log('✅ 91.99.126.53 allowed:', has91); });</div>
+                <h3>✅ Success:</h3>
+                <div class="result success">✅ 91.99.126.53 allowed: true</div>
+                <h3>❌ Failure:</h3>
+                <div class="result error">✅ 91.99.126.53 allowed: false</div>
+                <p style="color: #666; font-size: 0.9em; margin-top: 12px;">→ Update manifest if false</p>
+            </div>
+
+            <!-- SSH Tunnel -->
+            <div class="card">
+                <h2><span class="emoji">🚇</span> SSH Tunnel</h2>
+                <p style="color: #666; margin-bottom: 12px;">When network test fails</p>
+                <div class="command" onclick="copyToClipboard(this)">ssh -i ~/.ssh/hetzner_server_ed25519 -N -L 8765:localhost:8765 leos@91.99.126.53</div>
+                <p style="color: #666; font-size: 0.85em; margin: 12px 0;">Then change Extension config:</p>
+                <div class="result info">Host: 127.0.0.1<br>Port: 8765</div>
+                <p style="color: #666; font-size: 0.85em; margin-top: 12px;">Leave Terminal running, then Reconnect</p>
+            </div>
+
+            <!-- Restart Daemon -->
+            <div class="card">
+                <h2><span class="emoji">🔄</span> Restart Daemon</h2>
+                <p style="color: #666; margin-bottom: 12px;">When WebSocket test returns 404/500</p>
+                <p style="font-size: 0.85em; margin-bottom: 8px;">On Remote Server (SSH):</p>
+                <div class="command" onclick="copyToClipboard(this)">ps aux | grep browsermcp | grep -v grep</div>
+                <p style="color: #666; font-size: 0.85em; margin: 8px 0;">Get PID, then:</p>
+                <div class="command" onclick="copyToClipboard(this)">kill -9 <PID></div>
+                <p style="color: #666; font-size: 0.85em; margin: 8px 0;">Start again:</p>
+                <div class="command" onclick="copyToClipboard(this)">cd ~/.local/lib/browsermcp-enhanced && npm start</div>
+            </div>
+
+            <!-- Monitor -->
+            <div class="card">
+                <h2><span class="emoji">📊</span> Real-time Monitor</h2>
+                <p style="color: #666; margin-bottom: 12px;">Watch connection status</p>
+                <div class="command" onclick="copyToClipboard(this)">chmod +x ~/ac-heating-web-new/browser-mcp-monitor.sh && ~/ac-heating-web-new/browser-mcp-monitor.sh</div>
+                <h3>Shows:</h3>
+                <div class="result info">✅ Port 8765 reachable<br>✅ WebSocket upgrade works<br>✅ HTTP API works</div>
+                <p style="color: #666; font-size: 0.85em; margin-top: 12px;">Runs every 5 seconds, Ctrl+C to stop</p>
+            </div>
+        </div>
+
+        <!-- Decision Tree -->
+        <div class="two-column">
+            <div class="card">
+                <h2><span class="emoji">🎯</span> Decision Tree</h2>
+                <div class="decision-tree">
+                    <div class="step">
+                        Test 1: nc -zv...
+                        <div style="margin-left: 20px; color: #ffc107;">
+                            ├─ ✅ Connection successful
+                            <div style="margin-left: 20px; color: #87ceeb;">
+                                └─ Test 2: curl...
+                                <div style="margin-left: 20px; color: #90ee90;">
+                                    ├─ ✅ HTTP 101 → Test 3
+                                    └─ ❌ 404/500 → Restart daemon
+                                </div>
+                            </div>
+                            └─ ❌ Connection refused/Timeout
+                            <div style="margin-left: 20px; color: #ffb6c6;">
+                                → Use SSH Tunnel
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Files Reference -->
+            <div class="card">
+                <h2><span class="emoji">📁</span> Documentation</h2>
+                <h3>Quick Start:</h3>
+                <code>BROWSER_MCP_QUICK_REF.txt</code>
+                <h3>Detailed Solutions:</h3>
+                <code>BROWSER_MCP_TROUBLESHOOT.md</code>
+                <h3>Deep Diagnostics:</h3>
+                <code>BROWSER_MCP_CONNECTION_FIX.md</code>
+                <h3>All Commands:</h3>
+                <code>BROWSER_MCP_COMMANDS.md</code>
+                <h3>Index:</h3>
+                <code>BROWSER_MCP_INDEX.md</code>
+                <p style="color: #666; font-size: 0.85em; margin-top: 12px;">All files in: ~/ac-heating-web-new/</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>Browser MCP Connection Troubleshooting Toolkit</p>
+            <p style="font-size: 0.9em; margin-top: 10px;">🔗 Server: 91.99.126.53:8765 | 💻 Mac + Hetzner Setup</p>
+        </footer>
+    </div>
+
+    <script>
+        function copyToClipboard(element) {
+            const text = element.innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = element.innerText;
+                element.innerText = '✅ Copied!';
+                element.style.background = '#28a745';
+                setTimeout(() => {
+                    element.innerText = originalText;
+                    element.style.background = '';
+                }, 2000);
+            });
+        }
+
+        // Click any command to copy it
+        document.querySelectorAll('.command').forEach(el => {
+            el.title = 'Click to copy';
+        });
+    </script>
+</body>
+</html>

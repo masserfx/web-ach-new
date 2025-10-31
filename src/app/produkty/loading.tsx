@@ -12,9 +12,9 @@ export default function ProductsLoading() {
       </div>
 
       {/* Products Grid Skeleton */}
-      <div className="container mx-auto px-4 py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {[...Array(6)].map((_, i) => (
+      <div className="max-w-[1920px] mx-auto px-6 md:px-12 py-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+          {[...Array(8)].map((_, i) => (
             <div
               key={i}
               className="bg-carbon rounded-2xl overflow-hidden shadow-lg border-2 border-gray-100 animate-pulse"

@@ -1,0 +1,220 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║         Browser MCP Troubleshooting Toolkit - File Directory                ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+📁 ORGANIZATION BY PURPOSE
+
+┌─ 🌟 START HERE (Začni Tady)
+│  ├─ START_HERE_BROWSER_MCP.md         ← You are probably here!
+│  └─ BROWSER_MCP_QUICK_REF.txt         ← Quickest path to solution
+│
+├─ 📖 DETAILED GUIDES (Detailní Návody)
+│  ├─ BROWSER_MCP_TROUBLESHOOT.md       ← Step-by-step řešení
+│  ├─ BROWSER_MCP_CONNECTION_FIX.md     ← Hluboká analýza
+│  └─ BROWSER_MCP_COMMANDS.md           ← Všechny příkazy
+│
+├─ 🎨 INTERACTIVE (Interaktivní)
+│  └─ browser-mcp-cheatsheet.html       ← Visual cheat sheet (open in browser)
+│
+├─ 🔧 TOOLS (Nástroje)
+│  ├─ browser-mcp-monitor.sh            ← Real-time monitoring
+│  └─ BROWSER_MCP_REMOTE_DIAGNOSTICS.sh ← Server diagnostics
+│
+├─ 📚 REFERENCE (Referenční)
+│  ├─ BROWSER_MCP_INDEX.md              ← Index všech dokumentů
+│  ├─ BROWSER_MCP_SETUP_COMPLETE.md     ← Co je připraveno
+│  ├─ BROWSER_MCP_SETUP.md              ← Původní setup guide
+│  ├─ BROWSER_MCP_FILES.txt             ← Tento soubor
+│  └─ MAC_BROWSERMCP_DIAGNOSTICS.md     ← Mac-specific guide
+│
+└─ ⚙️ CONFIGURATION
+   └─ .browsermcp-remote.config.json    ← Server configuration
+
+════════════════════════════════════════════════════════════════════════════
+
+📋 FILE DESCRIPTIONS & USE CASES
+
+┌─ START_HERE_BROWSER_MCP.md (This file is the entry point!)
+│  What: Master index with quick navigation
+│  When: First read this
+│  Size: ~3 KB
+│  Time: 2 minutes
+│  Links: To all other files
+│
+├─ BROWSER_MCP_QUICK_REF.txt
+│  What: One-page reference with 3 tests
+│  When: You want quickest solution
+│  Size: 7 KB
+│  Time: 5-10 minutes
+│  Contains: Test commands + decision tree
+│
+├─ BROWSER_MCP_TROUBLESHOOT.md
+│  What: Complete troubleshooting guide
+│  When: You know which solution you need
+│  Size: 7 KB
+│  Time: 15-30 minutes
+│  Contains: Firewall → SSH Tunnel, Daemon → Restart, Manifest → Update
+│
+├─ BROWSER_MCP_CONNECTION_FIX.md
+│  What: Professional diagnostic guide
+│  When: You want to understand everything
+│  Size: 7 KB
+│  Time: 30-60 minutes
+│  Contains: 12 diagnostic steps, detailed analysis
+│
+├─ BROWSER_MCP_COMMANDS.md
+│  What: All commands in one place
+│  When: You need copy-paste ready
+│  Size: 8 KB
+│  Time: Reference (jump to command)
+│  Contains: Mac, Chrome, Remote server commands
+│
+├─ browser-mcp-cheatsheet.html
+│  What: Interactive visual guide
+│  When: You prefer visual format
+│  Size: 14 KB
+│  Time: 5-10 minutes
+│  How: Click commands to copy them
+│
+├─ browser-mcp-monitor.sh
+│  What: Real-time monitoring script
+│  When: You want to see live status
+│  Size: 2 KB
+│  Time: Continuous
+│  Run: ./browser-mcp-monitor.sh
+│
+├─ BROWSER_MCP_REMOTE_DIAGNOSTICS.sh
+│  What: Server diagnostics script
+│  When: You want to check server
+│  Size: 4 KB
+│  Time: 2-3 minutes
+│  Run: On remote server via SSH
+│
+├─ BROWSER_MCP_INDEX.md
+│  What: Complete file index
+│  When: You're lost and need orientation
+│  Size: 7 KB
+│  Time: 5 minutes
+│  Contains: All files + use cases
+│
+├─ BROWSER_MCP_SETUP_COMPLETE.md
+│  What: Summary of what's ready
+│  When: You want to know what you have
+│  Size: 8 KB
+│  Time: 5 minutes
+│  Contains: Checklist + quick reference
+│
+├─ BROWSER_MCP_SETUP.md
+│  What: Original setup instructions
+│  When: You're setting up from scratch
+│  Size: 7 KB
+│  Time: 20-30 minutes
+│  Contains: Architecture + setup steps
+│
+├─ MAC_BROWSERMCP_DIAGNOSTICS.md
+│  What: Mac-specific troubleshooting
+│  When: You have Mac connection issues
+│  Size: 6 KB
+│  Time: 10-15 minutes
+│  Contains: Mac-specific diagnostics
+│
+└─ .browsermcp-remote.config.json
+   What: Server configuration file
+   When: You need to check/edit settings
+   Size: 1 KB
+   Contains: WebSocket, HTTP, security settings
+
+════════════════════════════════════════════════════════════════════════════
+
+🎯 QUICK NAVIGATION BY NEED
+
+Need:                                    Read:
+┌─────────────────────────────────────────────────────────────────────────┐
+│ 1. Fast solution (5 min)            → BROWSER_MCP_QUICK_REF.txt          │
+│ 2. Visual format                    → browser-mcp-cheatsheet.html        │
+│ 3. Step-by-step guide               → BROWSER_MCP_TROUBLESHOOT.md        │
+│ 4. All commands copy-paste          → BROWSER_MCP_COMMANDS.md            │
+│ 5. Deep understanding               → BROWSER_MCP_CONNECTION_FIX.md      │
+│ 6. Real-time monitoring             → browser-mcp-monitor.sh             │
+│ 7. Server diagnostics               → BROWSER_MCP_REMOTE_DIAGNOSTICS.sh  │
+│ 8. What's available?                → BROWSER_MCP_SETUP_COMPLETE.md      │
+│ 9. File orientation                 → BROWSER_MCP_INDEX.md               │
+│ 10. Mac-specific help               → MAC_BROWSERMCP_DIAGNOSTICS.md      │
+│ 11. Setup from scratch              → BROWSER_MCP_SETUP.md               │
+│ 12. Lost? Start here                → START_HERE_BROWSER_MCP.md ← NOW!   │
+└─────────────────────────────────────────────────────────────────────────┘
+
+════════════════════════════════════════════════════════════════════════════
+
+⚡ FASTEST PATH (Nejrychlejší cesta)
+
+1. Open this: BROWSER_MCP_QUICK_REF.txt
+2. Run 3 tests (copy from file)
+3. Tell me results
+4. I give solution
+5. You run commands (2-3 min)
+6. Done! ✅
+
+Total Time: 15-20 minutes
+
+════════════════════════════════════════════════════════════════════════════
+
+📱 HOW TO USE THESE FILES
+
+On Mac:
+  cat ~/ac-heating-web-new/BROWSER_MCP_QUICK_REF.txt
+  open ~/ac-heating-web-new/browser-mcp-cheatsheet.html
+  bash ~/ac-heating-web-new/browser-mcp-monitor.sh
+
+Via SSH:
+  ssh leos@91.99.126.53
+  bash ~/ac-heating-web-new/BROWSER_MCP_REMOTE_DIAGNOSTICS.sh
+
+In Browser:
+  file:///Users/[you]/ac-heating-web-new/browser-mcp-cheatsheet.html
+
+In Editor:
+  open -a TextEdit ~/ac-heating-web-new/BROWSER_MCP_QUICK_REF.txt
+  code ~/ac-heating-web-new/BROWSER_MCP_TROUBLESHOOT.md
+
+════════════════════════════════════════════════════════════════════════════
+
+🎁 WHAT YOU GET
+
+Total Files:       11
+Total Size:        ~70 KB
+Total Commands:    50+
+Total Test Cases:  3
+Solutions:         3 (SSH Tunnel, Restart, Config)
+Documentation:     Comprehensive
+Copy-Paste Ready:  100%
+
+════════════════════════════════════════════════════════════════════════════
+
+✅ CHECKLIST
+
+- [x] Quick reference created
+- [x] Troubleshooting guide created
+- [x] Deep diagnostics created
+- [x] Visual cheat sheet created
+- [x] Monitoring tool created
+- [x] Server diagnostics tool created
+- [x] All files organized
+- [x] This index created
+- [ ] Your tests (next step!)
+- [ ] Your solution (depends on tests)
+- [ ] ✅ Connection works!
+
+════════════════════════════════════════════════════════════════════════════
+
+🚀 START NOW
+
+Step 1: Read START_HERE_BROWSER_MCP.md
+Step 2: Open BROWSER_MCP_QUICK_REF.txt
+Step 3: Run the 3 tests
+Step 4: Tell me results
+Step 5: Get solution
+
+LET'S GO! →→→
+
+════════════════════════════════════════════════════════════════════════════

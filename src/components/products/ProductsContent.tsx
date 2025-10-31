@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { ProductCard, ProductCardProps } from '@/components/content/ProductCard';
+import { FeaturedProductHero } from './FeaturedProductHero';
+import { ProductFilter } from './ProductFilter';
 import Link from 'next/link';
 
 // Use ProductCardProps type for consistency
@@ -9,6 +11,8 @@ interface Product extends ProductCardProps {
   features?: string[];
   price_from?: number;
   featured?: boolean;
+  specifications?: any;
+  images?: any;
 }
 
 interface ProductsContentProps {
@@ -16,13 +20,29 @@ interface ProductsContentProps {
 }
 
 export function ProductsContent({ products }: ProductsContentProps) {
+  // Find featured product (CONVERT NG ONE with slug 'produkty')
+  const featuredProduct = products.find(p => p.slug === 'produkty');
+
+  // Filter out the featured product from the grid
+  const gridProducts = products.filter(p => p.slug !== 'produkty');
+
   // Group by category
-  const categories = Array.from(new Set(products.map(p => p.category)));
+  const categories = Array.from(new Set(gridProducts.map(p => p.category)));
 
   return (
     <>
+      {/* Featured Product Hero */}
+      {featuredProduct && (
+        <div className="mb-20">
+          <FeaturedProductHero product={featuredProduct} />
+        </div>
+      )}
+
+      {/* Product Filter */}
+      <ProductFilter />
+
       {/* Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 max-w-4xl mx-auto">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-16 max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -30,7 +50,7 @@ export function ProductsContent({ products }: ProductsContentProps) {
           viewport={{ once: true }}
           className="text-center p-6 bg-gradient-to-br from-graphite to-graphite-light rounded-xl border border-graphite-light/50"
         >
-          <div className="text-3xl font-bold text-accent mb-2">{products.length}</div>
+          <div className="text-3xl font-bold text-accent mb-2">{gridProducts.length}</div>
           <div className="text-sm text-steel-dim">Produktů</div>
         </motion.div>
 
@@ -69,7 +89,7 @@ export function ProductsContent({ products }: ProductsContentProps) {
       </div>
 
       {/* Products by Category */}
-      {products.length === 0 ? (
+      {gridProducts.length === 0 ? (
         <div className="text-center py-20">
           <p className="text-xl text-steel-dim">Zatím nejsou k dispozici žádné produkty.</p>
           <Link
@@ -80,36 +100,28 @@ export function ProductsContent({ products }: ProductsContentProps) {
           </Link>
         </div>
       ) : (
-        <div className="space-y-16">
+        <div className="space-y-16 w-full">
           {categories.map((category, categoryIndex) => {
-            const categoryProducts = products.filter(p => p.category === category);
+            const categoryProducts = gridProducts.filter(p => p.category === category);
 
             return (
-              <motion.div
-                key={category}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                viewport={{ once: true }}
-              >
-                <h2 className="text-3xl font-bold mb-8 text-steel capitalize">
+              <div key={category} className="w-full">
+                <motion.h2
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+                  className="text-3xl font-bold mb-8 text-steel capitalize"
+                >
                   {category.replace('-', ' ')}
-                </h2>
+                </motion.h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 md:gap-8">
                   {categoryProducts.map((product, index) => (
-                    <motion.div
-                      key={product.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: index * 0.1 }}
-                      viewport={{ once: true }}
-                    >
-                      <ProductCard product={product} />
-                    </motion.div>
+                    <ProductCard key={product.id} product={product} />
                   ))}
                 </div>
-              </motion.div>
+              </div>
             );
           })}
         </div>

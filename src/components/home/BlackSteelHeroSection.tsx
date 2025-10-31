@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { ArrowRight, Zap } from 'lucide-react';
 import { useMemo } from 'react';
 import { getCompanyYears } from '@/lib/utils';
-import Image from 'next/image';
 
 /**
  * RESPONSIVE HERO SECTION RULES:
@@ -40,25 +39,47 @@ export function BlackSteelHeroSection() {
   }, []);
 
   return (
-    <section className="relative w-full min-h-[100svh] overflow-hidden flex items-center">
+    <section className="relative w-full h-[70svh] md:h-[90svh] overflow-hidden flex items-center">
       {/* Background Image with Responsive Overlays */}
       <div className="absolute inset-0">
-        {/* NG ONE Hero Image - Responsive object position */}
-        <Image
-          src="/images/hero-ng-one.jpg"
-          alt="AC Heating NG ONE tepelné čerpadlo"
-          fill
-          className="object-cover object-left md:object-center"
-          priority
-          quality={90}
-          sizes="100vw"
-        />
+        {/* NG ONE Hero Image - Responsive with native picture element */}
+        <picture>
+          <source
+            media="(max-width: 640px)"
+            srcSet="/images/hero-ng-one-mobile.webp"
+          />
+          <source
+            media="(max-width: 768px)"
+            srcSet="/images/hero-ng-one-tablet.webp"
+          />
+          <source
+            media="(max-width: 1024px)"
+            srcSet="/images/hero-ng-one-laptop.webp"
+          />
+          <source
+            media="(max-width: 1280px)"
+            srcSet="/images/hero-ng-one-desktop.webp"
+          />
+          <source
+            media="(max-width: 1920px)"
+            srcSet="/images/hero-ng-one-fullhd.webp"
+          />
+          <source
+            srcSet="/images/hero-ng-one-2k.webp"
+          />
+          <img
+            src="/images/hero-ng-one-fullhd.webp"
+            alt="AC Heating NG ONE tepelné čerpadlo"
+            className="w-full h-full object-contain sm:object-cover object-left sm:object-[35%] md:object-[40%] lg:object-center"
+            loading="eager"
+          />
+        </picture>
         
-        {/* Mobile: Strong dark overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-carbon/95 via-carbon/90 to-carbon/85 md:hidden" />
-        
+        {/* Mobile: Lighter overlay to show hero image */}
+        <div className="absolute inset-0 bg-gradient-to-b from-carbon/70 via-carbon/60 to-carbon/50 md:hidden" />
+
         {/* Tablet+: Left-to-right gradient (stronger on text side) */}
-        <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-carbon/90 via-carbon/75 to-carbon/50 lg:from-carbon/85 lg:via-carbon/65 lg:to-carbon/40" />
+        <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-carbon/80 via-carbon/65 to-carbon/40 lg:from-carbon/75 lg:via-carbon/55 lg:to-carbon/30" />
         
         {/* Subtle orange accent - visible on all sizes */}
         <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-accent/5" />

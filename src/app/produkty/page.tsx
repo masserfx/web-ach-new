@@ -32,8 +32,11 @@ export default async function ProductsPage() {
     <BlackSteelPageLayout
       title="Naše produkty"
       subtitle="Moderní tepelná čerpadla a fotovoltaické systémy pro váš domov či firmu. Kvalita, spolehlivost a úspora energií."
+      fullWidth={true}
     >
-      <ProductsContent products={products} />
+      <div className="max-w-[1600px] mx-auto px-6 md:px-12 py-20">
+        <ProductsContent products={products} />
+      </div>
     </BlackSteelPageLayout>
   );
 }

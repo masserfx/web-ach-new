@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AC Heating - Neo4j Analytics Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            color: rgba(255,255,255,0.9);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .stat-value {
+            color: #667eea;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .sections {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            color: #667eea;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .query-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        
+        .query-card {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .query-card:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+        
+        .query-number {
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        
+        .query-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .query-desc {
+            color: #666;
+            font-size: 0.85rem;
+        }
+        
+        .query-code {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            display: none;
+        }
+        
+        .query-card.active .query-code {
+            display: block;
+        }
+        
+        .copy-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 0.85rem;
+        }
+        
+        .copy-btn:hover {
+            background: #5568d3;
+        }
+        
+        .instructions {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .instructions h3 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        
+        .instructions ol {
+            margin-left: 20px;
+            color: #856404;
+        }
+        
+        .emoji {
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 AC Heating - Neo4j Analytics Dashboard</h1>
+        <p class="subtitle">Kompletní monitoring a analytika strategického systému</p>
+        
+        <div class="instructions">
+            <h3>📖 Jak používat tento dashboard:</h3>
+            <ol>
+                <li>Klikněte na libovolný dotaz pro zobrazení Cypher kódu</li>
+                <li>Použijte tlačítko "Copy Query" pro zkopírování</li>
+                <li>Vložte dotaz do Neo4j Browser (http://91.99.126.53:7474)</li>
+                <li>Stiskněte Ctrl+Enter pro spuštění</li>
+            </ol>
+        </div>
+
+        <div class="quick-stats">
+            <div class="stat-card">
+                <div class="stat-label">📊 Total Queries</div>
+                <div class="stat-value">33</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">🤖 Agent Queries</div>
+                <div class="stat-value">7</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">📝 Task Queries</div>
+                <div class="stat-value">5</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">📈 Analytics</div>
+                <div class="stat-value">11</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">🧠 Learning</div>
+                <div class="stat-value">4</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">📰 Content</div>
+                <div class="stat-value">6</div>
+            </div>
+        </div>
+
+        <div class="sections">
+            <!-- Dashboard Section -->
+            <div class="section">
+                <h2 class="section-title"><span class="emoji">📊</span> Dashboard - Quick Overview</h2>
+                <div class="query-grid" id="dashboard"></div>
+            </div>
+
+            <!-- Agent Monitoring -->
+            <div class="section">
+                <h2 class="section-title"><span class="emoji">🤖</span> Agent Monitoring</h2>
+                <div class="query-grid" id="agents"></div>
+            </div>
+
+            <!-- Task Monitoring -->
+            <div class="section">
+                <h2 class="section-title"><span class="emoji">📝</span> Task Monitoring</h2>
+                <div class="query-grid" id="tasks"></div>
+            </div>
+
+            <!-- Learning & Patterns -->
+            <div class="section">
+                <h2 class="section-title"><span class="emoji">🧠</span> Learning & Patterns</h2>
+                <div class="query-grid" id="learning"></div>
+            </div>
+
+            <!-- Web Content -->
+            <div class="section">
+                <h2 class="section-title"><span class="emoji">📰</span> Web Content Analytics</h2>
+                <div class="query-grid" id="content"></div>
+            </div>
+
+            <!-- Advanced Analytics -->
+            <div class="section">
+                <h2 class="section-title"><span class="emoji">🔍</span> Advanced Analytics</h2>
+                <div class="query-grid" id="analytics"></div>
+            </div>
+
+            <!-- Real-time Monitoring -->
+            <div class="section">
+                <h2 class="section-title"><span class="emoji">🔥</span> Real-Time Monitoring</h2>
+                <div class="query-grid" id="realtime"></div>
+            </div>
+
+            <!-- Strategic Insights -->
+            <div class="section">
+                <h2 class="section-title"><span class="emoji">🎯</span> Strategic Insights</h2>
+                <div class="query-grid" id="strategic"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const queries = {
+            dashboard: [
+                {
+                    num: 1,
+                    title: "Celkový přehled systému",
+                    desc: "Zobrazí celkový počet agents, tasks, executions a learnings",
+                    query: `MATCH (a:Agent), (t:Task), (e:Execution), (l:Learning)
+RETURN 
+    count(DISTINCT a) as total_agents,
+    count(DISTINCT t) as total_tasks,
+    count(DISTINCT e) as total_executions,
+    count(DISTINCT l) as total_learnings;`
+                },
+                {
+                    num: 2,
+                    title: "Současný stav tasků",
+                    desc: "Rozdělení tasků podle statusu",
+                    query: `MATCH (t:Task)
+RETURN 
+    t.status as status,
+    count(t) as task_count
+ORDER BY task_count DESC;`
+                },
+                {
+                    num: 3,
+                    title: "Agent Performance Overview",
+                    desc: "Základní metriky pro všechny agenty",
+                    query: `MATCH (a:Agent)-[:EXECUTED]->(e:Execution)
+RETURN 
+    a.name as agent,
+    count(e) as executions,
+    round(avg(e.quality_score) * 100) / 100 as avg_quality,
+    round(sum(e.api_cost) * 100) / 100 as total_cost,
+    sum(e.tokens_used) as total_tokens
+ORDER BY executions DESC;`
+                }
+            ],
+            agents: [
+                {
+                    num: 4,
+                    title: "Detail jednotlivého agenta",
+                    desc: "Kompletní informace o vybraném agentovi (změňte název)",
+                    query: `MATCH (a:Agent {name: "content_writer"})-[:EXECUTED]->(e:Execution)
+OPTIONAL MATCH (e)-[:FOR_TASK]->(t:Task)
+RETURN 
+    a.name as agent,
+    a.tasks_completed as tasks_completed,
+    count(e) as total_executions,
+    collect(DISTINCT t.title)[0..5] as recent_tasks
+ORDER BY e.started_at DESC;`
+                },
+                {
+                    num: 5,
+                    title: "Agent Collaboration Network",
+                    desc: "Spolupráce mezi agenty na společných tascích",
+                    query: `MATCH (a1:Agent)-[:EXECUTED]->(e1:Execution)-[:FOR_TASK]->(t:Task)
+      <-[:FOR_TASK]-(e2:Execution)<-[:EXECUTED]-(a2:Agent)
+WHERE a1 <> a2 AND id(e1) < id(e2)
+RETURN 
+    a1.name as agent_1,
+    a2.name as agent_2,
+    count(DISTINCT t) as shared_tasks
+ORDER BY shared_tasks DESC;`
+                },
+                {
+                    num: 6,
+                    title: "Agent Performance Trends",
+                    desc: "Poslední executions pro sledování trendu",
+                    query: `MATCH (a:Agent {name: "seo_specialist"})-[:EXECUTED]->(e:Execution)
+WITH a, e
+ORDER BY e.started_at DESC
+LIMIT 20
+RETURN 
+    e.started_at as date,
+    e.quality_score as quality,
+    e.tokens_used as tokens,
+    e.status as status;`
+                },
+                {
+                    num: 7,
+                    title: "Všichni agenti s metrikami",
+                    desc: "Kompletní seznam všech agentů",
+                    query: `MATCH (a:Agent)
+RETURN 
+    a.name as agent_name,
+    a.agent_type as type,
+    a.active as active,
+    a.tasks_completed as tasks,
+    round(a.avg_quality_score * 100) / 100 as avg_quality
+ORDER BY a.tasks_completed DESC;`
+                }
+            ],
+            tasks: [
+                {
+                    num: 8,
+                    title: "Task Detail s historií",
+                    desc: "Kompletní execution history pro task",
+                    query: `MATCH (t:Task {task_id: "YOUR_TASK_ID_HERE"})
+OPTIONAL MATCH (t)<-[:FOR_TASK]-(e:Execution)<-[:EXECUTED]-(a:Agent)
+RETURN 
+    t.title as task_title,
+    t.status as status,
+    collect({
+        agent: a.name,
+        started: e.started_at,
+        quality: e.quality_score
+    }) as execution_history;`
+                },
+                {
+                    num: 9,
+                    title: "Tasky podle priorit",
+                    desc: "Rozdělení tasků podle priority a statusu",
+                    query: `MATCH (t:Task)
+RETURN 
+    t.priority as priority,
+    t.status as status,
+    count(t) as count
+ORDER BY t.priority ASC;`
+                },
+                {
+                    num: 10,
+                    title: "Nedokončené tasky",
+                    desc: "Všechny in-progress a backlog tasky",
+                    query: `MATCH (t:Task)
+WHERE t.status IN ['backlog', 'in_progress']
+OPTIONAL MATCH (a:Agent)-[:ASSIGNED_TO]->(t)
+RETURN 
+    t.title as task,
+    t.status as status,
+    t.priority as priority,
+    a.name as assigned_agent
+ORDER BY t.priority ASC;`
+                },
+                {
+                    num: 11,
+                    title: "Task Dependencies",
+                    desc: "Vizualizace závislostí mezi tasky",
+                    query: `MATCH (t1:Task)-[:DEPENDS_ON]->(t2:Task)
+RETURN 
+    t1.title as task,
+    collect(t2.title) as depends_on;`
+                },
+                {
+                    num: 12,
+                    title: "Tasks by Category",
+                    desc: "Performance podle kategorií",
+                    query: `MATCH (t:Task)
+OPTIONAL MATCH (t)<-[:FOR_TASK]-(e:Execution)
+RETURN 
+    t.category as category,
+    count(DISTINCT t) as tasks,
+    avg(e.quality_score) as avg_quality
+ORDER BY tasks DESC;`
+                }
+            ],
+            learning: [
+                {
+                    num: 13,
+                    title: "Všechny patterns",
+                    desc: "Seznam naučených patterns s metrikami",
+                    query: `MATCH (p:Pattern)
+RETURN 
+    p.description as pattern,
+    p.frequency as frequency,
+    round(p.success_rate * 100) as success_pct
+ORDER BY p.frequency DESC;`
+                },
+                {
+                    num: 14,
+                    title: "Learning Insights per Agent",
+                    desc: "Co se každý agent naučil",
+                    query: `MATCH (a:Agent)-[:EXECUTED]->(e:Execution)-[:GENERATED]->(l:Learning)
+RETURN 
+    a.name as agent,
+    count(l) as learnings,
+    avg(l.confidence) as avg_confidence
+ORDER BY learnings DESC;`
+                },
+                {
+                    num: 15,
+                    title: "High-Impact Learnings",
+                    desc: "Nejdůležitější learnings (impact > 0.7)",
+                    query: `MATCH (l:Learning)
+WHERE l.impact_score > 0.7
+RETURN 
+    l.pattern_type as pattern,
+    l.impact_score as impact,
+    l.confidence as confidence
+ORDER BY l.impact_score DESC;`
+                },
+                {
+                    num: 16,
+                    title: "Pattern Evolution",
+                    desc: "Jak se patterns vyvíjejí v čase",
+                    query: `MATCH (l:Learning)-[:LEARNED_FROM]->(p:Pattern)
+RETURN 
+    p.description as pattern,
+    count(l) as occurrences,
+    avg(l.confidence) as avg_confidence;`
+                }
+            ],
+            content: [
+                {
+                    num: 17,
+                    title: "Všechny články",
+                    desc: "Seznam článků s metrikami",
+                    query: `MATCH (a:Article)
+OPTIONAL MATCH (a)-[:CONTAINS_IMAGE]->(i:Image)
+RETURN 
+    a.title as title,
+    a.views as views,
+    a.shares as shares,
+    count(i) as images
+ORDER BY a.views DESC;`
+                },
+                {
+                    num: 18,
+                    title: "Top Performing Content",
+                    desc: "10 nejúspěšnějších článků",
+                    query: `MATCH (a:Article)
+RETURN 
+    a.title as article,
+    a.views as views,
+    (a.views + a.shares * 5) as engagement
+ORDER BY engagement DESC LIMIT 10;`
+                },
+                {
+                    num: 19,
+                    title: "Image Usage Analytics",
+                    desc: "Jak jsou využívány obrázky",
+                    query: `MATCH (i:Image)
+OPTIONAL MATCH (a:Article)-[:CONTAINS_IMAGE]->(i)
+RETURN 
+    i.url as image,
+    count(a) as used_in_articles;`
+                },
+                {
+                    num: 20,
+                    title: "Content by Category",
+                    desc: "Rozdělení obsahu podle kategorií",
+                    query: `MATCH (c:Category)
+OPTIONAL MATCH (a:Article)-[:IN_CATEGORY]->(c)
+RETURN 
+    c.name as category,
+    count(a) as articles
+ORDER BY articles DESC;`
+                },
+                {
+                    num: 21,
+                    title: "Article → Task Connection",
+                    desc: "Propojení článků s původními tasky",
+                    query: `MATCH (t:Task)-[:GENERATED_CONTENT]->(a:Article)
+RETURN 
+    t.title as task,
+    a.title as article,
+    a.views as views;`
+                },
+                {
+                    num: 22,
+                    title: "Tag Cloud",
+                    desc: "Nejpoužívanější tagy",
+                    query: `MATCH (t:Tag)
+OPTIONAL MATCH (a:Article)-[:TAGGED_WITH]->(t)
+RETURN 
+    t.name as tag,
+    count(a) as count
+ORDER BY count DESC;`
+                }
+            ],
+            analytics: [
+                {
+                    num: 23,
+                    title: "Complete Content Pipeline",
+                    desc: "Agent → Task → Article → Images",
+                    query: `MATCH (agent:Agent)-[:EXECUTED]->(e:Execution)
+      -[:FOR_TASK]->(t:Task)-[:GENERATED_CONTENT]->(a:Article)
+RETURN 
+    agent.name as agent,
+    t.title as task,
+    a.title as article
+LIMIT 10;`
+                },
+                {
+                    num: 24,
+                    title: "ROI Analysis",
+                    desc: "Cost vs Performance analýza",
+                    query: `MATCH (e:Execution)-[:FOR_TASK]->(t:Task)
+OPTIONAL MATCH (t)-[:GENERATED_CONTENT]->(a:Article)
+RETURN 
+    t.category as category,
+    sum(e.api_cost) as cost,
+    sum(a.views) as views;`
+                },
+                {
+                    num: 25,
+                    title: "Quality Trends",
+                    desc: "Vývoj kvality v čase",
+                    query: `MATCH (e:Execution)
+WITH date(e.started_at) as day, e
+RETURN 
+    day,
+    avg(e.quality_score) as quality
+ORDER BY day DESC LIMIT 30;`
+                },
+                {
+                    num: 26,
+                    title: "Agent Specialization",
+                    desc: "Specializace agentů na kategorie",
+                    query: `MATCH (a:Agent)-[:EXECUTED]->(e:Execution)
+      -[:FOR_TASK]->(t:Task)
+RETURN 
+    a.name as agent,
+    t.category as category,
+    count(e) as count;`
+                },
+                {
+                    num: 27,
+                    title: "Knowledge Graph Completeness",
+                    desc: "Jak kompletní je knowledge graph",
+                    query: `MATCH (a:Agent)
+OPTIONAL MATCH (a)-[:EXECUTED]->(e:Execution)
+OPTIONAL MATCH (e)-[:GENERATED]->(l:Learning)
+RETURN 
+    count(DISTINCT a) as agents,
+    count(DISTINCT e) as executions,
+    count(DISTINCT l) as learnings;`
+                }
+            ],
+            realtime: [
+                {
+                    num: 28,
+                    title: "Poslední Activity (24h)",
+                    desc: "Všechna aktivita za posledních 24 hodin",
+                    query: `MATCH (e:Execution)
+WHERE e.started_at > datetime() - duration({hours: 24})
+OPTIONAL MATCH (a:Agent)-[:EXECUTED]->(e)
+RETURN 
+    e.started_at as time,
+    a.name as agent,
+    e.status as status
+ORDER BY time DESC LIMIT 50;`
+                },
+                {
+                    num: 29,
+                    title: "Active Tasks NOW",
+                    desc: "Tasky běžící právě teď",
+                    query: `MATCH (t:Task {status: "in_progress"})
+OPTIONAL MATCH (a:Agent)-[:ASSIGNED_TO]->(t)
+RETURN 
+    t.title as task,
+    a.name as agent;`
+                },
+                {
+                    num: 30,
+                    title: "Error Analysis",
+                    desc: "Poslední chyby v systému",
+                    query: `MATCH (e:Execution)
+WHERE e.status = "error"
+OPTIONAL MATCH (a:Agent)-[:EXECUTED]->(e)
+RETURN 
+    e.started_at as time,
+    a.name as agent,
+    e.error_message as error
+ORDER BY time DESC LIMIT 20;`
+                }
+            ],
+            strategic: [
+                {
+                    num: 31,
+                    title: "Content Gap Analysis",
+                    desc: "Kategorie, kde chybí obsah",
+                    query: `MATCH (c:Category)
+OPTIONAL MATCH (a:Article)-[:IN_CATEGORY]->(c)
+WITH c, count(a) as count
+RETURN 
+    c.name as category,
+    count,
+    CASE 
+        WHEN count = 0 THEN 'CRITICAL'
+        WHEN count < 3 THEN 'LOW'
+        ELSE 'OK'
+    END as status;`
+                },
+                {
+                    num: 32,
+                    title: "Agent Efficiency",
+                    desc: "Porovnání efektivity agentů",
+                    query: `MATCH (a:Agent)-[:EXECUTED]->(e:Execution)
+RETURN 
+    a.name as agent,
+    avg(e.tokens_used) as avg_tokens,
+    avg(e.quality_score) as avg_quality
+ORDER BY avg_quality DESC;`
+                },
+                {
+                    num: 33,
+                    title: "Viral Content Prediction",
+                    desc: "Predikce virality článků",
+                    query: `MATCH (a:Article)
+WHERE a.published_date IS NOT NULL
+WITH a, (a.views + a.shares * 5) as engagement
+RETURN 
+    a.title as article,
+    engagement,
+    CASE 
+        WHEN engagement > 100 THEN '🔥 VIRAL'
+        WHEN engagement > 50 THEN '📈 TRENDING'
+        ELSE '📊 NORMAL'
+    END as level
+ORDER BY engagement DESC;`
+                }
+            ]
+        };
+
+        function createQueryCard(query, sectionId) {
+            const card = document.createElement('div');
+            card.className = 'query-card';
+            card.innerHTML = `
+                <div class="query-title">
+                    <span class="query-number">#${query.num}</span>
+                    ${query.title}
+                </div>
+                <div class="query-desc">${query.desc}</div>
+                <div class="query-code">${query.query}</div>
+                <button class="copy-btn" onclick="copyQuery(${query.num})">📋 Copy Query</button>
+            `;
+            
+            card.addEventListener('click', (e) => {
+                if (!e.target.classList.contains('copy-btn')) {
+                    card.classList.toggle('active');
+                }
+            });
+            
+            document.getElementById(sectionId).appendChild(card);
+        }
+
+        function copyQuery(num) {
+            let queryText = '';
+            for (const section in queries) {
+                const found = queries[section].find(q => q.num === num);
+                if (found) {
+                    queryText = found.query;
+                    break;
+                }
+            }
+            
+            navigator.clipboard.writeText(queryText).then(() => {
+                alert('✅ Query zkopírován! Vložte ho do Neo4j Browser.');
+            });
+        }
+
+        // Initialize dashboard
+        for (const section in queries) {
+            queries[section].forEach(query => {
+                createQueryCard(query, section);
+            });
+        }
+    </script>
+</body>
+</html>

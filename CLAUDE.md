@@ -1,0 +1,1 @@
+- zobrazovat pouze webové URL s IP adresou například: 91.99.126.53:3100, ne localhost
