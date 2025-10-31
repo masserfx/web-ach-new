@@ -15,9 +15,9 @@ import {
 
 export async function GET(request: NextRequest) {
   try {
-    // Rate limiting: 10 requests per minute per user
+    // Rate limiting: 60 requests per minute per user (1 per second for auto-refresh)
     const ip = request.headers.get('x-forwarded-for') || 'unknown';
-    if (!rateLimit(ip, 10, 60000)) {
+    if (!rateLimit(ip, 60, 60000)) {
       return NextResponse.json(
         { error: 'Rate limit exceeded' },
         { status: 429 }

@@ -2,11 +2,13 @@ import { createClient } from '@/lib/supabase/server';
 
 export async function requireAdmin() {
   try {
-    // Development mode bypass for testing
-    if (process.env.NODE_ENV === 'development') {
-      console.log('[requireAdmin] Development mode - bypassing auth check');
+    // Local development bypass (localhost Supabase)
+    const isLocalSupabase = process.env.NEXT_PUBLIC_SUPABASE_URL?.includes('localhost');
+
+    if (process.env.NODE_ENV === 'development' || isLocalSupabase || process.env.ADMIN_BYPASS_AUTH === 'true') {
+      console.log('[requireAdmin] Local development - bypassing auth check');
       return {
-        id: 'dev-admin-user',
+        id: 'local-admin-user',
         email: 'admin@ac-heating.cz',
         user_metadata: { role: 'admin' },
       };

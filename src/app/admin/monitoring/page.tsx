@@ -203,6 +203,9 @@ export default function MonitoringPage() {
                   </>
                 )}
               </button>
+              <p className="text-xs text-[#B4B4B4] mt-2">
+                ℹ️ Monitoring běží automaticky v GitHub Actions každé 2 hodiny
+              </p>
             </div>
           </div>
 
@@ -309,7 +312,7 @@ export default function MonitoringPage() {
                       <Clock className="w-5 h-5 text-[#F36F21]" />
                     </div>
                     <p className="text-sm text-white">
-                      {new Date(latestReport.timestamp).toLocaleString('cs-CZ')}
+                      {new Date(latestReport.timestamp).toLocaleString('cs-CZ', { timeZone: 'Europe/Prague' })}
                     </p>
                   </div>
                 </div>
@@ -435,11 +438,11 @@ export default function MonitoringPage() {
                         {report.overallStatus}
                       </span>
                       <span className="text-xs">
-                        {new Date(report.timestamp).toLocaleDateString('cs-CZ')}
+                        {new Date(report.timestamp).toLocaleDateString('cs-CZ', { timeZone: 'Europe/Prague' })}
                       </span>
                     </div>
                     <p className="text-xs mt-2">
-                      {new Date(report.timestamp).toLocaleTimeString('cs-CZ')}
+                      {new Date(report.timestamp).toLocaleTimeString('cs-CZ', { timeZone: 'Europe/Prague' })}
                     </p>
                   </button>
                 ))}

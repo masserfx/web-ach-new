@@ -3,6 +3,9 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   reactStrictMode: true,
 
+  // Turbopack configuration (Next.js 16)
+  turbopack: {},
+
   // Image optimization
   images: {
     formats: ['image/avif', 'image/webp'],

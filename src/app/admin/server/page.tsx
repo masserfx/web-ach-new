@@ -6,6 +6,7 @@ import { ServerStats } from '@/components/admin/ServerStats';
 import { ServiceControl } from '@/components/admin/ServiceControl';
 import { PortMonitor } from '@/components/admin/PortMonitor';
 import { ProcessList } from '@/components/admin/ProcessList';
+import { PM2Control } from '@/components/admin/PM2Control';
 import { Activity, AlertTriangle, X } from 'lucide-react';
 
 interface ServerStatsData {
@@ -239,6 +240,9 @@ export default function ServerMonitorPage() {
           <>
             {/* System Stats Cards */}
             <ServerStats stats={stats} />
+
+            {/* PM2 Process Manager */}
+            <PM2Control onRefresh={fetchServerStats} />
 
             {/* Service Control Panel */}
             <ServiceControl services={stats.services} onRefresh={fetchServerStats} />

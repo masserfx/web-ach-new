@@ -61,6 +61,48 @@ const ALLOWED_COMMANDS = {
   'disk-usage-all': () => 'df -h',
   'network-connections': () => 'ss -tuln | grep LISTEN | wc -l',
   'load-average': () => 'uptime | grep -o "load average.*" | cut -d: -f2',
+  // PM2 process management
+  'pm2-list': () => 'pm2 jlist',
+  'pm2-status': () => 'pm2 status',
+  'pm2-start': (appName: string) => {
+    if (!appName.match(/^[a-zA-Z0-9_-]+$/)) {
+      throw new Error('Invalid app name');
+    }
+    return `pm2 start ecosystem.config.js --only ${appName}`;
+  },
+  'pm2-stop': (appName: string) => {
+    if (!appName.match(/^[a-zA-Z0-9_-]+$/)) {
+      throw new Error('Invalid app name');
+    }
+    return `pm2 stop ${appName}`;
+  },
+  'pm2-restart': (appName: string) => {
+    if (!appName.match(/^[a-zA-Z0-9_-]+$/)) {
+      throw new Error('Invalid app name');
+    }
+    return `pm2 restart ${appName}`;
+  },
+  'pm2-delete': (appName: string) => {
+    if (!appName.match(/^[a-zA-Z0-9_-]+$/)) {
+      throw new Error('Invalid app name');
+    }
+    return `pm2 delete ${appName}`;
+  },
+  'pm2-logs': (appName: string, lines: number = 100) => {
+    if (!appName.match(/^[a-zA-Z0-9_-]+$/)) {
+      throw new Error('Invalid app name');
+    }
+    if (!Number.isInteger(lines) || lines < 1 || lines > 1000) {
+      throw new Error('Invalid number of lines');
+    }
+    return `pm2 logs ${appName} --lines ${lines} --nostream`;
+  },
+  'pm2-describe': (appName: string) => {
+    if (!appName.match(/^[a-zA-Z0-9_-]+$/)) {
+      throw new Error('Invalid app name');
+    }
+    return `pm2 describe ${appName}`;
+  },
 } as const;
 
 type CommandKey = keyof typeof ALLOWED_COMMANDS;
@@ -271,5 +313,30 @@ export async function getNetworkConnections() {
     return parseInt(output.trim()) || 0;
   } catch {
     return 0;
+  }
+}
+
+export async function getPM2Processes() {
+  try {
+    const output = await safeExec('pm2-list');
+    if (!output || output.trim() === '[]') {
+      return [];
+    }
+
+    const processes = JSON.parse(output);
+
+    return processes.map((proc: any) => ({
+      name: proc.name,
+      pid: proc.pid,
+      status: proc.pm2_env?.status || 'unknown',
+      pm_id: proc.pm_id,
+      cpu: proc.monit?.cpu || 0,
+      memory: proc.monit?.memory || 0,
+      uptime: proc.pm2_env?.pm_uptime || 0,
+      restarts: proc.pm2_env?.restart_time || 0,
+    }));
+  } catch (error) {
+    console.error('[getPM2Processes] Error:', error);
+    return [];
   }
 }
