@@ -41,10 +41,7 @@ next-env.d.ts
 .pm2
 
 # Large image directories (use CDN in production)
-# These are excluded from Vercel deployment via .vercelignore
+# Only photo/ is excluded - too large (1.1GB)
 public/images/photo/
-public/images/cerpadlo/
-public/images/heat-pump-detail/
-public/images/products/
 public/images/*.backup
 public/images/*.mp4
