@@ -39,7 +39,7 @@ export function BlackSteelHeroSection() {
   }, []);
 
   return (
-    <section className="relative w-full h-[70svh] md:h-[90svh] overflow-hidden flex items-center">
+    <section className="relative w-full h-[75svh] md:h-[80svh] lg:h-[75svh] overflow-hidden flex items-center">
       {/* Background Image with Responsive Overlays */}
       <div className="absolute inset-0">
         {/* NG ONE Hero Image - Responsive with native picture element */}
@@ -124,7 +124,7 @@ export function BlackSteelHeroSection() {
             {/* Primary CTA - Responsive Sizing */}
             <Link
               href="/pripravit-rozpocet"
-              className="group relative inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#F36F21] to-[#FF8F3C] text-white font-bold text-sm sm:text-base rounded-lg shadow-[0_4px_20px_rgba(243,111,33,0.4)] hover:shadow-[0_8px_30px_rgba(243,111,33,0.6)] transition-all duration-300 hover:scale-105 active:scale-95"
+              className="group relative inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-gradient-to-r from-[#F36F21] to-[#FF8F3C] text-white font-bold text-sm sm:text-base rounded-lg shadow-[0_4px_20px_rgba(243,111,33,0.4)] hover:shadow-[0_8px_30px_rgba(243,111,33,0.6)] transition-all duration-300 hover:scale-105 active:scale-95"
             >
               <span>Získejte nabídku</span>
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
@@ -133,7 +133,7 @@ export function BlackSteelHeroSection() {
             {/* Secondary CTA - Responsive Sizing */}
             <Link
               href="/produkty"
-              className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-graphite/80 backdrop-blur-sm border-2 border-white/30 text-white font-semibold text-sm sm:text-base rounded-lg hover:bg-graphite hover:border-white/50 transition-all duration-300 active:scale-95"
+              className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-graphite/80 backdrop-blur-sm border-2 border-white/30 text-white font-semibold text-sm sm:text-base rounded-lg hover:bg-graphite hover:border-white/50 transition-all duration-300 active:scale-95"
             >
               <span>Porovnat varianty</span>
             </Link>

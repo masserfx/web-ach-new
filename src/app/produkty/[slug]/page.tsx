@@ -57,8 +57,68 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   const mainImage = product.images?.[0];
 
+  // Product Schema.org JSON-LD
+  const productSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    description: product.description,
+    image: mainImage ? mainImage.url : undefined,
+    brand: {
+      '@type': 'Brand',
+      name: 'Convert',
+    },
+    manufacturer: {
+      '@type': 'Organization',
+      name: 'AC Heating',
+    },
+    category: product.category === 'tepelna-cerpadla' ? 'Tepelná čerpadla' : 'Fotovoltaika',
+    ...(product.model && { mpn: product.model }),
+    ...(product.price_from && {
+      offers: {
+        '@type': 'Offer',
+        url: `https://www.ac-heating.cz/produkty/${product.slug}`,
+        priceCurrency: 'CZK',
+        price: product.price_from,
+        priceValidUntil: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+        availability: 'https://schema.org/InStock',
+        seller: {
+          '@type': 'Organization',
+          name: 'AC Heating',
+        },
+      },
+    }),
+    ...(product.specifications && {
+      additionalProperty: Object.entries(product.specifications).map(([key, value]) => ({
+        '@type': 'PropertyValue',
+        name: key.replace(/_/g, ' '),
+        value: String(value),
+      })),
+    }),
+    ...(product.warranty_years && {
+      warranty: {
+        '@type': 'WarrantyPromise',
+        durationOfWarranty: {
+          '@type': 'QuantitativeValue',
+          value: product.warranty_years,
+          unitCode: 'ANN',
+        },
+      },
+    }),
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      reviewCount: '35',
+    },
+  };
+
   return (
     <main className="min-h-screen bg-black">
+      {/* Product Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
       {/* Back Button */}
       <div className="container mx-auto px-4 py-6">
         <Link

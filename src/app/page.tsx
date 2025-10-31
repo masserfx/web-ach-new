@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { createClient } from '@/lib/supabase/server';
 // Black Steel Components (New Design System)
 import { BlackSteelHeroSection } from '@/components/home/BlackSteelHeroSection';
@@ -10,6 +11,32 @@ import { LatestBlogPosts } from '@/components/home/LatestBlogPosts';
 import { FeaturedProducts } from '@/components/home/FeaturedProducts';
 import { EnergySavingsCalculator } from '@/components/cro/EnergySavingsCalculator';
 import { ObjectionHandler, commonObjections } from '@/components/cro/ObjectionHandler';
+
+export const metadata: Metadata = {
+  title: 'AC Heating - Tepelná čerpadla a fotovoltaika | 18+ let zkušeností, 7500+ instalací',
+  description: 'Profesionální instalace tepelných čerpadel Convert NG One a fotovoltaiky v ČR a SR. Česká firma s 18letou tradicí, 7500+ spokojených zákazníků, 7 let záruky. Ušetřete až 70% na vytápění.',
+  keywords: 'tepelná čerpadla, fotovoltaika, Convert NG One, AC Heating, úspora energie, vytápění, instalace tepelných čerpadel',
+  openGraph: {
+    title: 'AC Heating - Tepelná čerpadla bez kompromisů | Convert NG One',
+    description: 'Profesionální instalace tepelných čerpadel Convert NG One a fotovoltaiky. 18+ let zkušeností, 7500+ instalací, 7 let záruky. Ušetřete až 70% na vytápění.',
+    type: 'website',
+    url: 'https://www.ac-heating.cz',
+    images: [
+      {
+        url: '/images/hero-ng-one-fullhd.webp',
+        width: 1920,
+        height: 1080,
+        alt: 'AC Heating Convert NG One tepelné čerpadlo',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AC Heating - Tepelná čerpadla a fotovoltaika',
+    description: 'Profesionální instalace tepelných čerpadel Convert NG One. 18+ let zkušeností, 7500+ instalací, 7 let záruky.',
+    images: ['/images/hero-ng-one-fullhd.webp'],
+  },
+};
 
 async function getLatestBlogPosts() {
   const supabase = await createClient();

@@ -4,8 +4,23 @@ import { BlackSteelPageLayout } from '@/components/layout/BlackSteelPageLayout';
 import { ProductsContent } from '@/components/products/ProductsContent';
 
 export const metadata: Metadata = {
-  title: 'Produkty - AC Heating',
-  description: 'Tepelná čerpadla a fotovoltaické systémy od AC Heating.',
+  title: 'Produkty - Tepelná čerpadla Convert NG One a fotovoltaika | AC Heating',
+  description: 'Kompletní nabídka tepelných čerpadel Convert NG One (6-28 kW) a fotovoltaických systémů. Profesionální instalace s 7 lety záruky. SCOP až 5.4, tichý provoz, ekologická chladiva R290/R32.',
+  keywords: 'tepelná čerpadla Convert, NG One, fotovoltaika, vzduch-voda, instalace, AC Heating, SCOP, R290, R32, úspora energie',
+  openGraph: {
+    title: 'Produkty - Tepelná čerpadla a fotovoltaika | AC Heating',
+    description: 'Kompletní nabídka tepelných čerpadel Convert NG One (6-28 kW) a fotovoltaických systémů s profesionální instalací a 7 lety záruky.',
+    type: 'website',
+    url: 'https://www.ac-heating.cz/produkty',
+    images: [
+      {
+        url: '/images/products/ng-one.webp',
+        width: 800,
+        height: 800,
+        alt: 'Convert NG One tepelné čerpadlo',
+      },
+    ],
+  },
 };
 
 async function getProducts() {
