@@ -39,3 +39,12 @@ next-env.d.ts
 # PM2
 /logs
 .pm2
+
+# Large image directories (use CDN in production)
+# These are excluded from Vercel deployment via .vercelignore
+public/images/photo/
+public/images/cerpadlo/
+public/images/heat-pump-detail/
+public/images/products/
+public/images/*.backup
+public/images/*.mp4

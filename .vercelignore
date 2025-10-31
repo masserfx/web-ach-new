@@ -1,0 +1,29 @@
+# Large image directories (should be in CDN for production)
+public/images/photo
+public/images/cerpadlo
+public/images/heat-pump-detail
+public/images/products
+
+# Backup files
+public/images/*.backup
+
+# Video files (too large for Vercel)
+public/images/*.mp4
+
+# Development files
+.env.local
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# PM2
+ecosystem.config.js
+logs/
+pids/
+
+# Scripts (not needed in production)
+scripts/strategy
+scripts/db-cleanup
+scripts/dev-restart.sh
+scripts/setup-pm2.sh
