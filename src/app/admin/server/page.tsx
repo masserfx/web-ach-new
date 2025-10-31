@@ -1,10 +1,12 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { ServerStats } from '@/components/admin/ServerStats';
 import { ServiceControl } from '@/components/admin/ServiceControl';
 import { PortMonitor } from '@/components/admin/PortMonitor';
 import { ProcessList } from '@/components/admin/ProcessList';
+import { Activity } from 'lucide-react';
 
 interface ServerStatsData {
   system: any;
@@ -63,6 +65,15 @@ export default function ServerMonitorPage() {
             </div>
 
             <div className="flex items-center gap-4">
+              {/* Website Monitoring Link */}
+              <Link
+                href="/admin/monitoring"
+                className="px-4 py-2 bg-gradient-to-r from-[#F36F21] to-[#FF8F3C] hover:shadow-lg rounded-lg font-medium transition-all flex items-center gap-2"
+              >
+                <Activity className="w-4 h-4" />
+                Website Monitoring
+              </Link>
+
               {/* Auto-refresh toggle */}
               <label className="flex items-center gap-2 px-4 py-2 bg-[#2B2B2B] rounded-lg border border-[#3F3F3F]">
                 <input
