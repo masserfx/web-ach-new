@@ -6,7 +6,7 @@ const path = require('path');
 
 const dev = process.env.NODE_ENV !== 'production';
 const hostname = '91.99.126.53';
-const port = 3100;
+const port = 3102;
 
 const app = next({ dev, hostname, port });
 const handle = app.getRequestHandler();
@@ -31,7 +31,7 @@ app.prepare().then(() => {
       console.error(err);
       process.exit(1);
     })
-    .listen(port, () => {
-      console.log(`> Ready on https://${hostname}:${port}`);
+    .listen(port, hostname, () => {
+      console.log(`> AC Heating Vision ready on https://${hostname}:${port}`);
     });
 });
