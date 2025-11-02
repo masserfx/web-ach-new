@@ -1,66 +1,71 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { siteConfig } from '@/lib/site.config';
+import { createClient } from '@/lib/supabase/server';
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
+    
+    const {
+      name,
+      email,
+      phone,
+      houseType,
+      area,
+      heating,
+      message,
+    } = body;
 
     // Validate required fields
-    const requiredFields = ['name', 'email', 'phone', 'service'];
-    const missingFields = requiredFields.filter((field) => !body[field]);
-
-    if (missingFields.length > 0) {
+    if (!name || !email || !phone) {
       return NextResponse.json(
-        { error: 'Chybějící povinná pole', missing: missingFields },
+        { error: 'Chybí povinná pole: jméno, email nebo telefon' },
         { status: 400 }
       );
     }
 
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(body.email)) {
+    // Split name into first and last name
+    const nameParts = name.trim().split(' ');
+    const firstName = nameParts[0] || name;
+    const lastName = nameParts.slice(1).join(' ') || firstName;
+
+    const supabase = await createClient();
+
+    // Insert as lead
+    const { data: lead, error: leadError } = await supabase
+      .from('leads')
+      .insert({
+        first_name: firstName,
+        last_name: lastName,
+        email,
+        phone,
+        property_type: houseType || null,
+        property_size_sqm: area ? parseInt(area) : null,
+        project_description: message || null,
+        lead_type: 'quote_request',
+        source: 'website',
+        status: 'new',
+        gdpr_consent: true, // Assumed from form submission
+      })
+      .select()
+      .single();
+
+    if (leadError) {
+      console.error('Supabase error:', leadError);
       return NextResponse.json(
-        { error: 'Neplatná e-mailová adresa' },
-        { status: 400 }
+        { error: 'Nepodařilo se uložit poptávku' },
+        { status: 500 }
       );
     }
 
-    // Phone validation (Czech format)
-    const phoneRegex = /^(\+420)?[0-9]{9}$/;
-    const cleanPhone = body.phone.replace(/\s/g, '');
-    if (!phoneRegex.test(cleanPhone)) {
-      return NextResponse.json(
-        { error: 'Neplatné telefonní číslo' },
-        { status: 400 }
-      );
-    }
-
-    // TODO: Send email notification
-    // For now, log to console (in production, use email service like Resend, SendGrid, etc.)
-    console.log('📧 Nová poptávka:', {
-      name: body.name,
-      email: body.email,
-      phone: body.phone,
-      service: body.service,
-      message: body.message,
-      timestamp: new Date().toISOString(),
+    return NextResponse.json({
+      success: true,
+      leadId: lead.id,
+      message: 'Poptávka byla úspěšně odeslána',
     });
-
-    // TODO: Save to database
-    // In production, save to Supabase quotes table
-
-    // Return success
-    return NextResponse.json(
-      {
-        success: true,
-        message: 'Poptávka byla úspěšně odeslána. Brzy vás budeme kontaktovat.',
-      },
-      { status: 200 }
-    );
   } catch (error) {
-    console.error('❌ Quote API Error:', error);
+    console.error('Error processing quote:', error);
     return NextResponse.json(
-      { error: 'Chyba při zpracování poptávky' },
+      { error: 'Došlo k chybě při zpracování poptávky' },
       { status: 500 }
     );
   }
