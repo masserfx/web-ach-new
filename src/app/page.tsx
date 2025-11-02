@@ -67,7 +67,7 @@ async function getFeaturedProducts() {
     .from('products')
     .select('*')
     .eq('published', true)
-    .order('created_at', { ascending: false })
+    .eq('featured', true)
     .limit(3);
 
   return products || [];

@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
         property_type: propertyType,
         property_size_sqm: propertySize,
         project_description: projectDescription,
-        interested_products: interestedProducts || [],
+        interested_products: interestedProducts || null || [],
         budget_range: budgetRange,
         urgency: urgency || 'planning',
         lead_type: leadType,
