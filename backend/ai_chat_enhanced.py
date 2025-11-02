@@ -155,7 +155,7 @@ async def handle_ai_chat_real(request: AIChatRequest) -> AIChatResponse:
     
     try:
         response = client.messages.create(
-            model="claude-3-haiku-20240307",
+            model="claude-3-5-haiku-20241022",
             max_tokens=1024,
             system=SYSTEM_PROMPT,
             messages=[
