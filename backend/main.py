@@ -13,6 +13,8 @@ load_dotenv()  # Load .env file
 from datetime import datetime
 
 app = FastAPI(
+nfrom routers.analytics_router import router as analytics_router
+app.include_router(analytics_router, prefix="/api")
     title="AC Heating API",
     description="Backend API for AC Heating web application",
     version="1.0.0"

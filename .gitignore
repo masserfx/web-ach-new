@@ -54,3 +54,4 @@ public/images/*.mp4
 __pycache__/
 venv/
 backend/.env
+analytics/.env
