@@ -219,9 +219,96 @@ async def calculate_savings(request: SavingsCalculationRequest):
     )
 
 
-@app.post("/api/ai-chat")
-async def ai_chat_handler(request: dict):
-    from ai_chat_enhanced import ai_chat_endpoint, AIChatRequest
-    ai_req = AIChatRequest(**request)
-    result = await ai_chat_endpoint(ai_req)
-    return result.model_dump()
+@app.post("/api/ai-chat", response_model=AIChatResponse)
+async def ai_chat(request: AIChatRequest):
+    """
+    AI chat endpoint for customer queries
+    Uses Anthropic Claude for intelligent responses about products, installation, pricing
+    """
+    
+    # TODO: Integrate with Anthropic API
+    # For now, return a mock response
+    
+    conversation_id = request.conversation_id or f"conv_{datetime.now().timestamp()}"
+    
+    # Simple keyword-based responses (replace with actual AI)
+    message_lower = request.message.lower()
+    
+    if any(word in message_lower for word in ["cena", "kolik", "stojí", "price"]):
+        response = """
+        Ceny našich řešení:
+        
+        🏠 Rodinné domy:
+        - Tepelné čerpadlo: od 265 000 Kč
+        - Fotovoltaika: od 480 000 Kč
+        - Komplet s dotací: od 565 000 Kč
+        
+        🏢 Bytové domy:
+        - TČ systém: od 2 600 000 Kč
+        - FVE systém: od 1 100 000 Kč
+        
+        Všechny ceny jsou individuální dle projektu. Mohu vám pomoci s nezávaznou kalkulací?
+        """
+        suggested_actions = ["Spustit kalkulačku úspor", "Poslat poptávku", "Zobrazit dotace"]
+        
+    elif any(word in message_lower for word in ["dotace", "příspěvek", "subsidy"]):
+        response = """
+        Aktuálně dostupné dotace:
+        
+        ✅ Nová zelená úsporám: až 180 000 Kč (RD)
+        ✅ Modernizační fond: až 50% nákladů (BD, firmy)
+        ✅ Kotlíkové dotace: variabilní podle kraje
+        
+        Pomůžeme vám s vyřízením dotace zdarma v rámci projektu!
+        """
+        suggested_actions = ["Zobrazit produkty", "Kontaktovat poradce", "Více o dotacích"]
+        
+    elif any(word in message_lower for word in ["úspora", "ušetřím", "savings"]):
+        response = """
+        Typické úspory našich zákazníků:
+        
+        💰 Tepelné čerpadlo: úspora 60-70% na vytápění
+        ☀️ Fotovoltaika: úspora 70-80% na elektřině
+        🔋 Kompletní řešení: až 80% celkových nákladů
+        
+        Přesnou kalkulaci vám připravím pomocí naší kalkulačky. Chcete si to vyzkoušet?
+        """
+        suggested_actions = ["Spustit kalkulačku", "Zobrazit reference", "Poslat poptávku"]
+        
+    else:
+        response = """
+        Děkuji za váš dotaz. Jsem tu, abych vám pomohl s:
+        
+        ✅ Výběrem vhodného řešení pro vaši nemovitost
+        ✅ Kalkulací úspor a návratnosti
+        ✅ Informacemi o dotacích
+        ✅ Technickými parametry produktů
+        
+        Co vás zajímá konkrétně?
+        """
+        suggested_actions = ["Kalkulačka úspor", "Naše produkty", "Kontakt"]
+    
+    return AIChatResponse(
+        response=response.strip(),
+        conversation_id=conversation_id,
+        suggested_actions=suggested_actions
+    )
+
+
+@app.post("/api/lead")
+async def create_lead(lead_data: dict):
+    """
+    Create a new lead in Supabase
+    TODO: Integrate with Supabase client
+    """
+    # TODO: Insert into Supabase leads table
+    return {
+        "success": True,
+        "message": "Lead created successfully",
+        "lead_id": "mock_id"
+    }
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)

@@ -26,3 +26,4 @@ numpy==2.1.0
 
 # Date/Time
 python-dateutil==2.9.0
+anthropic==0.39.0

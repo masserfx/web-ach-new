@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
+import { sendNewLeadNotification, sendCustomerConfirmation } from @/lib/email/email-service;
 
 export async function POST(request: NextRequest) {
   try {
@@ -69,6 +70,11 @@ export async function POST(request: NextRequest) {
       .single();
 
     if (leadError) {
+n    // Send email notifications (async, non-blocking)
+    Promise.all([
+      sendNewLeadNotification({ lead }),
+      sendCustomerConfirmation({ lead: { firstName, lastName, email } })
+    ]).catch(err => console.error(Email send error:, err));
       console.error('Supabase error:', leadError);
       return NextResponse.json(
         { error: 'Nepodařilo se uložit poptávku' },
@@ -76,8 +82,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // TODO: Send email notification
-    // TODO: Add to CRM
 
     return NextResponse.json({
       success: true,
