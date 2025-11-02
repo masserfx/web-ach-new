@@ -33,7 +33,7 @@ export function SavingsCalculator() {
     setError(null);
 
     try {
-      const response = await fetch('http://localhost:8000/api/calculate-savings', {
+      const response = await fetch('/api/calculate-savings', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
