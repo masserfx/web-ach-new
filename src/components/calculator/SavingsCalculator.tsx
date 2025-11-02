@@ -1,5 +1,6 @@
 'use client';
 
+import { trackCalculatorStarted, trackCalculatorCompleted } from '@/lib/analytics';
 import { useState } from 'react';
 import { Calculator, TrendingDown, Leaf, Euro, Clock, CheckCircle2, Loader2 } from 'lucide-react';
 
