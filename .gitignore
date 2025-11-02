@@ -53,3 +53,4 @@ public/images/*.mp4
 *.log
 __pycache__/
 venv/
+backend/.env

@@ -8,6 +8,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from typing import Optional, List, Dict, Any
 import os
+from dotenv import load_dotenv
+load_dotenv()  # Load .env file
 from datetime import datetime
 
 app = FastAPI(
