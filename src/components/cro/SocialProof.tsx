@@ -84,10 +84,10 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
 
       {/* Savings */}
       {testimonial.savings && (
-        <div className="mb-6 p-4 bg-green-50 rounded-lg border-2 border-green-200">
-          <div className="text-sm font-semibold text-steel-dim mb-1">Roční úspora</div>
+        <aside role="note" aria-label="Informace o roční úspoře" className="mb-6 p-4 bg-green-50 rounded-lg border-2 border-green-200">
+          <div className="text-sm font-semibold text-gray-700 mb-1">Roční úspora</div>
           <div className="text-2xl font-black text-green-600">{testimonial.savings}</div>
-        </div>
+        </aside>
       )}
 
       {/* Author */}

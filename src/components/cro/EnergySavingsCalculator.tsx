@@ -63,6 +63,11 @@ export function EnergySavingsCalculator() {
             step="10"
             value={houseSize}
             onChange={(e) => setHouseSize(parseInt(e.target.value))}
+            aria-label={`Velikost domu: ${houseSize} metrů čtverečních`}
+            aria-valuemin={50}
+            aria-valuemax={500}
+            aria-valuenow={houseSize}
+            aria-valuetext={`${houseSize} metrů čtverečních`}
             className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-accent"
           />
           <div className="flex justify-between text-sm text-steel mt-2">
@@ -73,10 +78,10 @@ export function EnergySavingsCalculator() {
 
         {/* Current Heating Type */}
         <div>
-          <label className="block text-lg font-semibold text-white mb-3">
+          <label id="heating-type-label" className="block text-lg font-semibold text-white mb-3">
             Aktuální vytápění
           </label>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div role="group" aria-labelledby="heating-type-label" className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
               { value: 'gas', label: 'Zemní plyn' },
               { value: 'oil', label: 'Topný olej' },
@@ -86,6 +91,8 @@ export function EnergySavingsCalculator() {
               <button
                 key={option.value}
                 onClick={() => setCurrentHeating(option.value)}
+                aria-pressed={currentHeating === option.value}
+                aria-label={`Vybrat ${option.label} jako typ vytápění`}
                 className={`px-4 py-3 rounded-lg font-semibold transition-all ${
                   currentHeating === option.value
                     ? 'bg-accent text-white shadow-lg'
@@ -143,14 +150,15 @@ export function EnergySavingsCalculator() {
             </div>
           </div>
 
-          <div className="mt-8 p-4 bg-green-50 rounded-lg border-2 border-green-200">
-            <p className="text-sm text-steel mb-2">
-              <strong>Návratnost investice:</strong> Přibližně <strong>{results.roi} let</strong>
-            </p>
-            <p className="text-xs text-steel">
+          <aside role="note" aria-label="Informace o návratnosti investice" className="mt-8 p-4 bg-green-50 rounded-lg border-2 border-green-200">
+            <dl className="text-sm text-gray-800 mb-2">
+              <dt className="inline font-bold">Návratnost investice:</dt>
+              <dd className="inline"> Přibližně <span className="font-bold">{results.roi} let</span></dd>
+            </dl>
+            <p className="text-xs text-gray-700">
               *Výpočet je orientační. Reální úspora se liší dle specifik domu, izolace, energií cen, apod.
             </p>
-          </div>
+          </aside>
         </div>
 
         {/* CTA */}
@@ -158,6 +166,7 @@ export function EnergySavingsCalculator() {
           <Link
             href="/pripravit-rozpocet"
             className="inline-flex items-center gap-2 px-8 py-4 bg-accent text-white rounded-xl font-bold text-lg hover:bg-accent/90 transition-all shadow-lg"
+            aria-label="Spočítej si přesný rozpočet - otevře formulář pro nezávaznou poptávku"
           >
             Spočítej si přesný rozpočet
           </Link>

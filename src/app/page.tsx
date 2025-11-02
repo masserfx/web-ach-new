@@ -151,8 +151,9 @@ export default async function HomePage() {
         <BlackSteelCTAFooterSection />
 
         {/* Legacy Sections (fallback - can be customized or removed) */}
-        <section className="bg-carbon py-20">
+        <section className="bg-carbon py-20" aria-labelledby="services-heading">
           <div className="container mx-auto px-4">
+            <h2 id="services-heading" className="sr-only">Naše služby</h2>
             <FeatureGrid />
           </div>
         </section>
@@ -167,7 +168,8 @@ export default async function HomePage() {
         </section>
 
         {/* CRO Section: Objection Handler */}
-        <section className="bg-carbon py-20">
+        <section className="bg-carbon py-20" aria-labelledby="faq-heading">
+          <h2 id="faq-heading" className="sr-only">Často kladené otázky</h2>
           <ObjectionHandler objections={commonObjections} />
         </section>
 

@@ -48,6 +48,7 @@ export function Navigation() {
             <Link
               href="/pripravit-rozpocet"
               className="px-6 py-2 bg-accent text-white rounded-lg font-semibold hover:bg-accent/90 transition-colors"
+              aria-label="Odeslat nezávaznou poptávku"
             >
               Poptávka
             </Link>
@@ -90,6 +91,7 @@ export function Navigation() {
                 href="/pripravit-rozpocet"
                 onClick={() => setIsOpen(false)}
                 className="block py-3 px-4 bg-accent text-white rounded-lg font-semibold text-center hover:bg-accent/90 transition-colors"
+                aria-label="Odeslat nezávaznou poptávku"
               >
                 Nezávazná poptávka
               </Link>
