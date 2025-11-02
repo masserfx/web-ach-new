@@ -192,10 +192,10 @@ export default function QuotePage() {
                         className="w-full px-4 py-3 bg-carbon border-2 border-graphite-light/50 text-steel rounded-xl focus:border-accent focus:outline-none transition-colors"
                       >
                         <option value="">Vyberte typ</option>
-                        <option value="rodinny-dum">Rodinný dům</option>
-                        <option value="bytovy-dum">Bytový dům</option>
-                        <option value="komerci">Komerční objekt</option>
-                        <option value="jine">Jiné</option>
+                        <option value="rodinny_dum">Rodinný dům</option>
+                        <option value="bytovy_dum">Bytový dům</option>
+                        <option value="firma">Komerční objekt</option>
+                        <option value="developer">Jiné</option>
                       </select>
                     </div>
 
@@ -229,7 +229,7 @@ export default function QuotePage() {
                         <option value="plyn">Plyn</option>
                         <option value="uhli">Uhlí</option>
                         <option value="drevo">Dřevo</option>
-                        <option value="jine">Jiné</option>
+                        <option value="developer">Jiné</option>
                       </select>
                     </div>
 
