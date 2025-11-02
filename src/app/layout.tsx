@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google';
 import '@/styles/globals.css';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
-import { AIChatbot } from @/components/chat/AIChatbot;
+import { AIChatbot } from '@/components/chat/AIChatbot';
 import { JsonLd } from '@/components/JsonLd';
 import { Analytics } from '@/components/Analytics';
 
