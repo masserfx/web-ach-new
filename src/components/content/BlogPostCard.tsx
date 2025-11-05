@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Calendar, Clock, Tag, ArrowRight } from 'lucide-react';
 
 export interface BlogPostCardProps {
@@ -39,11 +40,7 @@ export function BlogPostCard({ post }: { post: BlogPostCardProps }) {
       {/* Featured Image */}
       {post.featured_image && (
         <Link href={`/blog/${post.slug}`} className="block relative aspect-video overflow-hidden bg-gray-100">
-          <img
-            src={post.featured_image}
-            alt={post.title}
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-          />
+          <Image src={post.featured_image} alt={post.title} width={800} height={600} loading="lazy" quality={85} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" lang="cs" />
 
           {/* Category Badge */}
           {post.category && (

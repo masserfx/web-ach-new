@@ -2,14 +2,14 @@
 
 /* Tailwind v4 theme customization */
 @theme {
-  /* Black Steel Color System */
+  /* Black Steel Color System (Dark Mode - Default) */
   --color-carbon: #0D0D0D;
   --color-graphite: #2B2B2B;
   --color-graphite-light: #3F3F3F;
   --color-steel: #E8E8E8;
   --color-steel-dim: #E0E0E0;
-  --color-accent: #FF9F43;
-  --color-accent-dark: #E07B28;
+  --color-accent: #E67E22;
+  --color-accent-dark: #D35400;
   
   /* Font family */
   --font-family-inter: 'Inter', system-ui, sans-serif;
@@ -17,12 +17,130 @@
 }
 
 @layer base {
-  /* Black Steel defaults */
+  /* Default Dark Mode */
   body {
     background-color: var(--color-carbon);
     color: var(--color-steel);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Light Mode Overrides - WITH !important FOR TAILWIND OVERRIDE */
+  .light body {
+    background-color: #FFFFFF !important;
+    color: #111827 !important;
+  }
+
+  /* Navigation */
+  .light nav {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    border-bottom-color: #E5E7EB !important;
+  }
+
+  /* Background Colors */
+  .light .bg-carbon {
+    background-color: #FFFFFF !important;
+  }
+
+  .light .bg-graphite {
+    background-color: #F5F5F5 !important;
+  }
+
+  .light .bg-graphite-light {
+    background-color: #E5E7EB !important;
+  }
+
+  .light .bg-black {
+    background-color: #FFFFFF !important;
+  }
+
+  /* Text Colors */
+  .light .text-steel {
+    color: #111827 !important;
+  }
+
+  .light .text-steel-dim {
+    color: #6B7280 !important;
+  }
+
+  .light .text-white {
+    color: #111827 !important;
+  }
+
+  /* Borders */
+  .light .border-white {
+    border-color: #E5E7EB !important;
+  }
+
+  .light .border-accent {
+    border-color: #E67E22 !important;
+  }
+
+  /* Shadows */
+  .light .shadow-sm {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+  }
+
+  .light .shadow-xl {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  .light .shadow-2xl {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+  }
+
+  /* Hero Section */
+  .light section {
+    background-color: #FFFFFF !important;
+  }
+
+  .light .bg-gradient-to-br,
+  .light .bg-gradient-to-b {
+    background: linear-gradient(to bottom right, #F9FAFB, #FFFFFF) !important;
+  }
+
+  /* Cards & Containers */
+  .light .bg-white {
+    background-color: #FFFFFF !important;
+    border: 1px solid #E5E7EB;
+  }
+
+  .light .rounded-2xl {
+    border: 1px solid #E5E7EB;
+  }
+
+  /* Footer */
+  .light footer {
+    background-color: #F9FAFB !important;
+    color: #374151 !important;
+    border-top: 1px solid #E5E7EB !important;
+  }
+
+  .light footer .text-steel-dim {
+    color: #6B7280 !important;
+  }
+
+  /* Buttons - preserve accent color */
+  .light .bg-accent {
+    background-color: #E67E22 !important;
+    color: #FFFFFF !important;
+  }
+
+  /* Hover states */
+  .light .hover\:bg-graphite-light:hover {
+    background-color: #F3F4F6 !important;
+  }
+
+  .light .hover\:text-accent:hover {
+    color: #E67E22 !important;
+  }
+
+  /* Gradients with accent */
+  .light .from-accent,
+  .light .to-accent,
+  .light .from-accent-dark {
+    /* Keep accent colors */
   }
 
   /* Smooth scrolling */
@@ -30,10 +148,51 @@
     scroll-behavior: smooth;
   }
 
-  /* Focus visible for accessibility */
+  /* Enhanced focus visible for accessibility - WCAG 2.4.7 */
   *:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Exception for buttons and links with custom focus styles */
+  button:focus-visible,
+  a:focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 2px;
+  }
+
+  /* Input fields focus - enhanced with shadow */
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 0;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.1);
+  }
+
+  /* Light mode forms */
+  .light input,
+  .light textarea,
+  .light select {
+    background-color: #FFFFFF !important;
+    border-color: #D1D5DB !important;
+    color: #111827 !important;
+  }
+
+  .light input::placeholder,
+  .light textarea::placeholder {
+    color: #9CA3AF !important;
+  }
+
+  /* Light mode links */
+  .light a {
+    color: #E67E22 !important;
+  }
+
+  .light a:hover {
+    color: #D35400 !important;
   }
 }
 
@@ -45,5 +204,48 @@
 
   .animation-delay-4000 {
     animation-delay: 4s;
+  }
+}
+
+/* Navigation Active State Transitions */
+@layer components {
+  /* Smooth transitions for navigation links */
+  nav a {
+    position: relative;
+  }
+  
+  /* Active indicator smooth animation */
+  nav a span {
+    animation: slideIn 0.3s ease;
+  }
+  
+  @keyframes slideIn {
+    from {
+      width: 0;
+      opacity: 0;
+    }
+    to {
+      width: 100%;
+      opacity: 1;
+    }
+  }
+  
+  /* Hover effect enhancement */
+  nav a:not(.bg-accent):hover {
+    transform: translateY(-1px);
+  }
+  
+  /* Mobile active state border animation */
+  nav a.border-l-4 {
+    animation: borderSlide 0.2s ease;
+  }
+  
+  @keyframes borderSlide {
+    from {
+      border-left-width: 0;
+    }
+    to {
+      border-left-width: 4px;
+    }
   }
 }

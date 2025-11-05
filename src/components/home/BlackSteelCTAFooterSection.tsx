@@ -35,6 +35,7 @@ export function BlackSteelCTAFooterSection() {
             <Link
               href="/pripravit-rozpocet"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#F36F21] font-bold text-base rounded-lg hover:bg-white/90 transition-all duration-300 hover:scale-105 shadow-lg"
+              aria-label="Nezávazná konzultace zdarma - kontaktujte nás pro bezplatnou konzultaci"
             >
               <span>Nezávazná konzultace zdarma</span>
             </Link>

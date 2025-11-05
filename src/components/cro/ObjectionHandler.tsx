@@ -29,7 +29,7 @@ export function ObjectionHandler({
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-3 text-center">{title}</h2>
-          <p className="text-lg text-gray-700 text-center mb-12">{description}</p>
+          <p className="text-lg text-gray-900 text-center mb-12">{description}</p>
 
           <div className="space-y-4">
             {objections.map((objection, idx) => (

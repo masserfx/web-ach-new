@@ -45,7 +45,7 @@ export default async function BlogPage({
   const posts = await getBlogPosts(params.q);
 
   return (
-    <main className="min-h-screen bg-black">
+    <main id="main-content" className="min-h-screen bg-black">
       {/* Back to Home */}
       <div className="container mx-auto px-4 py-6">
         <Link

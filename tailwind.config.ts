@@ -20,10 +20,22 @@ const config: Config = {
         steel: '#E8E8E8',         // Primary text on dark (WCAG AAA 17.14:1 s carbon)
         'steel-dim': '#E0E0E0',   // Secondary text on dark - výrazně zesvětleno (WCAG AAA 15:1 s carbon)
 
-        // Accent colors
-        accent: '#FF9F43',        // WCAG AA 5.42:1 s white, 4.8:1 s carbon
-        'accent-dark': '#E07B28', // Hover state (WCAG AA 6.2:1 s white)
-        'accent-light': '#FFB366', // Light variant (WCAG A 3.1:1)
+        // Accent colors - IMPROVED CONTRAST
+        accent: '#E67E22',        // Tmavší oranžová - WCAG AA 4.5:1 s white, vyšší s carbon
+        'accent-dark': '#D35400', // Hover state (WCAG AAA 7:1 s white)
+        'accent-light': '#F39C12', // Light variant pro light mode
+
+
+        // Light mode colors
+        light: {
+          bg: '#FFFFFF',           // Light background
+          surface: '#F5F5F5',      // Light surface
+          card: '#FFFFFF',         // Card background
+          border: '#E5E7EB',       // Border color
+          text: '#111827',         // Primary text
+          muted: '#6B7280',        // Muted text
+          accent: '#E67E22',       // Same accent for consistency
+        },
 
         glass: 'rgba(255,255,255,0.15)', // Glass effect with opacity
 

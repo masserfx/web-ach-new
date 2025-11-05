@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, Zap } from 'lucide-react';
 import { useMemo } from 'react';
 import { getCompanyYears } from '@/lib/utils';
@@ -43,37 +44,17 @@ export function BlackSteelHeroSection() {
       {/* Background Image with Responsive Overlays */}
       <div className="absolute inset-0">
         {/* NG ONE Hero Image - Responsive with native picture element */}
-        <picture>
-          <source
-            media="(max-width: 640px)"
-            srcSet="/images/hero-ng-one-mobile.webp"
-          />
-          <source
-            media="(max-width: 768px)"
-            srcSet="/images/hero-ng-one-tablet.webp"
-          />
-          <source
-            media="(max-width: 1024px)"
-            srcSet="/images/hero-ng-one-laptop.webp"
-          />
-          <source
-            media="(max-width: 1280px)"
-            srcSet="/images/hero-ng-one-desktop.webp"
-          />
-          <source
-            media="(max-width: 1920px)"
-            srcSet="/images/hero-ng-one-fullhd.webp"
-          />
-          <source
-            srcSet="/images/hero-ng-one-2k.webp"
-          />
-          <img
-            src="/images/hero-ng-one-fullhd.webp"
-            alt="AC Heating NG ONE tepelné čerpadlo"
-            className="w-full h-full object-contain sm:object-cover object-left sm:object-[35%] md:object-[40%] lg:object-center"
-            loading="eager"
-          />
-        </picture>
+        <Image
+          src="/images/hero-ng-one-fullhd.webp"
+          alt="AC Heating NG ONE tepelné čerpadlo"
+          width={1920}
+          height={1080}
+          priority
+          quality={90}
+          className="w-full h-full object-contain sm:object-cover object-left sm:object-[35%] md:object-[40%] lg:object-center"
+          sizes="100vw"
+          lang="cs"
+        />
         
         {/* Mobile: Lighter overlay to show hero image */}
         <div className="absolute inset-0 bg-gradient-to-b from-carbon/70 via-carbon/60 to-carbon/50 md:hidden" />
@@ -124,7 +105,7 @@ export function BlackSteelHeroSection() {
             {/* Primary CTA - Responsive Sizing */}
             <Link
               href="/pripravit-rozpocet"
-              className="group relative inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-gradient-to-r from-[#F36F21] to-[#FF8F3C] text-white font-bold text-sm sm:text-base rounded-lg shadow-[0_4px_20px_rgba(243,111,33,0.4)] hover:shadow-[0_8px_30px_rgba(243,111,33,0.6)] transition-all duration-300 hover:scale-105 active:scale-95"
+              className="group relative inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-gradient-to-r from-[#E05020] to-[#F36F21] text-white font-bold text-sm sm:text-base rounded-lg shadow-[0_4px_20px_rgba(224,80,32,0.4)] hover:shadow-[0_8px_30px_rgba(224,80,32,0.6)] transition-all duration-300 hover:scale-105 active:scale-95"
             >
               <span>Získejte nabídku</span>
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />

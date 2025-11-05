@@ -20,9 +20,21 @@ const nextConfig: NextConfig = {
         pathname: '/storage/v1/**',
       },
       {
+        protocol: 'https',
+        hostname: 'localhost',
+        port: '54321',
+        pathname: '/storage/v1/**',
+      },
+      {
         protocol: 'http',
         hostname: '91.99.126.53',
         port: '8080',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '91.99.126.53',
+        port: '3100',
         pathname: '/**',
       },
     ],
@@ -65,7 +77,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: http://localhost:54321 http://91.99.126.53:8080 http://91.99.126.53:54321 https:; font-src 'self' data:; connect-src 'self' http://localhost:54321 http://91.99.126.53:8080 http://91.99.126.53:54321 https://www.google-analytics.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';",
+            value: "default-src 'self' https:; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https: http://localhost:54321 http://91.99.126.53:8080 http://91.99.126.53:54321; font-src 'self' data:; connect-src 'self' https: http://localhost:54321 http://91.99.126.53:8080 http://91.99.126.53:54321 wss: ws:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;",
           },
         ],
       },
