@@ -25,6 +25,18 @@ const config: Config = {
         'accent-dark': '#D35400', // Hover state (WCAG AAA 7:1 s white)
         'accent-light': '#F39C12', // Light variant pro light mode
 
+
+        // Light mode colors
+        light: {
+          bg: '#FFFFFF',           // Light background
+          surface: '#F5F5F5',      // Light surface
+          card: '#FFFFFF',         // Card background
+          border: '#E5E7EB',       // Border color
+          text: '#111827',         // Primary text
+          muted: '#6B7280',        // Muted text
+          accent: '#E67E22',       // Same accent for consistency
+        },
+
         glass: 'rgba(255,255,255,0.15)', // Glass effect with opacity
 
         // Legacy brand colors (fallback for old pages)

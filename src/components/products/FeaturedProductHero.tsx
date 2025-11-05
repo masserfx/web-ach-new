@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Check, Download, Mail } from 'lucide-react';
 
 interface FeaturedProductHeroProps {
@@ -99,11 +100,7 @@ export function FeaturedProductHero({ product }: FeaturedProductHeroProps) {
           {/* Main Image */}
           {mainImage && (
             <div className="relative aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-graphite via-graphite-light to-carbon border border-graphite-light/50 shadow-2xl">
-              <img
-                src={mainImage.url}
-                alt={mainImage.alt || product.name}
-                className="w-full h-full object-contain p-8"
-              />
+              <Image src={mainImage.url} alt={mainImage.alt || product.name} width={800} height={600} loading="lazy" quality={85} className="w-full h-full object-contain p-8" lang="cs" />
 
               {/* Floating Badges */}
               <div className="absolute top-6 right-6 space-y-3">

@@ -60,7 +60,7 @@ export default function QuotePage() {
 
   if (submitted) {
     return (
-      <main className="min-h-screen bg-black flex items-center justify-center py-20">
+      <main id="main-content" className="min-h-screen bg-black flex items-center justify-center py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center">
             <div className="inline-flex p-6 rounded-full bg-gradient-to-br from-accent to-accent-dark text-white mb-6">
@@ -94,7 +94,7 @@ export default function QuotePage() {
   }
 
   return (
-    <main className="min-h-screen bg-black">
+    <main id="main-content" className="min-h-screen bg-black">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-b from-carbon via-graphite to-carbon py-20">
         {/* Background blobs */}

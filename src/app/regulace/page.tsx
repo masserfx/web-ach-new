@@ -6,7 +6,7 @@ import { siteConfig } from '@/lib/site.config';
 
 export default function RegulatePage() {
   return (
-    <main className="min-h-screen bg-black">
+    <main id="main-content" className="min-h-screen bg-black">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-b from-carbon via-graphite to-carbon py-20">
         {/* Background blobs */}

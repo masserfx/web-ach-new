@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Mail, Phone, Building2, Home, CheckCircle2, Loader2, MapPin, User } from 'lucide-react';
+import { Mail, Phone, Building2, Home, CheckCircle2, Loader2, MapPin, User, AlertCircle } from 'lucide-react';
 
 interface LeadFormData {
   firstName: string;
@@ -20,6 +20,15 @@ interface LeadFormData {
   marketingConsent: boolean;
 }
 
+interface FormErrors {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  phone?: string;
+  propertyType?: string;
+  gdprConsent?: string;
+}
+
 interface EnhancedLeadFormProps {
   preselectedProduct?: string;
   source?: string;
@@ -31,6 +40,7 @@ export function EnhancedLeadForm({ preselectedProduct, source = 'website' }: Enh
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [errors, setErrors] = useState<FormErrors>({});
 
   const [formData, setFormData] = useState<LeadFormData>({
     firstName: '',
@@ -49,6 +59,48 @@ export function EnhancedLeadForm({ preselectedProduct, source = 'website' }: Enh
 
   const updateField = (field: keyof LeadFormData, value: any) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+    // Clear error when user starts typing
+    if (errors[field as keyof FormErrors]) {
+      setErrors(prev => ({ ...prev, [field]: undefined }));
+    }
+  };
+
+  const validateStep1 = (): boolean => {
+    const newErrors: FormErrors = {};
+    
+    if (!formData.firstName.trim()) {
+      newErrors.firstName = 'Jméno je povinné';
+    }
+    
+    if (!formData.lastName.trim()) {
+      newErrors.lastName = 'Příjmení je povinné';
+    }
+    
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email je povinný';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Neplatný formát emailu';
+    }
+    
+    if (!formData.phone.trim()) {
+      newErrors.phone = 'Telefon je povinný';
+    } else if (!/^[\d\s+()-]{9,}$/.test(formData.phone)) {
+      newErrors.phone = 'Neplatný formát telefonu';
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const validateStep2 = (): boolean => {
+    const newErrors: FormErrors = {};
+    
+    if (!formData.propertyType) {
+      newErrors.propertyType = 'Vyberte typ objektu';
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const isStepValid = () => {
@@ -64,9 +116,19 @@ export function EnhancedLeadForm({ preselectedProduct, source = 'website' }: Enh
     return true;
   };
 
+  const handleNext = () => {
+    if (step === 1 && !validateStep1()) {
+      return;
+    }
+    if (step === 2 && !validateStep2()) {
+      return;
+    }
+    setStep(step + 1);
+  };
+
   const handleSubmit = async () => {
     if (!formData.gdprConsent) {
-      setError('Musíte souhlasit se zpracováním osobních údajů');
+      setErrors({ gdprConsent: 'Musíte souhlasit se zpracováním osobních údajů' });
       return;
     }
 
@@ -143,80 +205,143 @@ export function EnhancedLeadForm({ preselectedProduct, source = 'website' }: Enh
           
           <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-zinc-700 mb-2">
+              <label htmlFor="lead-firstName" className="block text-sm font-medium text-zinc-700 mb-2">
                 Jméno *
               </label>
               <input
+                id="lead-firstName"
+                name="firstName"
                 type="text"
                 value={formData.firstName}
                 onChange={(e) => updateField('firstName', e.target.value)}
-                className="w-full px-4 py-3 border border-zinc-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-transparent"
+                className={`w-full px-4 py-3 border rounded-lg transition-colors ${
+                  errors.firstName 
+                    ? 'border-red-500 bg-red-50 focus:ring-red-500' 
+                    : 'border-zinc-300 focus:ring-2 focus:ring-red-600 focus:border-transparent'
+                }`}
                 placeholder="Jan"
                 required
+                aria-invalid={!!errors.firstName}
+                aria-describedby={errors.firstName ? 'firstName-error' : undefined}
+                autoComplete="given-name"
               />
+              {errors.firstName && (
+                <p id="firstName-error" className="mt-1 text-sm text-red-600 flex items-center gap-1" role="alert">
+                  <AlertCircle className="w-4 h-4" />
+                  {errors.firstName}
+                </p>
+              )}
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-zinc-700 mb-2">
+              <label htmlFor="lead-lastName" className="block text-sm font-medium text-zinc-700 mb-2">
                 Příjmení *
               </label>
               <input
+                id="lead-lastName"
+                name="lastName"
                 type="text"
                 value={formData.lastName}
                 onChange={(e) => updateField('lastName', e.target.value)}
-                className="w-full px-4 py-3 border border-zinc-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-transparent"
+                className={`w-full px-4 py-3 border rounded-lg transition-colors ${
+                  errors.lastName 
+                    ? 'border-red-500 bg-red-50 focus:ring-red-500' 
+                    : 'border-zinc-300 focus:ring-2 focus:ring-red-600 focus:border-transparent'
+                }`}
                 placeholder="Novák"
                 required
+                aria-invalid={!!errors.lastName}
+                aria-describedby={errors.lastName ? 'lastName-error' : undefined}
+                autoComplete="family-name"
               />
+              {errors.lastName && (
+                <p id="lastName-error" className="mt-1 text-sm text-red-600 flex items-center gap-1" role="alert">
+                  <AlertCircle className="w-4 h-4" />
+                  {errors.lastName}
+                </p>
+              )}
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-zinc-700 mb-2">
+            <label htmlFor="lead-email" className="block text-sm font-medium text-zinc-700 mb-2">
               Email *
             </label>
             <div className="relative">
               <Mail className="absolute left-3 top-3.5 w-5 h-5 text-zinc-400" />
               <input
+                id="lead-email"
+                name="email"
                 type="email"
                 value={formData.email}
                 onChange={(e) => updateField('email', e.target.value)}
-                className="w-full pl-10 pr-4 py-3 border border-zinc-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-transparent"
+                className={`w-full pl-10 pr-4 py-3 border rounded-lg transition-colors ${
+                  errors.email 
+                    ? 'border-red-500 bg-red-50 focus:ring-red-500' 
+                    : 'border-zinc-300 focus:ring-2 focus:ring-red-600 focus:border-transparent'
+                }`}
                 placeholder="jan.novak@email.cz"
                 required
+                aria-invalid={!!errors.email}
+                aria-describedby={errors.email ? 'email-error' : undefined}
+                autoComplete="email"
               />
             </div>
+            {errors.email && (
+              <p id="email-error" className="mt-1 text-sm text-red-600 flex items-center gap-1" role="alert">
+                <AlertCircle className="w-4 h-4" />
+                {errors.email}
+              </p>
+            )}
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-zinc-700 mb-2">
+            <label htmlFor="lead-phone" className="block text-sm font-medium text-zinc-700 mb-2">
               Telefon *
             </label>
             <div className="relative">
               <Phone className="absolute left-3 top-3.5 w-5 h-5 text-zinc-400" />
               <input
+                id="lead-phone"
+                name="phone"
                 type="tel"
                 value={formData.phone}
                 onChange={(e) => updateField('phone', e.target.value)}
-                className="w-full pl-10 pr-4 py-3 border border-zinc-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-transparent"
+                className={`w-full pl-10 pr-4 py-3 border rounded-lg transition-colors ${
+                  errors.phone 
+                    ? 'border-red-500 bg-red-50 focus:ring-red-500' 
+                    : 'border-zinc-300 focus:ring-2 focus:ring-red-600 focus:border-transparent'
+                }`}
                 placeholder="+420 123 456 789"
                 required
+                aria-invalid={!!errors.phone}
+                aria-describedby={errors.phone ? 'phone-error' : undefined}
+                autoComplete="tel"
               />
             </div>
+            {errors.phone && (
+              <p id="phone-error" className="mt-1 text-sm text-red-600 flex items-center gap-1" role="alert">
+                <AlertCircle className="w-4 h-4" />
+                {errors.phone}
+              </p>
+            )}
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-zinc-700 mb-2">
+            <label htmlFor="lead-city" className="block text-sm font-medium text-zinc-700 mb-2">
               Město
             </label>
             <div className="relative">
               <MapPin className="absolute left-3 top-3.5 w-5 h-5 text-zinc-400" />
               <input
+                id="lead-city"
+                name="city"
                 type="text"
                 value={formData.city}
                 onChange={(e) => updateField('city', e.target.value)}
                 className="w-full pl-10 pr-4 py-3 border border-zinc-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-transparent"
                 placeholder="Praha"
+                autoComplete="address-level2"
               />
             </div>
           </div>
@@ -246,21 +371,32 @@ export function EnhancedLeadForm({ preselectedProduct, source = 'website' }: Enh
                   className={`p-4 border-2 rounded-lg text-left transition-all ${
                     formData.propertyType === type.value
                       ? 'border-red-600 bg-red-50'
+                      : errors.propertyType
+                      ? 'border-red-500 bg-red-50'
                       : 'border-zinc-300 hover:border-red-300'
                   }`}
+                  aria-pressed={formData.propertyType === type.value}
                 >
                   <type.icon className="w-6 h-6 mb-2 text-red-600" />
                   <div className="font-semibold">{type.label}</div>
                 </button>
               ))}
             </div>
+            {errors.propertyType && (
+              <p className="mt-2 text-sm text-red-600 flex items-center gap-1" role="alert">
+                <AlertCircle className="w-4 h-4" />
+                {errors.propertyType}
+              </p>
+            )}
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-zinc-700 mb-2">
+            <label htmlFor="lead-propertySize" className="block text-sm font-medium text-zinc-700 mb-2">
               Plocha objektu (m²)
             </label>
             <input
+              id="lead-propertySize"
+              name="propertySize"
               type="number"
               value={formData.propertySize || ''}
               onChange={(e) => updateField('propertySize', parseInt(e.target.value))}
@@ -270,10 +406,12 @@ export function EnhancedLeadForm({ preselectedProduct, source = 'website' }: Enh
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-zinc-700 mb-2">
+            <label htmlFor="lead-budgetRange" className="block text-sm font-medium text-zinc-700 mb-2">
               Rozpočet
             </label>
             <select
+              id="lead-budgetRange"
+              name="budgetRange"
               value={formData.budgetRange}
               onChange={(e) => updateField('budgetRange', e.target.value)}
               className="w-full px-4 py-3 border border-zinc-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-transparent"
@@ -287,10 +425,12 @@ export function EnhancedLeadForm({ preselectedProduct, source = 'website' }: Enh
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-zinc-700 mb-2">
+            <label htmlFor="lead-urgency" className="block text-sm font-medium text-zinc-700 mb-2">
               Časový rámec
             </label>
             <select
+              id="lead-urgency"
+              name="urgency"
               value={formData.urgency}
               onChange={(e) => updateField('urgency', e.target.value)}
               className="w-full px-4 py-3 border border-zinc-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-transparent"
@@ -304,10 +444,12 @@ export function EnhancedLeadForm({ preselectedProduct, source = 'website' }: Enh
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-zinc-700 mb-2">
+            <label htmlFor="lead-projectDescription" className="block text-sm font-medium text-zinc-700 mb-2">
               Popis projektu
             </label>
             <textarea
+              id="lead-projectDescription"
+              name="projectDescription"
               value={formData.projectDescription}
               onChange={(e) => updateField('projectDescription', e.target.value)}
               rows={4}
@@ -323,7 +465,7 @@ export function EnhancedLeadForm({ preselectedProduct, source = 'website' }: Enh
         <div className="space-y-4">
           <h3 className="text-xl font-bold text-zinc-900 mb-4">Souhlas se zpracováním</h3>
           
-          <div className="bg-zinc-50 border border-zinc-200 rounded-lg p-6">
+          <div className={`bg-zinc-50 border rounded-lg p-6 ${errors.gdprConsent ? 'border-red-500 bg-red-50' : 'border-zinc-200'}`}>
             <div className="space-y-4">
               <label className="flex items-start gap-3 cursor-pointer">
                 <input
@@ -332,11 +474,20 @@ export function EnhancedLeadForm({ preselectedProduct, source = 'website' }: Enh
                   onChange={(e) => updateField('gdprConsent', e.target.checked)}
                   className="mt-1 w-4 h-4 text-red-600 rounded border-zinc-300 focus:ring-red-600"
                   required
+                  aria-required="true"
+                  aria-invalid={!!errors.gdprConsent}
+                  aria-describedby={errors.gdprConsent ? 'gdprConsent-error' : undefined}
                 />
                 <span className="text-sm text-zinc-700">
                   Souhlasím se zpracováním osobních údajů za účelem zpracování poptávky a kontaktování. *
                 </span>
               </label>
+              {errors.gdprConsent && (
+                <p id="gdprConsent-error" className="text-sm text-red-600 flex items-center gap-1" role="alert">
+                  <AlertCircle className="w-4 h-4" />
+                  {errors.gdprConsent}
+                </p>
+              )}
 
               <label className="flex items-start gap-3 cursor-pointer">
                 <input
@@ -353,7 +504,8 @@ export function EnhancedLeadForm({ preselectedProduct, source = 'website' }: Enh
           </div>
 
           {error && (
-            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg flex items-center gap-2">
+              <AlertCircle className="w-5 h-5 flex-shrink-0" />
               {error}
             </div>
           )}
@@ -376,9 +528,8 @@ export function EnhancedLeadForm({ preselectedProduct, source = 'website' }: Enh
         {step < 3 ? (
           <button
             type="button"
-            onClick={() => setStep(step + 1)}
-            disabled={!isStepValid()}
-            className="flex-1 bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors disabled:bg-zinc-300 disabled:cursor-not-allowed"
+            onClick={handleNext}
+            className="flex-1 bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2"
           >
             Pokračovat
           </button>
@@ -387,7 +538,7 @@ export function EnhancedLeadForm({ preselectedProduct, source = 'website' }: Enh
             type="button"
             onClick={handleSubmit}
             disabled={!isStepValid() || isSubmitting}
-            className="flex-1 bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors disabled:bg-zinc-300 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            className="flex-1 bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors disabled:bg-zinc-300 disabled:cursor-not-allowed flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2"
           >
             {isSubmitting ? (
               <>

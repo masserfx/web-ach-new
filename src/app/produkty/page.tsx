@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { createClient } from '@/lib/supabase/server';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, Check, TrendingDown } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -90,10 +91,15 @@ export default async function ProductsPage() {
                     {/* Product Image */}
                     <div className="relative aspect-video bg-zinc-100 overflow-hidden">
                       {product.images?.[0]?.url ? (
-                        <img
+                        <Image
                           src={product.images[0].url}
                           alt={product.name}
+                          width={800}
+                          height={600}
+                          loading="lazy"
+                          quality={85}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          lang="cs"
                         />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center">
@@ -121,8 +127,13 @@ export default async function ProductsPage() {
                         </span>
                       </div>
 
-                      <h3 className="text-xl font-bold text-zinc-900 mb-2 group-hover:text-red-600 transition-colors">
-                        {product.name}
+                      <h3 className="text-xl font-bold mb-2">
+                        <Link 
+                          href={`/produkty/${product.slug}`}
+                          className="text-zinc-900 hover:text-red-600 transition-colors focus:outline-none focus:ring-2 focus:ring-red-600 focus:rounded"
+                        >
+                          {product.name}
+                        </Link>
                       </h3>
 
                       {product.model && (
@@ -169,10 +180,13 @@ export default async function ProductsPage() {
                       </div>
 
                       {/* CTA */}
-                      <div className="flex items-center justify-between text-red-600 font-semibold group-hover:text-red-700">
+                      <Link
+                        href={`/produkty/${product.slug}`}
+                        className="flex items-center justify-between text-red-600 font-semibold hover:text-red-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 rounded"
+                      >
                         <span>Zjistit více</span>
                         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                      </div>
+                      </Link>
                     </div>
                   </Link>
                 ))}

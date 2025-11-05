@@ -25,7 +25,7 @@ export function Footer() {
                 href={siteConfig.social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-graphite hover:bg-accent transition-colors"
+                className="p-2 rounded-lg bg-graphite border border-graphite-light/50 text-steel hover:bg-accent hover:text-white hover:border-accent transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-carbon"
                 aria-label="Facebook"
               >
                 <Facebook className="w-5 h-5" />
@@ -34,7 +34,7 @@ export function Footer() {
                 href={siteConfig.social.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-graphite hover:bg-accent transition-colors"
+                className="p-2 rounded-lg bg-graphite border border-graphite-light/50 text-steel hover:bg-accent hover:text-white hover:border-accent transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-carbon"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-5 h-5" />
@@ -43,7 +43,7 @@ export function Footer() {
                 href={siteConfig.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-graphite hover:bg-accent transition-colors"
+                className="p-2 rounded-lg bg-graphite border border-graphite-light/50 text-steel hover:bg-accent hover:text-white hover:border-accent transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-carbon"
                 aria-label="Instagram"
               >
                 <Instagram className="w-5 h-5" />
@@ -56,22 +56,22 @@ export function Footer() {
             <h3 className="text-white font-bold text-lg mb-4">Produkty</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/produkty" className="hover:text-white transition-colors">
+                <Link href="/produkty" className="text-steel-dim hover:text-accent transition-colors focus:outline-none focus:text-accent focus:underline">
                   Tepelná čerpadla
                 </Link>
               </li>
               <li>
-                <Link href="/produkty" className="hover:text-white transition-colors">
+                <Link href="/produkty" className="text-steel-dim hover:text-accent transition-colors focus:outline-none focus:text-accent focus:underline">
                   Fotovoltaika
                 </Link>
               </li>
               <li>
-                <Link href="/produkty" className="hover:text-white transition-colors">
+                <Link href="/produkty" className="text-steel-dim hover:text-accent transition-colors focus:outline-none focus:text-accent focus:underline">
                   Regulace
                 </Link>
               </li>
               <li>
-                <Link href="/produkty" className="hover:text-white transition-colors">
+                <Link href="/produkty" className="text-steel-dim hover:text-accent transition-colors focus:outline-none focus:text-accent focus:underline">
                   Příslušenství
                 </Link>
               </li>
@@ -83,22 +83,22 @@ export function Footer() {
             <h3 className="text-white font-bold text-lg mb-4">Firma</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/o-nas" className="hover:text-white transition-colors">
+                <Link href="/o-nas" className="text-steel-dim hover:text-accent transition-colors focus:outline-none focus:text-accent focus:underline">
                   O nás
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="hover:text-white transition-colors">
+                <Link href="/blog" className="text-steel-dim hover:text-accent transition-colors focus:outline-none focus:text-accent focus:underline">
                   Blog
                 </Link>
               </li>
               <li>
-                <Link href="/kontakt" className="hover:text-white transition-colors">
+                <Link href="/kontakt" className="text-steel-dim hover:text-accent transition-colors focus:outline-none focus:text-accent focus:underline">
                   Kontakt
                 </Link>
               </li>
               <li>
-                <Link href="/faq" className="hover:text-white transition-colors">
+                <Link href="/faq" className="text-steel-dim hover:text-accent transition-colors focus:outline-none focus:text-accent focus:underline">
                   FAQ
                 </Link>
               </li>
@@ -112,7 +112,7 @@ export function Footer() {
               <li className="flex items-start gap-2">
                 <Phone className="w-5 h-5 mt-0.5 flex-shrink-0" />
                 <div>
-                  <a href={`tel:${siteConfig.contact.phoneRaw}`} className="hover:text-white transition-colors">
+                  <a href={`tel:${siteConfig.contact.phoneRaw}`} className="text-steel-dim hover:text-accent transition-colors focus:outline-none focus:text-accent focus:underline">
                     {siteConfig.contact.phone}
                   </a>
                 </div>
@@ -120,7 +120,7 @@ export function Footer() {
               <li className="flex items-start gap-2">
                 <Mail className="w-5 h-5 mt-0.5 flex-shrink-0" />
                 <div>
-                  <a href={`mailto:${siteConfig.contact.email}`} className="hover:text-white transition-colors">
+                  <a href={`mailto:${siteConfig.contact.email}`} className="text-steel-dim hover:text-accent transition-colors focus:outline-none focus:text-accent focus:underline">
                     {siteConfig.contact.email}
                   </a>
                 </div>
@@ -143,10 +143,10 @@ export function Footer() {
               © {currentYear} {siteConfig.company.name} Všechna práva vyhrazena.
             </p>
             <div className="flex gap-6 text-sm">
-              <Link href="/privacy" className="hover:text-white transition-colors">
+              <Link href="/privacy" className="text-steel-dim hover:text-accent transition-colors focus:outline-none focus:text-accent focus:underline">
                 Ochrana osobních údajů
               </Link>
-              <Link href="/terms" className="hover:text-white transition-colors">
+              <Link href="/terms" className="text-steel-dim hover:text-accent transition-colors focus:outline-none focus:text-accent focus:underline">
                 Obchodní podmínky
               </Link>
             </div>

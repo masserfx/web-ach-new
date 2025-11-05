@@ -143,7 +143,7 @@ export default async function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <main className="min-h-screen bg-black">
+      <main id="main-content" className="min-h-screen bg-black">
         {/* BLACK STEEL DESIGN SYSTEM */}
         <BlackSteelHeroSection />
         <BlackSteelValuePropsSection />

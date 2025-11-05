@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from 'next/image';
 import { Check, ExternalLink, Download } from "lucide-react";
 export interface ProductCardProps {
   id: string;
@@ -28,11 +29,7 @@ export function ProductCard({ product }: { product: ProductCardProps }) {
       >
         {" "}
         {mainImage ? (
-          <img
-            src={mainImage.url}
-            alt={mainImage.alt || product.name}
-            className=""
-          />
+          <Image src={mainImage.url} alt={mainImage.alt || product.name} width={800} height={600} loading="lazy" quality={85} className="" lang="cs" />
         ) : (
           <div className="flex items-center justify-center h-full text-steel-dim">
             {" "}

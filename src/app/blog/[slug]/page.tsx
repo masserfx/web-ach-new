@@ -85,7 +85,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   });
 
   return (
-    <main className="min-h-screen bg-black">
+    <main id="main-content" className="min-h-screen bg-black">
       {/* Back Button */}
       <div className="container mx-auto px-4 py-6">
         <Link

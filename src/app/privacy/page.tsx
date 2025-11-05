@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <main className="min-h-screen bg-black">
+    <main id="main-content" className="min-h-screen bg-black">
       {/* Back Button */}
       <div className="container mx-auto px-4 pt-8">
         <Link

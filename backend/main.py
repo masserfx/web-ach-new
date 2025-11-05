@@ -11,14 +11,16 @@ import os
 from dotenv import load_dotenv
 load_dotenv()  # Load .env file
 from datetime import datetime
+from routers.analytics_router import router as analytics_router
 
 app = FastAPI(
-from routers.analytics_router import router as analytics_router
-app.include_router(analytics_router, prefix="/api")
     title="AC Heating API",
     description="Backend API for AC Heating web application",
     version="1.0.0"
 )
+
+# Include analytics router
+app.include_router(analytics_router, prefix="/api")
 
 # CORS middleware
 app.add_middleware(
