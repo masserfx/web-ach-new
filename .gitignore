@@ -55,3 +55,7 @@ __pycache__/
 venv/
 backend/.env
 analytics/.env
+
+# Backup files
+*.backup*
+test-*.html
