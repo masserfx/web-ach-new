@@ -70,17 +70,18 @@ export async function POST(request: NextRequest) {
       .single();
 
     if (leadError) {
-n    // Send email notifications (async, non-blocking)
-    Promise.all([
-      sendNewLeadNotification({ lead }),
-      sendCustomerConfirmation({ lead: { firstName, lastName, email } })
-    ]).catch(err => console.error('Email send error:', err));
       console.error('Supabase error:', leadError);
       return NextResponse.json(
         { error: 'Nepodařilo se uložit poptávku' },
         { status: 500 }
       );
     }
+
+    // Send email notifications (async, non-blocking)
+    Promise.all([
+      sendNewLeadNotification({ lead }),
+      sendCustomerConfirmation({ lead: { firstName, lastName, email } })
+    ]).catch(err => console.error('Email send error:', err));
 
 
     return NextResponse.json({
