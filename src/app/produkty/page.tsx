@@ -45,12 +45,13 @@ export default async function ProductsPage() {
   const products = await getProducts();
 
   // Group products by target market
+  type Product = typeof products[0];
   const groupedProducts = products.reduce((acc, product) => {
     const market = product.target_market || 'other';
     if (!acc[market]) acc[market] = [];
     acc[market].push(product);
     return acc;
-  }, {} as Record<string, typeof products>);
+  }, {} as Record<string, Product[]>);
 
   return (
     <div className="min-h-screen bg-zinc-50">
@@ -72,7 +73,9 @@ export default async function ProductsPage() {
       {/* Products by Market */}
       <div className="py-16">
         <div className="container mx-auto px-4">
-          {Object.entries(groupedProducts).map(([market, marketProducts]) => (
+          {Object.entries(groupedProducts).map(([market, marketProducts]) => {
+            const products = marketProducts as Product[];
+            return (
             <div key={market} className="mb-16">
               <div className="mb-8">
                 <h2 className="text-3xl font-bold text-zinc-900 mb-2">
@@ -82,7 +85,7 @@ export default async function ProductsPage() {
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {marketProducts.map((product) => (
+                {products.map((product: Product) => (
                   <Link
                     key={product.id}
                     href={`/produkty/${product.slug}`}
@@ -192,7 +195,8 @@ export default async function ProductsPage() {
                 ))}
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 

@@ -49,7 +49,7 @@ export async function generateMetadata(
     openGraph: {
       title,
       description,
-      type: 'product',
+      type: 'website',
       images: product.images?.[0]?.url ? [product.images[0].url] : [],
     },
   };
@@ -236,7 +236,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
                   </Link>
                 </div>
 
-                <ShareButton />
+                <ShareButton
+                  title={product.name}
+                  text={product.description}
+                  url={`https://ac-heating.cz/produkty/${product.slug}`}
+                />
               </div>
             </div>
           </div>
