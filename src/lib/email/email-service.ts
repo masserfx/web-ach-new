@@ -1,6 +1,20 @@
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Lazy initialization - only create Resend client if API key is available
+let resend: Resend | null = null;
+
+function getResendClient(): Resend | null {
+  if (!process.env.RESEND_API_KEY) {
+    console.warn('⚠️ RESEND_API_KEY is not set. Email functionality will be disabled.');
+    return null;
+  }
+
+  if (!resend) {
+    resend = new Resend(process.env.RESEND_API_KEY);
+  }
+
+  return resend;
+}
 
 interface NewLeadEmailParams {
   lead: {
@@ -48,9 +62,16 @@ const formatUrgency = (urgency?: string) => {
 
 export async function sendNewLeadNotification({ lead }: NewLeadEmailParams) {
   try {
+    const resendClient = getResendClient();
+
+    if (!resendClient) {
+      console.warn('⚠️ Resend client not available. Skipping email notification.');
+      return { success: false, error: 'Email service not configured' };
+    }
+
     const adminEmail = process.env.ADMIN_EMAIL || 'info@ac-heating.cz';
 
-    await resend.emails.send({
+    await resendClient.emails.send({
       from: 'AC Heating <noreply@ac-heating.cz>',
       to: adminEmail,
       subject: `🔔 Nový lead: ${lead.firstName} ${lead.lastName}`,
@@ -158,7 +179,14 @@ export async function sendNewLeadNotification({ lead }: NewLeadEmailParams) {
 
 export async function sendCustomerConfirmation({ lead }: CustomerConfirmationParams) {
   try {
-    await resend.emails.send({
+    const resendClient = getResendClient();
+
+    if (!resendClient) {
+      console.warn('⚠️ Resend client not available. Skipping customer confirmation email.');
+      return { success: false, error: 'Email service not configured' };
+    }
+
+    await resendClient.emails.send({
       from: 'AC Heating <info@ac-heating.cz>',
       to: lead.email,
       subject: 'Děkujeme za poptávku - AC Heating',
